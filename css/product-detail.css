@@ -1,0 +1,456 @@
+/* Product Detail Page Styles */
+
+.product-hero {
+    padding: 150px 0 80px;
+    background: linear-gradient(135deg, #f5f9ff 0%, #e1f5fe 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(30, 136, 229, 0.1), rgba(100, 181, 246, 0.1));
+    z-index: 0;
+}
+
+.product-hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.product-hero-text {
+    flex: 1;
+    padding-right: 30px;
+}
+
+.product-hero-text h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--primary-dark);
+    line-height: 1.2;
+}
+
+.product-hero-text p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+.product-hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-hero-image img {
+    max-width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+/* Portfolio Slider */
+.website-portfolio, 
+.product-features {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.portfolio-slider {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.portfolio-slide {
+    display: none;
+    position: relative;
+}
+
+.portfolio-slide.active {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.portfolio-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.portfolio-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: var(--white);
+    padding: 15px;
+}
+
+.portfolio-caption h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.portfolio-caption p {
+    font-size: 0.9rem;
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* Benefits Section */
+.why-website {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f5f9ff 0%, #e1f5fe 100%);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.benefit-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.benefit-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: var(--white);
+    font-size: 1.8rem;
+    box-shadow: 0 10px 20px rgba(30, 136, 229, 0.2);
+}
+
+.benefit-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--primary-dark);
+}
+
+.benefit-card p {
+    color: var(--text-light);
+}
+
+/* Pricing Section */
+.pricing {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.pricing-card {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+    padding: 30px;
+    text-align: center;
+}
+
+.pricing-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.price {
+    text-align: center;
+}
+
+.original-price {
+    font-size: 1.2rem;
+    text-decoration: line-through;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 5px;
+}
+
+.discounted-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.pricing-features {
+    padding: 30px;
+}
+
+.pricing-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.pricing-features li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+}
+
+.pricing-features li i {
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.yearly-offer {
+    background: rgba(30, 136, 229, 0.05);
+    padding: 20px;
+    text-align: center;
+    border-top: 1px dashed rgba(30, 136, 229, 0.3);
+    border-bottom: 1px dashed rgba(30, 136, 229, 0.3);
+}
+
+.yearly-offer .original-price {
+    color: var(--text-light);
+}
+
+.yearly-offer .discounted-price {
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+}
+
+.savings {
+    color: #4caf50;
+    font-weight: 600;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    margin: 30px 0 0;
+    border-radius: 0;
+    padding: 15px;
+}
+
+/* Website Testimonials */
+.website-testimonials {
+    padding: 50px 0 0;
+    text-align: center;
+}
+
+.website-testimonials h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: var(--primary-dark);
+}
+
+/* Product Features Section */
+.feature-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.feature-item {
+    display: flex;
+    margin-bottom: 40px;
+    align-items: center;
+}
+
+.feature-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.feature-item:nth-child(even) .feature-text {
+    padding-left: 0;
+    padding-right: 30px;
+}
+
+.feature-image {
+    flex: 1;
+}
+
+.feature-image img {
+    max-width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.feature-text {
+    flex: 1;
+    padding-left: 30px;
+}
+
+.feature-text h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--primary-dark);
+}
+
+.feature-text p {
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+/* Plans Section */
+.plans {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f5f9ff 0%, #e1f5fe 100%);
+}
+
+.plans-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.plan-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    flex: 1;
+    max-width: 350px;
+    transition: var(--transition);
+}
+
+.plan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.plan-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+    padding: 20px;
+    text-align: center;
+}
+
+.plan-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.plan-price {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.plan-price .original-price {
+    color: var(--text-light);
+    text-decoration: line-through;
+    font-size: 1rem;
+}
+
+.plan-price .discounted-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.plan-features {
+    padding: 20px;
+}
+
+.plan-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.plan-features li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.9rem;
+}
+
+.plan-features li i {
+    color: var(--primary-color);
+    margin-right: 8px;
+}
+
+.plan-footer {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+    .product-hero-content {
+        flex-direction: column;
+    }
+    
+    .product-hero-text {
+        padding-right: 0;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+    
+    .product-hero-text p {
+        margin: 0 auto 30px;
+    }
+    
+    .feature-item, 
+    .feature-item:nth-child(even) {
+        flex-direction: column;
+    }
+    
+    .feature-text, 
+    .feature-item:nth-child(even) .feature-text {
+        padding: 30px 0 0;
+        text-align: center;
+    }
+    
+    .plans-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .plan-card {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .portfolio-caption {
+        position: relative;
+        background: var(--primary-dark);
+    }
+} 
