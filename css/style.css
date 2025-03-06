@@ -277,20 +277,17 @@ img {
 
 .hero-image img {
     max-width: 100%;
-    animation: float 6s ease-in-out infinite;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
 }
 
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
+.hero-image-mobile {
+    display: none;
+    margin-top: 20px;
+}
+
+.hero-image-mobile img {
+    max-width: 100%;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
 }
 
 /* Features Section */

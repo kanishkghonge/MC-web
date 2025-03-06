@@ -13,17 +13,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Wave Pattern Top -->
+    <div class="wave-container">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+    </div>
+
     <!-- Header Section -->
     <header class="glass-header">
         <div class="container">
             <div class="logo">
-                <img src="../images/logo/weblogo.png" alt="MedCortico Logo">
+                <img src="../Photos/weblogo.png" alt="MedCortico Logo">
             </div>
             <nav>
                 <ul class="nav-links">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="products.html">Products</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
             <div class="social-icons">
@@ -47,13 +54,13 @@
                     <h1>MedScribe: Medical Transcription Software</h1>
                     <p>Convert speech to structured medical reports with our advanced AI-powered transcription software. Save time and focus on patient care.</p>
                     <div class="hero-buttons">
-                        <a href="#" class="btn btn-primary">Download Free Trial</a>
+                        <a href="#" class="btn btn-primary">Download Free 5-Day Trial</a>
                         <a href="#learn-more" class="btn btn-secondary">Learn More</a>
                     </div>
                 </div>
                 <div class="product-hero-image">
                     <!-- Replace with actual image -->
-                    <img src="../images/product-renders/medscribe-mockup.png" alt="MedScribe Software">
+                    <img src="../Photos/ms-doc.jpeg" alt="MedScribe Software">
                 </div>
             </div>
         </div>
@@ -69,7 +76,7 @@
                 <div class="feature-item">
                     <div class="feature-image">
                         <!-- Replace with actual image -->
-                        <img src="../images/product-renders/medscribe-feature1.png" alt="One-Click Recording">
+                        <img src="../Photos/feature1.png" alt="One-Click Recording">
                     </div>
                     <div class="feature-text">
                         <h3>One-Click Recording</h3>
@@ -80,7 +87,7 @@
                 <div class="feature-item">
                     <div class="feature-image">
                         <!-- Replace with actual image -->
-                        <img src="../images/product-renders/medscribe-feature2.png" alt="Saved Report Formats">
+                        <img src="../Photos/feature2.png" alt="Saved Report Formats">
                     </div>
                     <div class="feature-text">
                         <h3>Saved Report Formats</h3>
@@ -91,7 +98,7 @@
                 <div class="feature-item">
                     <div class="feature-image">
                         <!-- Replace with actual image -->
-                        <img src="../images/product-renders/medscribe-feature3.png" alt="Medical Terminology">
+                        <img src="../Photos/feature3.png" alt="Medical Terminology">
                     </div>
                     <div class="feature-text">
                         <h3>Advanced Medical Terminology</h3>
@@ -148,9 +155,10 @@
                     </div>
                 </div>
                 
-                <div class="plan-card">
+                <div class="plan-card featured">
                     <div class="plan-header">
                         <h3>Yearly Plan</h3>
+                        <span class="best-value">Best Value</span>
                     </div>
                     <div class="plan-price">
                         <div class="original-price">₹42,000/year</div>
@@ -173,34 +181,50 @@
                 </div>
             </div>
             
+            <!-- Connector between plans and savings -->
+            <div class="plans-to-savings-connector"></div>
+            
             <div class="savings-calculator">
-                <h3>How Much Will You Save?</h3>
-                <p>By not hiring a typist, you can save up to ₹25,000 per month!</p>
-                <div class="cta-box">
-                    <p>Still unsure? Experience MedScribe with our free 5-day trial</p>
-                    <a href="#" class="btn btn-primary">Download Free Trial</a>
+                <div class="savings-header">
+                    <h3>How Much Will You Save?</h3>
+                    <p>By not hiring a typist, you can save up to <span class="amount">₹25,000</span> per month!</p>
                 </div>
-                <div class="bulk-discount">
-                    <p>For bulk discounts for multiple doctors or clinics</p>
-                    <a href="../index.html#contact" class="btn btn-outline">Contact Us</a>
+                <div class="savings-content">
+                    <div class="trial-box">
+                        <h4>Try Before You Buy</h4>
+                        <p>Experience MedScribe with our free <span class="days">5-day</span> trial. No credit card required.</p>
+                        <a href="#" class="btn btn-primary">Download Free Trial</a>
+                    </div>
+                    <div class="bulk-discount-box">
+                        <h4>Bulk Discounts Available</h4>
+                        <p>Special pricing for multiple doctors or clinics. Contact us for a customized quote.</p>
+                        <a href="contact.html" class="btn btn-outline">Contact Us</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Wave Pattern Bottom -->
+    <div class="wave-container-bottom">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+    </div>
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="../images/logo/weblogo.png" alt="MedCortico Logo">
+                    <img src="../Photos/weblogo.png" alt="MedCortico Logo">
                 </div>
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="../index.html">Home</a></li>
                         <li><a href="products.html">Products</a></li>
-                        <li><a href="../index.html#contact">Contact Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-products">

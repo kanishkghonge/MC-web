@@ -17,13 +17,13 @@
     <header class="glass-header">
         <div class="container">
             <div class="logo">
-                <img src="../images/logo/weblogo.png" alt="MedCortico Logo">
+                <img src="../Photos/weblogo.png" alt="MedCortico Logo">
             </div>
             <nav>
                 <ul class="nav-links">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="products.html">Products</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
             <div class="social-icons">
@@ -46,7 +46,10 @@
                 <div class="product-hero-text">
                     <h1>Professional Websites for Medical Practices</h1>
                     <p>Establish your online presence with a custom-designed website that attracts new patients and showcases your expertise.</p>
-                    <a href="#get-website" class="btn btn-primary">Get Your Own Website Today</a>
+                    <div class="hero-buttons">
+                        <a href="#get-website" class="btn btn-primary">Get Your Own Website Today</a>
+                        <a href="#pricing" class="btn btn-secondary">Check Plans</a>
+                    </div>
                 </div>
                 <div class="product-hero-image">
                     <!-- Replace with actual image -->
@@ -124,54 +127,92 @@
             </div>
         </div>
     </section>
-
-    <!-- Pricing Section -->
-    <section id="get-website" class="pricing">
+    
+    <!-- Testimonials Section -->
+    <section class="website-testimonials">
         <div class="container">
-            <h2 class="section-title">Affordable Website Solutions</h2>
-            
-            <div class="pricing-card">
-                <div class="pricing-header">
-                    <h3>Complete Website Package</h3>
-                    <div class="price">
-                        <div class="original-price">₹1,899/month</div>
-                        <div class="discounted-price">₹999/month</div>
-                    </div>
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonial-slider">
+                <!-- Testimonial slides will be inserted by JavaScript -->
+            </div>
+            <div class="slider-controls">
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-dots">
+                    <!-- Dots will be inserted by JavaScript -->
                 </div>
-                
-                <div class="pricing-features">
-                    <ul>
-                        <li><i class="fas fa-check"></i> Custom design tailored for medical practices</li>
-                        <li><i class="fas fa-check"></i> Mobile-responsive layout</li>
-                        <li><i class="fas fa-check"></i> Online appointment booking system</li>
-                        <li><i class="fas fa-check"></i> Contact forms and location maps</li>
-                        <li><i class="fas fa-check"></i> SEO optimization for local searches</li>
-                        <li><i class="fas fa-check"></i> Hosting, maintenance, and regular updates</li>
-                        <li><i class="fas fa-check"></i> Professional email addresses</li>
-                    </ul>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Started Section -->
+    <section id="get-website" class="get-started">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Fill Out the Form</h3>
+                    <p>Tell us about your practice and what you're looking for in a website.</p>
                 </div>
-                
-                <div class="yearly-offer">
-                    <div class="original-price">₹21,999/year</div>
-                    <div class="discounted-price">₹9,800/year</div>
-                    <p class="savings">Save ₹2,188 with yearly plan!</p>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Get a Sample Website</h3>
+                    <p>We'll create a sample website for your clinic to give you an idea of what it could look like.</p>
                 </div>
-                
-                <a href="#" class="btn btn-primary btn-block">Get Your Sample Website</a>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Customize to Your Needs</h3>
+                    <p>We'll work with you to make any changes needed to match your vision perfectly.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Launch Your Website</h3>
+                    <p>Once you're satisfied, we'll launch your website and handle all the technical details.</p>
+                </div>
             </div>
             
-            <!-- Testimonials Section -->
-            <div class="website-testimonials">
-                <h3>What Our Clients Say</h3>
-                <div class="testimonial-slider">
-                    <!-- Testimonial slides will be inserted by JavaScript -->
+            <div class="contact-form-container">
+                <h3>Request Your Sample Website</h3>
+                <p>Fill out this form and we'll get back to you with a sample website for your clinic.</p>
+                <!-- This will be replaced with your Google Form embed code -->
+                <div class="contact-form-placeholder">
+                    <p>Google Form will be embedded here</p>
                 </div>
-                <div class="slider-controls">
-                    <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
-                    <div class="slider-dots">
-                        <!-- Dots will be inserted by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Affordable Website Solutions</h2>
+            <p class="section-description">One-time payment includes all maintenance work and updates you need. Pay once and forget about worrying about your website.</p>
+            
+            <div class="pricing-card simplified">
+                <div class="pricing-options">
+                    <div class="monthly-option">
+                        <h3>Monthly Plan</h3>
+                        <div class="price">
+                            <div class="original-price">₹1,899/month</div>
+                            <div class="discounted-price">₹999/month</div>
+                        </div>
                     </div>
-                    <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+                    
+                    <div class="yearly-option">
+                        <h3>Yearly Plan</h3>
+                        <span class="best-value">Best Value</span>
+                        <div class="price">
+                            <div class="original-price">₹21,999/year</div>
+                            <div class="discounted-price">₹9,800/year</div>
+                        </div>
+                        <p class="savings">Save ₹2,188 with yearly plan!</p>
+                    </div>
+                </div>
+                
+                <div class="pricing-cta">
+                    <p>All plans include custom design, mobile-responsive layout, appointment booking, SEO optimization, hosting, and maintenance.</p>
+                    <a href="#get-website" class="btn btn-primary btn-block">Get Your Sample Website Today</a>
                 </div>
             </div>
         </div>
@@ -182,14 +223,14 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="../images/logo/weblogo.png" alt="MedCortico Logo">
+                    <img src="../Photos/weblogo.png" alt="MedCortico Logo">
                 </div>
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="../index.html">Home</a></li>
                         <li><a href="products.html">Products</a></li>
-                        <li><a href="../index.html#contact">Contact Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-products">

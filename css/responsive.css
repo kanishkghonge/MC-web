@@ -73,6 +73,16 @@
         font-size: 2rem;
     }
     
+    .hero-image {
+        display: none;
+    }
+    
+    .hero-image-mobile {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+    }
+    
     .section-title {
         font-size: 2rem;
     }
