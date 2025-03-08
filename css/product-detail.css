@@ -18,6 +18,125 @@ body::before {
     opacity: 0.8;
 }
 
+/* Enhanced background elements */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(30, 136, 229, 0.03) 0%, transparent 200px),
+        radial-gradient(circle at 90% 80%, rgba(30, 136, 229, 0.04) 0%, transparent 300px),
+        radial-gradient(circle at 50% 50%, rgba(100, 181, 246, 0.02) 0%, transparent 800px);
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Decorative circles */
+.decorative-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.decorative-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.4;
+    filter: blur(40px);
+}
+
+.decorative-circle:nth-child(1) {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, rgba(30, 136, 229, 0.15), rgba(100, 181, 246, 0.1));
+    top: -100px;
+    right: -50px;
+    animation: float-slow 15s ease-in-out infinite;
+}
+
+.decorative-circle:nth-child(2) {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, rgba(30, 136, 229, 0.1), rgba(100, 181, 246, 0.05));
+    bottom: -150px;
+    left: -100px;
+    animation: float-slow 20s ease-in-out infinite reverse;
+}
+
+.decorative-circle:nth-child(3) {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, rgba(100, 181, 246, 0.1), rgba(30, 136, 229, 0.05));
+    top: 30%;
+    left: 20%;
+    animation: float-slow 25s ease-in-out infinite 5s;
+}
+
+.decorative-circle:nth-child(4) {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, rgba(100, 181, 246, 0.08), rgba(30, 136, 229, 0.04));
+    top: 60%;
+    right: 15%;
+    animation: float-slow 18s ease-in-out infinite 2s;
+}
+
+/* Decorative lines */
+.decorative-line {
+    position: absolute;
+    background: linear-gradient(90deg, rgba(30, 136, 229, 0.05), rgba(100, 181, 246, 0.1), rgba(30, 136, 229, 0.05));
+    height: 1px;
+    width: 100%;
+    transform-origin: left center;
+}
+
+.decorative-line:nth-child(5) {
+    top: 20%;
+    transform: rotate(5deg);
+    animation: line-fade 20s ease-in-out infinite;
+}
+
+.decorative-line:nth-child(6) {
+    top: 40%;
+    transform: rotate(-3deg);
+    animation: line-fade 25s ease-in-out infinite 2s;
+}
+
+.decorative-line:nth-child(7) {
+    top: 70%;
+    transform: rotate(2deg);
+    animation: line-fade 22s ease-in-out infinite 5s;
+}
+
+@keyframes float-slow {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(20px, 20px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes line-fade {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
 /* Wave Pattern for top of page */
 .wave-container {
     position: absolute;
@@ -64,7 +183,7 @@ body::before {
 
 .product-hero {
     padding: 150px 0 80px;
-    background: linear-gradient(135deg, #f5f9ff 0%, #e1f5fe 100%);
+    background: linear-gradient(135deg, #f0f7ff 0%, #e1f5fe 100%);
     position: relative;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -79,7 +198,7 @@ body::before {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(30, 136, 229, 0.1), rgba(100, 181, 246, 0.1));
+    background: linear-gradient(135deg, rgba(30, 136, 229, 0.15), rgba(100, 181, 246, 0.1));
     z-index: 0;
 }
 
@@ -91,7 +210,7 @@ body::before {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(30, 136, 229, 0.05), rgba(100, 181, 246, 0.05));
+    background: linear-gradient(135deg, rgba(30, 136, 229, 0.1), rgba(100, 181, 246, 0.05));
     z-index: 0;
 }
 
@@ -135,6 +254,10 @@ body::before {
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     animation: float 6s ease-in-out infinite;
+}
+
+.product-hero-image img:hover {
+    transform: perspective(800px) rotateZ(0deg) !important;
 }
 
 @keyframes float {
@@ -373,11 +496,13 @@ body::before {
 .yearly-option {
     background-color: #f5f9ff;
     position: relative;
+    overflow: visible;
+    padding-top: 15px;
 }
 
 .best-value {
     position: absolute;
-    top: 10px;
+    top: -10px;
     right: 10px;
     background: linear-gradient(135deg, #ff9800, #f57c00);
     color: white;
@@ -387,7 +512,9 @@ body::before {
     font-weight: 600;
     text-transform: uppercase;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    z-index: 2;
+    z-index: 5;
+    white-space: nowrap;
+    overflow: visible;
 }
 
 .monthly-option h3, .yearly-option h3 {

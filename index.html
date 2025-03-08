@@ -6,18 +6,636 @@
     <title>MedCortico - Health IT Solutions for Doctors</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/product-detail.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Home Page Styles */
+        .hero {
+            padding: 180px 0 120px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e1f5fe 100%);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.15), rgba(100, 181, 246, 0.1));
+            z-index: 0;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.1), rgba(100, 181, 246, 0.05));
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 30px;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--primary-dark);
+            line-height: 1.2;
+            position: relative;
+        }
+        
+        .hero-text h1 span {
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-text h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(30, 136, 229, 0.2);
+            z-index: -1;
+            border-radius: 4px;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+        
+        .hero-text .tagline {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(30, 136, 229, 0.1);
+            border-radius: 30px;
+        }
+        
+        .hero-buttons {
+            margin-top: 40px;
+        }
+        
+        .hero-buttons .btn {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            margin-right: 15px;
+            margin-bottom: 15px;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-image {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.5s ease;
+        }
+        
+        .hero-image:hover img {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 80px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        
+        .stat-text {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+        
+        .features {
+            padding: 120px 0;
+            position: relative;
+            background: var(--white);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(30, 136, 229, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: rgba(30, 136, 229, 0.3);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--white);
+            font-size: 2rem;
+            box-shadow: 0 10px 20px rgba(30, 136, 229, 0.2);
+            transform: rotate(0deg);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: rotate(10deg);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+        
+        .feature-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card .btn-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .feature-card .btn-link i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover .btn-link i {
+            transform: translateX(5px);
+        }
+        
+        .testimonials {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e1f5fe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 0;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 50px auto 0;
+            position: relative;
+        }
+        
+        .testimonial-content {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -70px auto 20px;
+            color: var(--white);
+            font-size: 1.5rem;
+            box-shadow: 0 10px 20px rgba(30, 136, 229, 0.2);
+        }
+        
+        .testimonial-content p {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            margin-top: 20px;
+        }
+        
+        .testimonial-author h4 {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-author p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin: 0;
+            font-style: normal;
+        }
+        
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 0;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons .btn {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            margin: 0 10px;
+            border-radius: 50px;
+        }
+        
+        .cta-buttons .btn-white {
+            background: var(--white);
+            color: var(--primary-dark);
+        }
+        
+        .cta-buttons .btn-white:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+        }
+        
+        .cta-buttons .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .cta-buttons .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* Enhanced Footer Styles */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #004080 100%);
+            color: var(--white);
+            padding: 80px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo img {
+            max-width: 180px;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-links, .footer-products, .footer-contact {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+        
+        footer h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        footer h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-light);
+            border-radius: 2px;
+        }
+        
+        footer ul li {
+            margin-bottom: 10px;
+        }
+        
+        footer ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        footer ul li a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .footer-contact p i {
+            margin-right: 10px;
+            color: var(--primary-light);
+        }
+        
+        .footer-social {
+            margin-top: 20px;
+        }
+        
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+        }
+        
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                text-align: center;
+                margin-bottom: 50px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .stat-item {
+                flex: 1;
+                min-width: 120px;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .footer-content > div {
+                flex: 100%;
+                margin-bottom: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-text p {
+                font-size: 1rem;
+            }
+            
+            .hero-text .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+                margin-bottom: 10px;
+                width: 100%;
+                margin-right: 0;
+            }
+            
+            .hero-stats {
+                display: none; /* Hide stats on mobile */
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .testimonial-content {
+                padding: 30px 20px;
+            }
+            
+            .testimonial-content p {
+                font-size: 1rem;
+            }
+            
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-content p {
+                font-size: 1rem;
+            }
+            
+            .cta-buttons .btn {
+                display: block;
+                width: 100%;
+                margin: 0 0 15px 0;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Decorative Elements -->
+    <div class="decorative-elements">
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-line"></div>
+        <div class="decorative-line"></div>
+        <div class="decorative-line"></div>
+    </div>
+
     <!-- Header Section -->
     <header class="glass-header">
         <div class="container">
             <div class="logo">
                 <!-- Replace with your actual logo path -->
-                <img src="C:\Users\kanis\Desktop\Main\Work\GitHub\MedCortico-Web\Photos\weblogo.png" alt="MedCortico Logo">
+                <img src="Photos/weblogo.png" alt="MedCortico Logo">
             </div> 
             <nav>
                 <ul class="nav-links">
@@ -44,23 +662,31 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Digitalize Your Clinic<br>Grow Your Practice</h1>
-                    <p>With MedCortico's Health IT Solutions Increase online presence, Digitalise patient records and manage day-to-day operations</p>
+                    <h1><span>Digitalize</span> Your Clinic<br>Grow Your Practice</h1>
+                    <p>With MedCortico's comprehensive Health IT Solutions, you can increase your online presence, digitalize patient records, and efficiently manage day-to-day operations - all in one integrated platform.</p>
                     <p class="tagline">Built by Doctors for Doctors</p>
                     <div class="hero-buttons">
-                        <a href="pages/products.html" class="btn btn-primary">Our Products</a>
+                        <a href="pages/products.html" class="btn btn-primary">Explore Our Solutions</a>
                         <a href="#learn-more" class="btn btn-secondary">Learn More</a>
-                        <a href="#contact" class="btn btn-outline">Contact Us</a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <!-- Replace with your actual hero image -->
-                    <img src="C:\Users\kanis\Desktop\Main\Work\GitHub\MedCortico-Web\Photos\doc-main.png" alt="MedCortico Health IT Solutions">
+                    <img src="Photos/doc-main.png" alt="MedCortico Health IT Solutions">
                 </div>
-                <div class="hero-image-mobile">
-                    <!-- This image will only show on mobile devices -->
-                    <!-- Replace with your mobile hero image when available -->
-                    <img src="Photos/mobile-placeholder.png" alt="MedCortico Health IT Solutions Mobile">
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-text">Happy Doctors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-text">Integrated Solutions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-text">Customer Support</div>
                 </div>
             </div>
         </div>
@@ -69,7 +695,9 @@
     <!-- Learn More Section -->
     <section id="learn-more" class="features">
         <div class="container">
-            <h2 class="section-title">What MedCortico Offers</h2>
+            <h2 class="section-title">Comprehensive Healthcare Solutions</h2>
+            <p class="section-description">Discover our range of specialized tools designed to streamline your medical practice</p>
+            
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -77,6 +705,7 @@
                     </div>
                     <h3>Website Building</h3>
                     <p>Get discovered online with a professional medical website tailored for your practice.</p>
+                    <a href="pages/website-building.html" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -84,6 +713,7 @@
                     </div>
                     <h3>Electronic Medical Records</h3>
                     <p>Digitalize patient records with customized formats for your specialty.</p>
+                    <a href="pages/emr.html" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -91,6 +721,7 @@
                     </div>
                     <h3>Medical Transcription</h3>
                     <p>Convert speech to structured medical reports with our advanced software.</p>
+                    <a href="pages/medical-transcription.html" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -98,6 +729,7 @@
                     </div>
                     <h3>Social Media Management</h3>
                     <p>Grow your online presence with targeted social media strategies for doctors.</p>
+                    <a href="#" class="btn-link">Coming Soon <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -105,6 +737,7 @@
                     </div>
                     <h3>Teleconsultation Portal</h3>
                     <p>Connect with patients remotely through our secure teleconsultation platform.</p>
+                    <a href="#" class="btn-link">Coming Soon <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -115,7 +748,6 @@
         <div class="container">
             <h2 class="section-title">What Doctors Say About Us</h2>
             <div class="testimonial-slider">
-                <!-- Testimonial slides will be inserted here by JavaScript -->
                 <div class="testimonial-slide active">
                     <div class="testimonial-content">
                         <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
@@ -138,12 +770,26 @@
         </div>
     </section>
 
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Practice?</h2>
+                <p>Join hundreds of doctors who have already enhanced their practice with MedCortico's solutions.</p>
+                <div class="cta-buttons">
+                    <a href="pages/products.html" class="btn btn-white">Explore Solutions</a>
+                    <a href="pages/contact.html" class="btn btn-outline-white">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="images/logo/weblogo.png" alt="MedCortico Logo">
+                    <img src="Photos/weblogo.png" alt="MedCortico Logo">
                 </div>
                 <div class="footer-links">
                     <h3>Quick Links</h3>
