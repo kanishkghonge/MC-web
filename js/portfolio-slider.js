@@ -2,32 +2,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // Portfolio slider functionality
     const portfolioItems = [
         {
-            image: '../images/portfolio/website1.jpg',
-            title: "Dr. Sharma's Cardiology Clinic",
-            description: "A modern website with online appointment booking"
+            image: 'C:/Users/kanis/Desktop/MedCortico-Web/Photos/cico.jpg',
+            title: "CicoNutrition.com",
+            description: "Modern and responsive website for a nutrition clinic"
         },
         {
-            image: '../images/portfolio/website2.jpg',
-            title: "City Dental Care",
-            description: "Responsive website with patient testimonials and service showcase"
+            image: 'C:/Users/kanis/Desktop/MedCortico-Web/Photos/evidence.jpg',
+            title: "EvidenceHealthcareClinic.com",
+            description: "Clinic website showcasing services with integrated appointment booking system"
         },
         {
-            image: '../images/portfolio/website3.jpg',
-            title: "Dr. Patel's Pediatric Center",
-            description: "Child-friendly design with parent resources and FAQ section"
+            image: 'C:/Users/kanis/Desktop/MedCortico-Web/Photos/fmrc.jpg',
+            title: "fetalmricommunity.org",
+            description: "Website with payment gateway and journal hosting"
         },
         {
-            image: '../images/portfolio/website4.jpg',
-            title: "Wellness Physiotherapy",
-            description: "Service-focused website with online booking and treatment information"
+            image: 'C:/Users/kanis/Desktop/MedCortico-Web/Photos/delrad.jpg',
+            title: "Delrad.in",
+            description: "Website showcasing radiology DNB course with payment gateway"
         },
         {
-            image: '../images/portfolio/website5.jpg',
-            title: "Metro Dermatology",
-            description: "Image-rich portfolio showcasing procedures and results"
+            image: 'C:/Users/kanis/Desktop/MedCortico-Web/Photos/ass.jpg',
+            title: "AasSanginiSanstha.com",
+            description: "Website for a non-profit organization providing free medical services"
         }
     ];
-    
     const portfolioSlider = document.querySelector('.portfolio-slider');
     const dotsContainer = document.querySelector('.slider-dots');
     const prevBtn = document.querySelector('.prev-btn');

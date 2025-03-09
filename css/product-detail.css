@@ -281,16 +281,18 @@ body::after {
 
 .portfolio-slider {
     position: relative;
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
     overflow: hidden;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    height: 600px; /* Increased height to make the slider taller */
 }
 
 .portfolio-slide {
     display: none;
     position: relative;
+    height: 100%; /* Ensure slides take full height of the slider */
 }
 
 .portfolio-slide.active {
@@ -300,8 +302,9 @@ body::after {
 
 .portfolio-slide img {
     width: 100%;
-    height: auto;
+    height: auto; /* Ensure images maintain aspect ratio and fit inside the slide */
     display: block;
+    object-fit: contain; /* Ensure the entire image fits inside the slide */
 }
 
 .portfolio-caption {
