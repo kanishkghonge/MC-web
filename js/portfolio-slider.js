@@ -2,31 +2,32 @@ document.addEventListener('DOMContentLoaded', function() {
     // Portfolio slider functionality
     const portfolioItems = [
         {
-            image: 'C:/Users/kanis/Desktop/MedCortico-Web/Photos/cico.jpg',
+            image: '../Photos/cico.jpg',
             title: "CicoNutrition.com",
             description: "Modern and responsive website for a nutrition clinic"
         },
         {
-            image: 'C:/Users/kanis/Desktop/MedCortico-Web/Photos/evidence.jpg',
+            image: '../Photos/evidence.jpg',
             title: "EvidenceHealthcareClinic.com",
             description: "Clinic website showcasing services with integrated appointment booking system"
         },
         {
-            image: 'C:/Users/kanis/Desktop/MedCortico-Web/Photos/fmrc.jpg',
+            image: '../Photos/fmrc.jpg',
             title: "fetalmricommunity.org",
             description: "Website with payment gateway and journal hosting"
         },
         {
-            image: 'C:/Users/kanis/Desktop/MedCortico-Web/Photos/delrad.jpg',
+            image: '../Photos/delrad.jpg',
             title: "Delrad.in",
             description: "Website showcasing radiology DNB course with payment gateway"
         },
         {
-            image: 'C:/Users/kanis/Desktop/MedCortico-Web/Photos/ass.jpg',
+            image: '../Photos/ass.jpg',
             title: "AasSanginiSanstha.com",
             description: "Website for a non-profit organization providing free medical services"
         }
     ];
+  
     const portfolioSlider = document.querySelector('.portfolio-slider');
     const dotsContainer = document.querySelector('.slider-dots');
     const prevBtn = document.querySelector('.prev-btn');
