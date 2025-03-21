@@ -3,29 +3,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const testimonials = [
         {
             text: "MedCortico transformed my clinical workflow. Their EMR system is intuitive and saves me hours every week. Highly recommended for any private practice!",
-            author: "Dr. Sharma",
+            author: "Dr. Nehal Rao",
             title: "Cardiologist, Delhi"
         },
         {
-            text: "The website MedCortico built for my clinic has significantly increased my patient appointments. Their design is professional and exactly what I needed.",
-            author: "Dr. Patel",
-            title: "Pediatrician, Mumbai"
+            text: "Most EMRs slow me down, but MedCortico is refreshingly intuitive. One-click templates and easy prescription sharing save me time. Highly recommended!",
+            author: "Dr. Priya Menon",
+            title: "Gynecologist, Mumbai"
         },
         {
-            text: "MedScribe is a game-changer! I can now document patient visits in real-time without typing. It's accurate and understands medical terminology perfectly.",
-            author: "Dr. Gupta",
+            text: "Sending digital prescriptions via WhatsApp has been a game-changer for my clinic. Patients love the convenience, and I no longer get calls about lost prescriptions",
+            author: "Dr. Rohan Verma",
             title: "Neurologist, Bangalore"
         },
         {
             text: "Since implementing MedCortico's EMR, my practice has become paperless and more efficient. Patient records are organized and accessible whenever I need them.",
-            author: "Dr. Khan",
-            title: "Family Physician, Hyderabad"
+            author: "Dr. Azim Khan",
+            title: "Internal Medicine, Hyderabad"
         },
-        {
-            text: "Their social media management has helped me connect with more patients. My online presence has grown tremendously with minimal effort on my part.",
-            author: "Dr. Reddy",
-            title: "Dermatologist, Chennai"
-        }
+
     ];
     
     const sliderContainer = document.querySelector('.testimonial-slider');

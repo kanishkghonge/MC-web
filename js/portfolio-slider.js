@@ -4,27 +4,32 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             image: '../Photos/cico.jpg',
             title: "CicoNutrition.com",
-            description: "Modern and responsive website for a nutrition clinic"
+            description: "Modern and responsive website for a nutrition clinic",
+            link: "https://www.ciconutrition.com"
         },
         {
             image: '../Photos/evidence.jpg',
             title: "EvidenceHealthcareClinic.com",
-            description: "Clinic website showcasing services with integrated appointment booking system"
+            description: "Clinic website showcasing services with integrated appointment booking system",
+            link: "https://www.evidencehealthcareclinic.com"
         },
         {
             image: '../Photos/fmrc.jpg',
             title: "fetalmricommunity.org",
-            description: "Website with payment gateway and journal hosting"
+            description: "Website with payment gateway and journal hosting",
+            link: "https://www.fetalmricommunity.org"
         },
         {
             image: '../Photos/delrad.jpg',
             title: "Delrad.in",
-            description: "Website showcasing radiology DNB course with payment gateway"
+            description: "Website showcasing radiology DNB course with payment gateway",
+            link: "https://www.delrad.in"
         },
         {
             image: '../Photos/ass.jpg',
             title: "AasSanginiSanstha.com",
-            description: "Website for a non-profit organization providing free medical services"
+            description: "Website for a non-profit organization providing free medical services",
+            link: "https://www.aassanginisanstha.com"
         }
     ];
   
@@ -44,11 +49,13 @@ document.addEventListener('DOMContentLoaded', function() {
             slide.className = `portfolio-slide ${index === 0 ? 'active' : ''}`;
             
             slide.innerHTML = `
-                <img src="${item.image}" alt="${item.title}">
-                <div class="portfolio-caption">
-                    <h3>${item.title}</h3>
-                    <p>${item.description}</p>
-                </div>
+                <a href="${item.link}" target="_blank">
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="portfolio-caption">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                    </div>
+                </a>
             `;
             
             portfolioSlider.appendChild(slide);
@@ -117,19 +124,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Website testimonials slider
     const websiteTestimonials = [
         {
-            text: "The website MedCortico built for my clinic has significantly increased my patient appointments. Their design is professional and exactly what I needed.",
-            author: "Dr. Patel",
+            text: "I searched for weeks, comparing prices, and couldn’t find anyone charging lower than MedCortico. I was hesitant at first, but when they built a demo for my clinic without charging anything upfront, I was surprised at the quality, speed, and attention to detail. This convinced me to get my entire website done by them.",
+            author: "Dr. Anjali Patel",
             title: "Pediatrician, Mumbai"
         },
         {
-            text: "I've received numerous compliments on my new website. The online booking feature has reduced phone calls to my reception by 40%.",
-            author: "Dr. Gupta",
+            text: " I have wanted a website for my clinic for a long time, but I did not want to get caught up in the technicalities of website development. I simply shared my vision with the MedCortico team, and they handled everything from start to finish with complete professionalism. The website reflects my practice perfectly, and the process was so smooth that I hardly had to follow up. Would definatly recommend to every clinician looking for a website. ",
+            author: "Dr. Sahil Gupta",
             title: "Dermatologist, Delhi"
         },
         {
-            text: "MedCortico understood exactly what I wanted for my dental practice website. The before/after gallery they created showcases my work perfectly.",
-            author: "Dr. Reddy",
-            title: "Dentist, Hyderabad"
+            text: "Developing a website with MedCortico was a great experience and surprisingly easy, within a week after our first contact I had a fully functional website. I would highly recommend MedCortico to anyone looking for a website. ",
+            author: "Dr. Rakesh Reddy",
+            title: "Radiologist, Hyderabad"
         }
     ];
     
