@@ -133,7 +133,7 @@
 }
 
 .product-showcase-item:hover .product-showcase-image img {
-    transform: translateY(-10px);
+    transform: translateY(0);
 }
 
 .product-showcase-icon {
@@ -344,6 +344,11 @@
     .product-showcase-item,
     .product-showcase-item.reverse {
         flex-direction: column;
+        background: var(--white);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        overflow: hidden;
+        margin-bottom: 60px;
     }
     
     .product-showcase-content,
@@ -352,12 +357,21 @@
     }
     
     .product-showcase-image {
-        margin-top: 40px;
+        margin-top: 0;
         order: 2;
+        max-height: 300px;
+        overflow: hidden;
+    }
+    
+    .product-showcase-image img {
+        object-fit: cover;
+        width: 100%;
+        height: 300px;
     }
     
     .product-showcase-content {
         order: 1;
+        padding: 40px;
     }
     
     .hero-badges {
@@ -386,11 +400,73 @@
         font-size: 1.8rem;
     }
     
+    .product-showcase-image {
+        display: none; /* Hide images on mobile view */
+    }
+    
+    .product-showcase-content {
+        width: 100%;
+        padding: 30px 20px;
+    }
+    
+    .product-showcase-item, 
+    .product-showcase-item.reverse {
+        background: linear-gradient(135deg, #f8fbff 0%, #f0f8ff 100%);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        margin-bottom: 40px;
+    }
+    
     .cta-content h2 {
         font-size: 2rem;
     }
     
     .cta-content p {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-showcase-content {
+        padding: 25px 15px;
+    }
+    
+    .product-showcase-text h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .product-showcase-text p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+    
+    .product-features-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-features-list li {
+        padding: 8px 0;
+        font-size: 0.9rem;
+    }
+    
+    .product-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .product-buttons .btn {
+        width: 100%;
+        margin: 0;
+        text-align: center;
+    }
+    
+    .coming-soon-grid {
+        flex-direction: column;
+    }
+    
+    .coming-soon-card {
+        max-width: 100%;
+        margin-bottom: 30px;
     }
 } 

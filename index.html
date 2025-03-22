@@ -133,12 +133,12 @@
             max-width: 100%;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            transform: perspective(1000px) rotateY(-5deg);
+            transform: none;
             transition: transform 0.5s ease;
         }
         
         .hero-image:hover img {
-            transform: perspective(1000px) rotateY(0deg);
+            transform: none;
         }
         
         .hero-stats {
@@ -195,7 +195,7 @@
         }
         
         .feature-card:hover {
-            transform: translateY(-15px);
+            transform: none;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             border-color: rgba(30, 136, 229, 0.3);
         }
@@ -217,7 +217,7 @@
         }
         
         .feature-card:hover .feature-icon {
-            transform: rotate(10deg);
+            transform: none;
         }
         
         .feature-card h3 {
@@ -244,7 +244,7 @@
         }
         
         .feature-card:hover .btn-link i {
-            transform: translateX(5px);
+            transform: none;
         }
         
         .testimonials {
@@ -676,7 +676,7 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="Photos/doc-main.png" alt="MedCortico Health IT Solutions">
+                    <img src="Photos\mainhero.jpeg" alt="MedCortico Health IT Solutions">
                 </div>
             </div>
             
@@ -730,6 +730,14 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Billing and Analytics</h3>
+                    <p>Streamline your practice's financial operations with integrated billing and performance analytics.</p>
+                    <a href="pages/billing-analytics.html" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
                         <i class="fas fa-share-alt"></i>
                     </div>
                     <h3>Social Media Management</h3>
@@ -743,10 +751,6 @@
                     <h3>Teleconsultation Portal</h3>
                     <p>Connect with patients remotely through our secure teleconsultation platform.</p>
                     <a href="#" class="btn-link">Coming Soon <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <h3>Electronic Medical Records</h3>
-                <p>Digitalize patient records with customized formats for your specialty.</p>
-                <a href="pages/emr.html" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -814,6 +818,7 @@
                         <li><a href="pages/website-building.html">Website Building</a></li>
                         <li><a href="pages/medical-transcription.html">Medical Transcription</a></li>
                         <li><a href="pages/emr.html">Electronic Medical Records</a></li>
+                        <li><a href="pages/billing-analytics.html">Billing & Analytics</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
