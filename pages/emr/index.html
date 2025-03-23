@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic Medical Records - MedCortico</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <meta name="theme-color" content="#1e88e5">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Footer Styles */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #004080 100%);
+            color: var(--white);
+            padding: 80px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo img {
+            max-width: 180px;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-links, .footer-products, .footer-contact {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+        
+        footer h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        footer h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-light);
+            border-radius: 2px;
+        }
+        
+        footer ul li {
+            margin-bottom: 10px;
+        }
+        
+        footer ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        footer ul li a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .footer-contact p i {
+            margin-right: 10px;
+            color: var(--primary-light);
+        }
+        
+        .footer-social {
+            margin-top: 20px;
+        }
+        
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+        }
+        
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .footer-content > div {
+                flex: 100%;
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Elements -->
+    <div class="decorative-elements">
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-line"></div>
+        <div class="decorative-line"></div>
+        <div class="decorative-line"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <img src="..\Photos\weblogo.png" alt="MedCortico Logo">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../">Home</a></li>
+                    <li><a href="products/">Products</a></li>
+                    <li><a href="contact/">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something." target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Product Hero Section -->
+    <section class="product-hero">
+        <div class="container">
+            <div class="product-hero-content">
+                <div class="product-hero-text">
+                    <h1>Electronic Medical Records</h1>
+                    <p>Digitalize patient records with customized formats tailored to your specialty. Simplify data entry and reduce the effort needed to navigate through the system.</p>
+                    <div class="hero-buttons">
+                        <a href="coming-soon/" class="btn btn-primary">Download Free 3-Month Trial</a>
+                        <a href="#learn-more" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="product-hero-image">
+                    <!-- Replace with actual image -->
+                    <img src="..\Photos\emrdocin.jpeg" alt="EMR Software">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="learn-more" class="product-features">
+        <div class="container">
+            <h2 class="section-title">Key Features of Our EMR</h2>
+            <p class="section-description">Designed by doctors to make your clinical workflow smoother</p>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-image">
+                        <!-- Replace with actual image -->
+                        <img src="..\Photos\EMRallspeciality.jpeg" alt="Specialty-Specific Templates">
+                    </div>
+                    <div class="feature-text">
+                        <h3>Specialty-Specific Templates</h3>
+                        <p>Pre-built templates for various specialties that can be further customized to match your workflow.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-image">
+                        <!-- Replace with actual image -->
+                        <img src="..\Photos\EMRptdoc.jpeg" alt="Patient History">
+                    </div>
+                    <div class="feature-text">
+                        <h3>More Time for Care</h3>
+                        <p>Quickly log complaints and prescribe with one-click options, giving you more time to focus on your patients. </p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-image">
+                        <!-- Replace with actual image -->
+                        <img src="..\Photos\EMRptwhatsapp.jpg" alt="E-Prescriptions">
+                    </div>
+                    <div class="feature-text">
+                        <h3>Instant Digital Prescriptions</h3>
+                        <p>Generate sleek, professional e-prescriptions and share them eith your patients instantly—no paper, no hassle.</p>
+                    </div>
+                </div>
+            
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Doctors Say About Our EMR</h2>
+            <div class="testimonial-slider">
+                <!-- Testimonial slides will be inserted by JavaScript -->
+            </div>
+            <div class="slider-controls">
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-dots">
+                    <!-- Dots will be inserted by JavaScript -->
+                </div>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="plans">
+        <div class="container">
+            <h2 class="section-title">EMR Pricing</h2>
+            <p class="section-description">Affordable solutions for practices of all sizes</p>
+            
+            <div class="plans-container">
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Quarterly Subscription</h3>
+                    </div>
+                    <div class="plan-price">
+                        <div class="original-price" style="font-size: 1.5rem;">₹6,999/quarter</div>
+                        <div class="discounted-price">₹4,490/quarter</div>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Unlimited patient records</li>
+                            <li><i class="fas fa-check"></i> Specialty-specific templates</li>
+                            <li><i class="fas fa-check"></i> Digital prescriptions</li>
+                            <li><i class="fas fa-check"></i> Appointment management</li>
+                            <li><i class="fas fa-check"></i> Cloud backup</li>
+                            <li><i class="fas fa-check"></i> Regular updates</li>
+                            <li><i class="fas fa-check"></i> Technical support</li>
+                        </ul>
+                    </div>
+                    <div class="plan-footer">
+                        <a href="https://razorpay.com/payment-link/plink_QA2PW10AbMPmai" class="btn btn-primary">Pay Now</a>
+                    </div>
+                </div>
+                
+                <div class="plan-card featured">
+                    <div class="plan-header">
+                        <h3>Yearly Subscription</h3>
+                        <span class="best-value">Best Value</span>
+                    </div>
+                    <div class="plan-price">
+                        <div class="original-price" style="font-size: 1.5rem;">₹24,999/year</div>
+                        <div class="discounted-price">₹17,999/year</div>
+                    </div>
+                    <div class="plan-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Unlimited patient records</li>
+                            <li><i class="fas fa-check"></i> Specialty-specific templates</li>
+                            <li><i class="fas fa-check"></i> Digital prescriptions</li>
+                            <li><i class="fas fa-check"></i> Appointment management</li>
+                            <li><i class="fas fa-check"></i> Cloud backup</li>
+                            <li><i class="fas fa-check"></i> Regular updates</li>
+                            <li><i class="fas fa-check"></i> Technical support</li>
+                            <li><i class="fas fa-check"></i> Priority customer service</li>
+                        </ul>
+                    </div>
+                    <div class="plan-footer">
+                        <a href="https://razorpay.com/payment-link/plink_QA2PmowShqhdqk" class="btn btn-primary">Pay Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="free-trial">
+                <h3>Experience Our EMR with a Free 3-Month Trial</h3>
+                <p>Try all features with no limitations. No credit card required.</p>
+                <a href="coming-soon/" class="btn btn-primary">Download Free Trial</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../Photos/weblogo.png" alt="MedCortico Logo" style="max-width: 200px; filter: brightness(0) invert(1);">
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="products/">Products</a></li>
+                        <li><a href="contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-products">
+                    <h3>Our Products</h3>
+                    <ul>
+                        <li><a href="website-building/">Website Building</a></li>
+                        <li><a href="medical-transcription/">Medical Transcription</a></li>
+                        <li><a href="./">Electronic Medical Records</a></li>
+                        <li><a href="billing-analytics/">Billing & Analytics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> medcortico@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 8527183292</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something." target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MedCortico. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/slider.js"></script>
+</body>
+</html> 

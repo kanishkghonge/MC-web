@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - MedCortico</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <meta name="theme-color" content="#1e88e5">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/products.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Mobile Styles - Professional Redesign */
+        @media (max-width: 992px) {
+            .products-hero {
+                padding: 130px 0 60px;
+            }
+            
+            .hero-badges {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                width: 100%;
+                max-width: 600px;
+                margin: 30px auto 0;
+            }
+            
+            .badge {
+                width: 100%;
+                min-width: 0;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 18px 10px;
+            }
+            
+            .product-showcase-item,
+            .product-showcase-item.reverse {
+                flex-direction: column;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+                border-radius: 16px;
+                overflow: hidden;
+                margin-bottom: 50px;
+                background: #fff;
+            }
+            
+            .product-showcase-content {
+                order: 2;
+                width: 100%;
+                padding: 30px 25px;
+            }
+            
+            .product-showcase-image {
+                order: 1;
+                width: 100%;
+                height: 350px;
+                margin: 0;
+                overflow: hidden;
+            }
+            
+            .product-showcase-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            
+            .product-showcase-icon {
+                width: 70px;
+                height: 70px;
+                margin-top: -55px;
+                position: relative;
+                border: 6px solid white;
+                z-index: 10;
+            }
+            
+            .product-features-list {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                margin-bottom: 25px;
+            }
+            
+            .product-features-list li {
+                background: rgba(30, 136, 229, 0.05);
+                padding: 12px 15px;
+                border-radius: 8px;
+                margin: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .products-hero {
+                padding: 120px 0 40px;
+            }
+            
+            .products-hero .section-title {
+                font-size: 1.8rem;
+                padding: 0 15px;
+                margin-bottom: 12px;
+            }
+            
+            .products-hero .section-description {
+                font-size: 0.95rem;
+                padding: 0 20px;
+                margin-bottom: 25px;
+            }
+            
+            .hero-badges {
+                gap: 12px;
+                padding: 0 20px;
+            }
+            
+            .badge {
+                padding: 12px 8px;
+                border-radius: 12px;
+            }
+            
+            .badge-number {
+                font-size: 1.6rem;
+            }
+            
+            .badge-text {
+                font-size: 0.8rem;
+            }
+            
+            .products-showcase {
+                padding: 40px 0;
+            }
+            
+            .product-showcase-item {
+                margin-bottom: 35px;
+            }
+            
+            .product-showcase-image {
+                height: 230px;
+            }
+            
+            .product-showcase-content {
+                padding: 25px 20px;
+            }
+            
+            .product-showcase-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                margin-top: -50px;
+                border-width: 4px;
+            }
+            
+            .product-showcase-text h2 {
+                font-size: 1.5rem;
+                margin-bottom: 12px;
+            }
+            
+            .product-showcase-text p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin-bottom: 15px;
+            }
+            
+            .product-features-list {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .product-features-list li {
+                font-size: 0.9rem;
+                padding: 10px 12px;
+            }
+            
+            .product-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .product-buttons .btn {
+                width: 100%;
+                margin: 0;
+                padding: 12px 15px;
+                text-align: center;
+            }
+            
+            .coming-soon-grid {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .coming-soon-card {
+                max-width: 100%;
+                padding: 25px 20px;
+            }
+            
+            .cta-buttons .btn {
+                width: 100%;
+                margin: 0 0 15px 0;
+                padding: 12px 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-hero {
+                padding: 110px 0 35px;
+            }
+            
+            .products-hero .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .products-hero .section-description {
+                font-size: 0.85rem;
+            }
+            
+            .hero-badges {
+                gap: 8px;
+            }
+            
+            .badge {
+                padding: 10px 5px;
+            }
+            
+            .badge-number {
+                font-size: 1.4rem;
+                margin-bottom: 2px;
+            }
+            
+            .badge-text {
+                font-size: 0.75rem;
+            }
+            
+            .product-showcase-image {
+                height: 200px;
+            }
+            
+            .product-showcase-content {
+                padding: 20px 15px;
+            }
+            
+            .product-showcase-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                margin-top: -45px;
+                border-width: 3px;
+            }
+            
+            .product-showcase-text h2 {
+                font-size: 1.3rem;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+            }
+            
+            .product-showcase-text h2::after {
+                width: 40px;
+                height: 2px;
+            }
+            
+            .product-showcase-text p {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+            
+            .product-features-list li {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .coming-soon-section h2 {
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+            }
+            
+            .coming-soon-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+            
+            .coming-soon-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 8px;
+            }
+            
+            .coming-soon-card p {
+                font-size: 0.85rem;
+                margin-bottom: 12px;
+            }
+            
+            .cta-content h2 {
+                font-size: 1.4rem;
+                margin-bottom: 12px;
+            }
+            
+            .cta-content p {
+                font-size: 0.85rem;
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* Enhanced Footer for Mobile */
+        @media (max-width: 768px) {
+            footer {
+                padding: 50px 0 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-content > div {
+                margin-bottom: 20px;
+                padding: 0 15px;
+            }
+            
+            .footer-logo {
+                text-align: center;
+            }
+            
+            .footer-logo img {
+                max-width: 150px;
+            }
+            
+            footer h3 {
+                margin-bottom: 15px;
+                padding-bottom: 8px;
+            }
+            
+            footer h3::after {
+                width: 30px;
+                height: 2px;
+            }
+            
+            footer ul li {
+                margin-bottom: 8px;
+            }
+            
+            .footer-social {
+                margin-top: 15px;
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .footer-social a {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .footer-bottom {
+                padding-top: 20px;
+                margin-top: 20px;
+            }
+            
+            .footer-bottom p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Elements -->
+    <div class="decorative-elements">
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-line"></div>
+        <div class="decorative-line"></div>
+        <div class="decorative-line"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../Photos/weblogo.png" alt="MedCortico Logo">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../">Home</a></li>
+                    <li><a href="./" class="active">Products</a></li>
+                    <li><a href="contact/">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something." target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Products Hero Section -->
+    <section class="products-hero">
+        <div class="container">
+            <h1 class="section-title">Our Healthcare Solutions</h1>
+            <p class="section-description">Comprehensive digital tools designed specifically for modern medical practices</p>
+            <div class="hero-badges">
+                <div class="badge">
+                    <span class="badge-number">5+</span>
+                    <span class="badge-text">Products</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-number">100+</span>
+                    <span class="badge-text">Happy Doctors</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-number">24/7</span>
+                    <span class="badge-text">Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Showcase Section -->
+    <section class="products-showcase">
+        <div class="container">
+            <!-- Website Building -->
+            <div class="product-showcase-item">
+                <div class="product-showcase-content">
+                    <div class="product-showcase-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="product-showcase-text">
+                        <h2>Website Building</h2>
+                        <p>Establish your online presence with a custom-designed website that attracts new patients and showcases your expertise. Our medical websites are optimized for patient engagement and search engines.</p>
+                        <ul class="product-features-list">
+                            <li><i class="fas fa-check-circle"></i> Mobile-responsive design</li>
+                            <li><i class="fas fa-check-circle"></i> Online appointment booking</li>
+                            <li><i class="fas fa-check-circle"></i> SEO optimization</li>
+                            <li><i class="fas fa-check-circle"></i> Patient testimonials</li>
+                        </ul>
+                        <div class="product-buttons">
+                            <a href="website-building/" class="btn btn-primary">Learn More</a>
+                            <a href="https://forms.gle/5CcHFiye74mCz4am8" class="btn btn-outline">Get a Quote</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-showcase-image">
+                    <img src="../Photos/webbuild.jpeg" alt="Website Building">
+                </div>
+            </div>
+
+            <!-- Electronic Medical Records -->
+            <div class="product-showcase-item reverse">
+                <div class="product-showcase-content">
+                    <div class="product-showcase-icon">
+                        <i class="fas fa-file-medical-alt"></i>
+                    </div>
+                    <div class="product-showcase-text">
+                        <h2>Electronic Medical Records</h2>
+                        <p>Digitalize patient records with customized formats tailored to your specialty. Simplify data entry and reduce the effort needed to navigate through the system.</p>
+                        <ul class="product-features-list">
+                            <li><i class="fas fa-check-circle"></i> Specialty-specific templates</li>
+                            <li><i class="fas fa-check-circle"></i> Comprehensive patient history</li>
+                            <li><i class="fas fa-check-circle"></i> Digital prescriptions</li>
+                            <li><i class="fas fa-check-circle"></i> Appointment management</li>
+                        </ul>
+                        <div class="product-buttons">
+                            <a href="emr/" class="btn btn-primary">Learn More</a>
+                            <a href="coming-soon/" class="btn btn-outline">Free Trial</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-showcase-image">
+                    <img src="../Photos/EMRdoc.jpeg" alt="Electronic Medical Records">
+                </div>
+            </div>
+
+            <!-- Medical Transcription -->
+            <div class="product-showcase-item">
+                <div class="product-showcase-content">
+                    <div class="product-showcase-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <div class="product-showcase-text">
+                        <h2>Medical Transcription Software</h2>
+                        <p>Convert speech to structured medical reports with our advanced AI-powered MedScribe software. Save time and focus on patient care.</p>
+                        <ul class="product-features-list">
+                            <li><i class="fas fa-check-circle"></i> One-click recording</li>
+                            <li><i class="fas fa-check-circle"></i> Advanced medical terminology</li>
+                            <li><i class="fas fa-check-circle"></i> Saved report formats</li>
+                            <li><i class="fas fa-check-circle"></i> Cloud storage for reports</li>
+                        </ul>
+                        <div class="product-buttons">
+                            <a href="medical-transcription/" class="btn btn-primary">Learn More</a>
+                            <a href="coming-soon/" class="btn btn-outline">Free Trial</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-showcase-image">
+                    <img src="../Photos/ms-doc.jpeg" alt="Medical Transcription">
+                </div>
+            </div>
+
+            <!-- Billing and Analytics -->
+            <div class="product-showcase-item reverse">
+                <div class="product-showcase-content">
+                    <div class="product-showcase-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="product-showcase-text">
+                        <h2>Billing and Analytics</h2>
+                        <p>Streamline your practice's financial operations with integrated billing and performance analytics. Gain valuable insights into your practice's performance and optimize revenue.</p>
+                        <ul class="product-features-list">
+                            <li><i class="fas fa-check-circle"></i> Streamlined billing system</li>
+                            <li><i class="fas fa-check-circle"></i> Performance dashboards</li>
+                            <li><i class="fas fa-check-circle"></i> Revenue tracking</li>
+                            <li><i class="fas fa-check-circle"></i> EMR integration</li>
+                        </ul>
+                        <div class="product-buttons">
+                            <a href="billing-analytics/" class="btn btn-primary">Learn More</a>
+                            <a href="billing-analytics.html#download" class="btn btn-outline">Purchase</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-showcase-image">
+                    <img src="../Photos/billinghero.jpeg" alt="Billing and Analytics">
+                </div>
+            </div>
+
+            <!-- Coming Soon Section -->
+            <div class="coming-soon-section">
+                <h2>More Solutions Coming Soon</h2>
+                <div class="coming-soon-grid">
+                    <!-- Social Media Management -->
+                    <div class="coming-soon-card">
+                        <div class="coming-soon-icon">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <h3>Social Media Management</h3>
+                        <p>Grow your online presence with targeted social media strategies for doctors.</p>
+                        <span class="coming-soon-badge">Coming Soon</span>
+                    </div>
+
+                    <!-- Teleconsultation Portal -->
+                    <div class="coming-soon-card">
+                        <div class="coming-soon-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Teleconsultation Portal</h3>
+                        <p>Connect with patients remotely through our secure teleconsultation platform.</p>
+                        <span class="coming-soon-badge">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="products-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Practice?</h2>
+                <p>Contact us today to learn how MedCortico's solutions can help you grow your practice and improve patient care.</p>
+                <div class="cta-buttons">
+                    <a href="contact/" class="btn btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../Photos/weblogo.png" alt="MedCortico Logo" style="filter: brightness(0) invert(1);">
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="./">Products</a></li>
+                        <li><a href="contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-products">
+                    <h3>Our Products</h3>
+                    <ul>
+                        <li><a href="website-building/">Website Building</a></li>
+                        <li><a href="medical-transcription/">Transcription</a></li>
+                        <li><a href="emr/">EMR Systems</a></li>
+                        <li><a href="billing-analytics/">Billing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> medcortico@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 8527183292</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/medcortico" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/medcortico" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something." target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MedCortico. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html> 
