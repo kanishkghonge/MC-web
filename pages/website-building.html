@@ -144,6 +144,34 @@
                 margin-bottom: 40px;
             }
         }
+
+        /* Google Form Styling */
+        .contact-form-container {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 40px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .google-form-container {
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .google-form-container {
+                box-shadow: none !important;
+            }
+            
+            .google-form-container iframe {
+                height: 1200px !important;
+            }
+            
+            .contact-form-container {
+                padding: 30px 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -213,7 +241,7 @@
             <div class="portfolio-slider">
                 <div class="portfolio-slide active">
                     <!-- Replace with actual portfolio images -->
-                    <img src="Photos\cico.jpg" alt="Doctor Website Example 1">
+                    <img src="../Photos/cico.jpg" alt="Doctor Website Example 1">
                     <div class="portfolio-caption">
                         <h3>Dr. Sharma's Cardiology Clinic</h3>
                         <p>A modern website with online appointment booking</p>
@@ -221,7 +249,7 @@
                 </div>
                 
                 <div class="portfolio-slide">
-                    <img src="C:\Users\kanis\Desktop\MedCortico-Web\Photos\cico.jpg" alt="Doctor Website Example 2">
+                    <img src="../Photos/evidence.jpg" alt="Doctor Website Example 2">
                     <div class="portfolio-caption">
                         <h3>City Dental Care</h3>
                         <p>A comprehensive dental practice website with patient resources</p>
@@ -229,7 +257,7 @@
                 </div>
                 
                 <div class="portfolio-slide">
-                    <img src="../Photos/cico.jpg" alt="Doctor Website Example 3">
+                    <img src="../Photos/fmrc.jpg" alt="Doctor Website Example 3">
                     <div class="portfolio-caption">
                         <h3>Family Medicine Associates</h3>
                         <p>Multi-doctor practice with integrated appointment system</p>
@@ -336,9 +364,8 @@
             <div class="contact-form-container">
                 <h3>Request Your Sample Website</h3>
                 <p>Fill out this form and we'll get back to you with a sample website for your clinic.</p>
-                <!-- This will be replaced with your Google Form embed code -->
-                <div class="contact-form-placeholder">
-                    <p>Google Form will be embedded here</p>
+                <div class="google-form-container" style="width: 100%; display: flex; justify-content: center; margin: 30px 0; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSew9ibZf33AOmKqdRyComVOmjgwW8nE-Pd0ckKFwHgkd9z3DQ/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" style="border: none;">Loading…</iframe>
                 </div>
             </div>
         </div>
