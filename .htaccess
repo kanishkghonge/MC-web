@@ -1,0 +1,20 @@
+RewriteEngine On
+
+# Remove .html extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+# Remove index.html
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Properly handle favicons
+<Files "favicon.ico">
+  Header set Cache-Control "public, max-age=31536000"
+</Files>
+
+# Add correct MIME types for favicon files
+AddType image/x-icon .ico
+AddType image/png .png
+AddType application/json .webmanifest 
