@@ -115,6 +115,210 @@
     .footer-social {
         justify-content: center;
     }
+    
+    /* Product Page Specific Adjustments */
+    .product-showcase-item,
+    .product-showcase-item.reverse {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 40px;
+    }
+    
+    .product-showcase-image {
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+    }
+    
+    .product-showcase-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    .product-showcase-content {
+        padding: 25px 20px 30px;
+    }
+    
+    .product-showcase-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        margin-top: -50px;
+        position: relative;
+        border: 4px solid white;
+        z-index: 10;
+    }
+    
+    .product-showcase-text h2 {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+    }
+    
+    .product-showcase-text p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    .product-features-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin: 15px 0 20px;
+    }
+    
+    .product-features-list li {
+        background: rgba(30, 136, 229, 0.05);
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .product-features-list li i {
+        margin-right: 8px;
+        color: var(--primary-color);
+    }
+    
+    .product-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .product-buttons .btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px 15px;
+        margin: 0;
+    }
+    
+    /* Hero Badges Mobile */
+    .hero-badges {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 25px auto 0;
+        padding: 0 15px;
+    }
+    
+    .badge {
+        padding: 12px 10px;
+        min-width: 0;
+        height: 100%;
+        width: 100%;
+    }
+    
+    .badge-number {
+        font-size: 1.6rem;
+        margin-bottom: 2px;
+    }
+    
+    .badge-text {
+        font-size: 0.8rem;
+    }
+    
+    /* Enhanced Footer for Mobile */
+    footer {
+        padding: 40px 0 20px;
+        text-align: center;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .footer-logo {
+        margin: 0 auto 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-logo img {
+        max-width: 140px;
+        margin-bottom: 15px;
+    }
+    
+    .footer-links, 
+    .footer-products, 
+    .footer-contact {
+        width: 100%;
+        padding: 0 20px;
+        margin-bottom: 25px;
+    }
+    
+    footer h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        position: relative;
+        display: inline-block;
+    }
+    
+    footer h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 2px;
+    }
+    
+    footer ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+    
+    footer ul li {
+        margin: 0;
+    }
+    
+    footer ul li a {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    footer ul li a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding-left: 10px;
+    }
+    
+    .footer-contact p {
+        justify-content: center;
+        margin-bottom: 12px;
+        font-size: 0.9rem;
+    }
+    
+    .footer-social {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 20px;
+    }
+    
+    .footer-social a {
+        width: 38px;
+        height: 38px;
+        margin: 0;
+        font-size: 1rem;
+    }
+    
+    .footer-bottom {
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+    
+    .footer-bottom p {
+        font-size: 0.8rem;
+    }
 }
 
 /* Extra Small Screens */
@@ -145,5 +349,167 @@
     
     .contact-form-container {
         padding: 30px 20px;
+    }
+    
+    /* Products Page Mobile - Small Screens */
+    .product-showcase-image {
+        height: 200px;
+    }
+    
+    .product-showcase-content {
+        padding: 20px 15px 25px;
+    }
+    
+    .product-showcase-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+        margin-top: -45px;
+        border-width: 3px;
+    }
+    
+    .product-showcase-text h2 {
+        font-size: 1.4rem;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .product-showcase-text p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 15px;
+    }
+    
+    .product-features-list li {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .hero-badges {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+    
+    .badge {
+        padding: 10px 5px;
+        border-radius: 10px;
+    }
+    
+    .badge-number {
+        font-size: 1.4rem;
+    }
+    
+    .badge-text {
+        font-size: 0.75rem;
+    }
+    
+    /* Coming Soon Section */
+    .coming-soon-section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+    
+    .coming-soon-card {
+        padding: 20px 15px;
+    }
+    
+    .coming-soon-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    
+    .coming-soon-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .coming-soon-card p {
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Products Page Mobile - Extra Small Screens */
+    .products-hero .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .products-hero .section-description {
+        font-size: 0.85rem;
+        padding: 0 15px;
+    }
+    
+    .product-showcase-content {
+        padding: 20px 15px;
+    }
+    
+    .product-showcase-text h2 {
+        font-size: 1.3rem;
+    }
+    
+    .product-showcase-text p {
+        font-size: 0.85rem;
+    }
+    
+    .product-features-list li {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .product-buttons .btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .products-cta {
+        padding: 40px 0;
+    }
+    
+    .cta-content h2 {
+        font-size: 1.4rem;
+    }
+    
+    .cta-content p {
+        font-size: 0.85rem;
+        padding: 0 15px;
+    }
+    
+    footer {
+        padding: 30px 0 15px;
+    }
+    
+    .footer-logo img {
+        max-width: 120px;
+    }
+    
+    footer h3 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+    
+    footer ul {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    footer ul li a {
+        display: block;
+        padding: 8px 12px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+        width: 100%;
+    }
+    
+    .footer-social a {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .footer-bottom {
+        margin-top: 15px;
+        padding-top: 15px;
     }
 } 

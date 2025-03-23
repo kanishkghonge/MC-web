@@ -13,83 +13,165 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Enhanced Mobile Responsiveness */
+        /* Enhanced Mobile Styles - Professional Redesign */
         @media (max-width: 992px) {
             .products-hero {
-                padding: 150px 0 80px;
+                padding: 130px 0 60px;
             }
             
             .hero-badges {
-                flex-wrap: wrap;
-                justify-content: center;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
                 gap: 20px;
+                width: 100%;
+                max-width: 600px;
+                margin: 30px auto 0;
             }
             
             .badge {
-                min-width: 150px;
+                width: 100%;
+                min-width: 0;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 18px 10px;
             }
             
             .product-showcase-item,
             .product-showcase-item.reverse {
                 flex-direction: column;
-                margin-bottom: 60px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+                border-radius: 16px;
+                overflow: hidden;
+                margin-bottom: 50px;
+                background: #fff;
             }
             
             .product-showcase-content {
-                order: 1;
+                order: 2;
                 width: 100%;
-                padding: 20px;
+                padding: 30px 25px;
             }
             
             .product-showcase-image {
-                order: 2;
+                order: 1;
                 width: 100%;
-                margin-top: 30px;
+                height: 350px;
+                margin: 0;
+                overflow: hidden;
             }
             
-            .product-showcase-text h2 {
-                font-size: 1.8rem;
+            .product-showcase-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            
+            .product-showcase-icon {
+                width: 70px;
+                height: 70px;
+                margin-top: -55px;
+                position: relative;
+                border: 6px solid white;
+                z-index: 10;
             }
             
             .product-features-list {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
+                gap: 15px;
+                margin-bottom: 25px;
             }
             
-            .coming-soon-grid {
-                gap: 20px;
+            .product-features-list li {
+                background: rgba(30, 136, 229, 0.05);
+                padding: 12px 15px;
+                border-radius: 8px;
+                margin: 0;
             }
         }
         
         @media (max-width: 768px) {
             .products-hero {
-                padding: 120px 0 60px;
+                padding: 120px 0 40px;
             }
             
             .products-hero .section-title {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
+                padding: 0 15px;
+                margin-bottom: 12px;
             }
             
             .products-hero .section-description {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                padding: 0 20px;
+                margin-bottom: 25px;
+            }
+            
+            .hero-badges {
+                gap: 12px;
+                padding: 0 20px;
             }
             
             .badge {
-                padding: 15px;
-                min-width: 120px;
+                padding: 12px 8px;
+                border-radius: 12px;
             }
             
             .badge-number {
-                font-size: 2rem;
+                font-size: 1.6rem;
+            }
+            
+            .badge-text {
+                font-size: 0.8rem;
+            }
+            
+            .products-showcase {
+                padding: 40px 0;
+            }
+            
+            .product-showcase-item {
+                margin-bottom: 35px;
+            }
+            
+            .product-showcase-image {
+                height: 230px;
+            }
+            
+            .product-showcase-content {
+                padding: 25px 20px;
+            }
+            
+            .product-showcase-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+                margin-top: -50px;
+                border-width: 4px;
             }
             
             .product-showcase-text h2 {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
+                margin-bottom: 12px;
+            }
+            
+            .product-showcase-text p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin-bottom: 15px;
             }
             
             .product-features-list {
                 grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .product-features-list li {
+                font-size: 0.9rem;
+                padding: 10px 12px;
             }
             
             .product-buttons {
@@ -100,153 +182,184 @@
             .product-buttons .btn {
                 width: 100%;
                 margin: 0;
+                padding: 12px 15px;
+                text-align: center;
             }
             
             .coming-soon-grid {
                 flex-direction: column;
+                gap: 25px;
             }
             
             .coming-soon-card {
                 max-width: 100%;
+                padding: 25px 20px;
             }
             
             .cta-buttons .btn {
-                display: block;
                 width: 100%;
                 margin: 0 0 15px 0;
+                padding: 12px 15px;
             }
         }
         
-        /* Enhanced Footer Styles */
-        footer {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #004080 100%);
-            color: var(--white);
-            padding: 80px 0 20px;
-            position: relative;
-            overflow: hidden;
+        @media (max-width: 480px) {
+            .products-hero {
+                padding: 110px 0 35px;
+            }
+            
+            .products-hero .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .products-hero .section-description {
+                font-size: 0.85rem;
+            }
+            
+            .hero-badges {
+                gap: 8px;
+            }
+            
+            .badge {
+                padding: 10px 5px;
+            }
+            
+            .badge-number {
+                font-size: 1.4rem;
+                margin-bottom: 2px;
+            }
+            
+            .badge-text {
+                font-size: 0.75rem;
+            }
+            
+            .product-showcase-image {
+                height: 200px;
+            }
+            
+            .product-showcase-content {
+                padding: 20px 15px;
+            }
+            
+            .product-showcase-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                margin-top: -45px;
+                border-width: 3px;
+            }
+            
+            .product-showcase-text h2 {
+                font-size: 1.3rem;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+            }
+            
+            .product-showcase-text h2::after {
+                width: 40px;
+                height: 2px;
+            }
+            
+            .product-showcase-text p {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+            
+            .product-features-list li {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .coming-soon-section h2 {
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+            }
+            
+            .coming-soon-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+            
+            .coming-soon-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 8px;
+            }
+            
+            .coming-soon-card p {
+                font-size: 0.85rem;
+                margin-bottom: 12px;
+            }
+            
+            .cta-content h2 {
+                font-size: 1.4rem;
+                margin-bottom: 12px;
+            }
+            
+            .cta-content p {
+                font-size: 0.85rem;
+                margin-bottom: 20px;
+            }
         }
         
-        footer::before {
-            content: '';
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            z-index: 0;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .footer-logo {
-            flex: 1;
-            min-width: 200px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-logo img {
-            max-width: 180px;
-            margin-bottom: 20px;
-            filter: brightness(0) invert(1);
-        }
-        
-        .footer-links, .footer-products, .footer-contact {
-            flex: 1;
-            min-width: 200px;
-            margin-bottom: 30px;
-        }
-        
-        footer h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-            display: inline-block;
-        }
-        
-        footer h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--primary-light);
-            border-radius: 2px;
-        }
-        
-        footer ul li {
-            margin-bottom: 10px;
-        }
-        
-        footer ul li a {
-            color: rgba(255, 255, 255, 0.8);
-            transition: all 0.3s ease;
-        }
-        
-        footer ul li a:hover {
-            color: var(--white);
-            padding-left: 5px;
-        }
-        
-        .footer-contact p {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .footer-contact p i {
-            margin-right: 10px;
-            color: var(--primary-light);
-        }
-        
-        .footer-social {
-            margin-top: 20px;
-        }
-        
-        .footer-social a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            margin-right: 10px;
-            color: var(--white);
-            transition: all 0.3s ease;
-        }
-        
-        .footer-social a:hover {
-            background: var(--primary-light);
-            transform: translateY(-3px);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 30px;
-        }
-        
-        .footer-bottom p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 992px) {
+        /* Enhanced Footer for Mobile */
+        @media (max-width: 768px) {
+            footer {
+                padding: 50px 0 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
             .footer-content > div {
-                flex: 100%;
-                margin-bottom: 40px;
+                margin-bottom: 20px;
+                padding: 0 15px;
+            }
+            
+            .footer-logo {
+                text-align: center;
+            }
+            
+            .footer-logo img {
+                max-width: 150px;
+            }
+            
+            footer h3 {
+                margin-bottom: 15px;
+                padding-bottom: 8px;
+            }
+            
+            footer h3::after {
+                width: 30px;
+                height: 2px;
+            }
+            
+            footer ul li {
+                margin-bottom: 8px;
+            }
+            
+            .footer-social {
+                margin-top: 15px;
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .footer-social a {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .footer-bottom {
+                padding-top: 20px;
+                margin-top: 20px;
+            }
+            
+            .footer-bottom p {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -278,7 +391,7 @@
             </nav>
             <div class="social-icons">
                 <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something." target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="hamburger">
@@ -357,7 +470,7 @@
                         </ul>
                         <div class="product-buttons">
                             <a href="emr.html" class="btn btn-primary">Learn More</a>
-                            <a href="#" class="btn btn-outline">Free Trial</a>
+                            <a href="coming-soon.html" class="btn btn-outline">Free Trial</a>
                         </div>
                     </div>
                 </div>
@@ -383,7 +496,7 @@
                         </ul>
                         <div class="product-buttons">
                             <a href="medical-transcription.html" class="btn btn-primary">Learn More</a>
-                            <a href="#" class="btn btn-outline">Free Trial</a>
+                            <a href="coming-soon.html" class="btn btn-outline">Free Trial</a>
                         </div>
                     </div>
                 </div>
@@ -464,7 +577,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="../Photos/weblogo.png" alt="MedCortico Logo" style="max-width: 200px; filter: brightness(0) invert(1);">
+                    <img src="../Photos/weblogo.png" alt="MedCortico Logo" style="filter: brightness(0) invert(1);">
                 </div>
                 <div class="footer-links">
                     <h3>Quick Links</h3>
@@ -478,19 +591,19 @@
                     <h3>Our Products</h3>
                     <ul>
                         <li><a href="website-building.html">Website Building</a></li>
-                        <li><a href="medical-transcription.html">Medical Transcription</a></li>
-                        <li><a href="emr.html">Electronic Medical Records</a></li>
-                        <li><a href="billing-analytics.html">Billing & Analytics</a></li>
+                        <li><a href="medical-transcription.html">Transcription</a></li>
+                        <li><a href="emr.html">EMR Systems</a></li>
+                        <li><a href="billing-analytics.html">Billing</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
                     <h3>Contact Us</h3>
-                    <p><i class="fas fa-envelope"></i> info@medcortico.com</p>
+                    <p><i class="fas fa-envelope"></i> medcortico@gmail.com</p>
                     <p><i class="fas fa-phone"></i> +91 8527183292</p>
                     <div class="footer-social">
-                        <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                        <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something." target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.linkedin.com/company/medcortico" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/medcortico" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something." target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
