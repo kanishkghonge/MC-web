@@ -679,7 +679,8 @@ footer ul li a:hover {
     transition: transform 0.3s ease;
 }
 
-.download-dropdown:hover .btn::after {
+.download-dropdown:hover .btn::after,
+.download-dropdown.active .btn::after {
     transform: rotate(180deg);
 }
 
@@ -696,7 +697,8 @@ footer ul li a:hover {
     margin-top: 5px;
 }
 
-.download-dropdown:hover .download-dropdown-content {
+.download-dropdown:hover .download-dropdown-content,
+.download-dropdown.active .download-dropdown-content {
     display: block;
 }
 
@@ -717,6 +719,37 @@ footer ul li a:hover {
     margin-right: 8px;
     width: 16px;
     text-align: center;
+}
+
+/* Mobile-specific styles for download dropdown */
+@media (max-width: 768px) {
+    .download-dropdown-content {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        border-radius: 15px 15px 0 0;
+        box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .download-dropdown.active .download-dropdown-content {
+        transform: translateY(0);
+    }
+
+    .download-dropdown-content a {
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .download-dropdown-content a:last-child {
+        border-bottom: none;
+    }
 }
 
 /* OS Links under download buttons */
