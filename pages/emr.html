@@ -151,6 +151,383 @@
                 margin-bottom: 40px;
             }
         }
+
+        /* Enhanced Feature List Styles */
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-image {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover .feature-image img {
+            transform: scale(1.05);
+        }
+
+        .feature-text {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .feature-text h3 {
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .feature-text h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary-dark));
+            border-radius: 2px;
+        }
+
+        .feature-text p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .feature-list {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 15px;
+            }
+
+            .feature-item {
+                flex-direction: row;
+                align-items: center;
+                padding: 15px;
+                background: var(--white);
+                border-radius: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            }
+
+            .feature-image {
+                width: 120px;
+                height: 120px;
+                flex-shrink: 0;
+                border-radius: 10px;
+                overflow: hidden;
+                margin-right: 15px;
+            }
+
+            .feature-text {
+                padding: 0;
+                flex: 1;
+            }
+
+            .feature-text h3 {
+                font-size: 1.2rem;
+                margin-bottom: 8px;
+                padding-bottom: 8px;
+            }
+
+            .feature-text p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+                margin-bottom: 0;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .feature-text h3::after {
+                width: 30px;
+                height: 2px;
+            }
+
+            .product-features {
+                padding: 40px 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .section-description {
+                font-size: 1rem;
+                margin-bottom: 30px;
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .feature-item {
+                padding: 12px;
+            }
+
+            .feature-image {
+                width: 100px;
+                height: 100px;
+            }
+
+            .feature-text h3 {
+                font-size: 1.1rem;
+            }
+
+            .feature-text p {
+                font-size: 0.85rem;
+                -webkit-line-clamp: 2;
+            }
+        }
+
+        /* Product Showcase Styles */
+        .product-showcase {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+        }
+
+        .product-showcase-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 80px;
+            gap: 50px;
+        }
+
+        .product-showcase-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .product-showcase-item.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .product-showcase-content {
+            flex: 1;
+        }
+
+        .product-showcase-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .product-showcase-icon i {
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .product-showcase-text h2 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-showcase-text p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .product-showcase-image {
+            flex: 1;
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .product-showcase-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-showcase-image:hover img {
+            transform: translateY(-10px);
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 992px) {
+            .product-showcase {
+                padding: 60px 0;
+            }
+
+            .product-showcase-item,
+            .product-showcase-item.reverse {
+                flex-direction: column;
+                margin-bottom: 60px;
+                gap: 0;
+            }
+
+            .product-showcase-content {
+                text-align: left;
+                padding: 0 20px;
+            }
+
+            .product-showcase-icon {
+                margin: 0 15px 0 0;
+            }
+
+            .product-showcase-text h2 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .product-showcase-text p {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
+            .product-showcase-image {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+
+            .product-showcase-image img {
+                border-radius: 15px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-showcase {
+                padding: 40px 0;
+            }
+
+            .product-showcase-item {
+                margin-bottom: 30px;
+                background: var(--white);
+                border-radius: 15px;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 20px;
+                align-items: start;
+            }
+
+            .product-showcase-content {
+                padding: 0;
+                text-align: left;
+            }
+
+            .product-showcase-icon {
+                width: 45px;
+                height: 45px;
+                margin: 0 12px 0 0;
+            }
+
+            .product-showcase-icon i {
+                font-size: 1.3rem;
+            }
+
+            .product-showcase-text h2 {
+                color: var(--primary-dark);
+                font-size: 1.2rem;
+                margin-bottom: 8px;
+            }
+
+            .product-showcase-text p {
+                color: var(--text-light);
+                font-size: 0.9rem;
+                line-height: 1.4;
+                margin-bottom: 0;
+            }
+
+            .product-showcase-image {
+                grid-column: 1 / -1;
+                padding: 0;
+                margin: 0;
+                max-width: 100%;
+                height: 220px;
+            }
+
+            .product-showcase-image img {
+                border-radius: 10px;
+                box-shadow: none;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-showcase {
+                padding: 30px 0;
+            }
+
+            .product-showcase-item {
+                margin-bottom: 25px;
+                padding: 15px;
+                border-radius: 12px;
+            }
+
+            .product-showcase-icon {
+                width: 40px;
+                height: 40px;
+                margin: 0 10px 0 0;
+            }
+
+            .product-showcase-icon i {
+                font-size: 1.2rem;
+            }
+
+            .product-showcase-text h2 {
+                font-size: 1.1rem;
+            }
+
+            .product-showcase-text p {
+                font-size: 0.85rem;
+            }
+
+            .product-showcase-image {
+                height: 200px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -219,45 +596,53 @@
     </section>
 
     <!-- Features Section -->
-    <section id="learn-more" class="product-features">
+    <section id="learn-more" class="product-showcase">
         <div class="container">
             <h2 class="section-title">Key Features of Our EMR</h2>
             <p class="section-description">Designed by doctors to make your clinical workflow smoother</p>
             
-            <div class="feature-list">
-                <div class="feature-item">
-                    <div class="feature-image">
-                        <!-- Replace with actual image -->
-                        <img src="..\Photos\EMRallspeciality.jpeg" alt="Specialty-Specific Templates">
+            <div class="product-showcase-item">
+                <div class="product-showcase-content">
+                    <div class="product-showcase-icon">
+                        <i class="fas fa-file-medical-alt"></i>
                     </div>
-                    <div class="feature-text">
-                        <h3>Specialty-Specific Templates</h3>
-                        <p>Pre-built templates for various specialties that can be further customized to match your workflow.</p>
-                    </div>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-image">
-                        <!-- Replace with actual image -->
-                        <img src="..\Photos\EMRptdoc.jpeg" alt="Patient History">
-                    </div>
-                    <div class="feature-text">
-                        <h3>More Time for Care</h3>
-                        <p>Quickly log complaints and prescribe with one-click options, giving you more time to focus on your patients. </p>
+                    <div class="product-showcase-text">
+                        <h2>Specialty-Specific Templates</h2>
+                        <p>Pre-built templates for various specialties that can be further customized to match your workflow. Includes customizable templates for all specialties, quick data entry options, and standardized documentation.</p>
                     </div>
                 </div>
-                
-                <div class="feature-item">
-                    <div class="feature-image">
-                        <!-- Replace with actual image -->
-                        <img src="..\Photos\EMRptwhatsapp.jpg" alt="E-Prescriptions">
-                    </div>
-                    <div class="feature-text">
-                        <h3>Instant Digital Prescriptions</h3>
-                        <p>Generate sleek, professional e-prescriptions and share them eith your patients instantly—no paper, no hassle.</p>
-                    </div>
+                <div class="product-showcase-image">
+                    <img src="..\Photos\EMRallspeciality.jpeg" alt="Specialty-Specific Templates">
                 </div>
+            </div>
             
+            <div class="product-showcase-item reverse">
+                <div class="product-showcase-content">
+                    <div class="product-showcase-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="product-showcase-text">
+                        <h2>More Time for Care</h2>
+                        <p>Quickly log complaints and prescribe with one-click options, giving you more time to focus on your patients. Features one-click prescription options, quick complaint logging, and an efficient workflow system.</p>
+                    </div>
+                </div>
+                <div class="product-showcase-image">
+                    <img src="..\Photos\EMRptdoc.jpeg" alt="Patient History">
+                </div>
+            </div>
+            
+            <div class="product-showcase-item">
+                <div class="product-showcase-content">
+                    <div class="product-showcase-icon">
+                        <i class="fas fa-prescription-bottle-alt"></i>
+                    </div>
+                    <div class="product-showcase-text">
+                        <h2>Instant Digital Prescriptions</h2>
+                        <p>Generate sleek, professional e-prescriptions and share them with your patients instantly—no paper, no hassle. Includes professional e-prescriptions, instant sharing options, and digital signature support.</p>
+                    </div>
+                </div>
+                <div class="product-showcase-image">
+                    <img src="..\Photos\EMRptwhatsapp.jpg" alt="E-Prescriptions">
                 </div>
             </div>
         </div>
