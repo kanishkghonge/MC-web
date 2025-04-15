@@ -776,6 +776,69 @@ body::after {
     color: var(--primary-dark);
 }
 
+/* --- How MedScribe Works Section Redesign --- */
+
+.how-it-works-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.step-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 35px 30px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(30, 136, 229, 0.08);
+    border: 1px solid rgba(30, 136, 229, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(30, 136, 229, 0.15);
+}
+
+.step-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
+    color: var(--white);
+    font-size: 1.8rem; /* Icon size */
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.step-content h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+}
+
+.step-content p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Style for centering when there are only two steps */
+.how-it-works-steps.two-steps {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 400px)); /* Allow slightly wider cards */
+    justify-content: center; /* Center items horizontally */
+}
+
+/* --- End How MedScribe Works Section Redesign --- */
+
 /* Product Features Section */
 .product-features {
     padding: 100px 0;
