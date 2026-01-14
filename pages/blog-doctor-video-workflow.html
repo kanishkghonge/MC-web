@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Shortest Video Workflow for Doctors - MedCortico Blog</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <meta name="theme-color" content="#1e88e5">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .blog-wrapper {
+            padding: 120px 0 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .blog-post {
+            background: white;
+            padding: 60px;
+            border-radius: 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(30, 136, 229, 0.1);
+        }
+
+        .post-meta {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .post-meta span i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        .blog-title {
+            color: var(--primary-dark);
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .blog-content {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #444;
+        }
+
+        .blog-content p {
+            margin-bottom: 25px;
+        }
+
+        .blog-content h2 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin: 40px 0 20px;
+            font-weight: 700;
+        }
+
+        .blog-content ol {
+            margin-bottom: 40px;
+            padding-left: 0;
+            list-style: none;
+            counter-reset: blog-counter;
+        }
+
+        .blog-content ol>li {
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .blog-content ol>li::before {
+            counter-increment: blog-counter;
+            content: counter(blog-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
+        }
+
+        .blog-content li strong {
+            display: block;
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+
+        .quote-box {
+            background: rgba(30, 136, 229, 0.05);
+            border-left: 6px solid var(--primary-color);
+            padding: 25px 30px;
+            margin: 30px 0;
+            font-style: italic;
+            border-radius: 0 20px 20px 0;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, #f5f9ff, #e1f5fe);
+            padding: 35px;
+            border-radius: 25px;
+            margin: 40px 0;
+            border: 1px dashed var(--primary-color);
+        }
+
+        .prompt-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 20px;
+            border-radius: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            color: #333;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .prompt-box::before {
+            content: "AI PROMPT";
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Post CTA Button */
+        .post-cta-wrapper {
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .btn-post-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+        }
+
+        .btn-post-cta:hover {
+            background: #128c7e;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .reality-check {
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 35px;
+            border-radius: 25px;
+            margin-top: 50px;
+        }
+
+        .reality-check h3 {
+            color: #f57c00;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .back-to-blogs {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-blogs:hover {
+            gap: 12px;
+            color: var(--primary-dark);
+        }
+
+        .option-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .option-card {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            border: 1px solid rgba(30, 136, 229, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .option-card h4 {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .blog-wrapper {
+                padding: 100px 5px 60px;
+                max-width: 100%;
+            }
+
+            .blog-post {
+                padding: 25px 10px;
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+            }
+
+            .blog-title {
+                font-size: 2.2rem;
+                margin-bottom: 25px;
+            }
+
+            .blog-content {
+                font-size: 1.05rem;
+                line-height: 1.7;
+            }
+
+            .blog-content ol>li {
+                padding-left: 0;
+                padding-top: 55px;
+                margin-bottom: 50px;
+            }
+
+            .blog-content ol>li::before {
+                top: 0;
+                width: 45px;
+                height: 45px;
+            }
+
+            .option-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Decorative Elements -->
+    <div class="decorative-elements">
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-line"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html"><img src="../Photos/weblogo.png" alt="MedCortico Logo"></a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="clinic-calculator.html">Calculator</a></li>
+                    <li><a href="blogs.html" class="active">Blogs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something."
+                    target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="blog-wrapper">
+            <a href="blogs.html" class="back-to-blogs"><i class="fas fa-arrow-left"></i> Back to Library</a>
+
+            <article class="blog-post">
+                <div class="post-meta">
+                    <span><i class="far fa-calendar-alt"></i> Jan 14, 2026</span>
+                    <span><i class="far fa-user"></i> Kanishk Ghonge</span>
+                    <span><i class="far fa-clock"></i> 5 min read</span>
+                </div>
+
+                <h1 class="blog-title">The shortest workflow to start making videos as a doctor (quite literally)</h1>
+
+                <div class="blog-content">
+                    <p>Most doctors overthink video creation. Cameras, lights, scripts, editing, how they look, what
+                        colleagues will say. That thinking is the real blocker. Not time. Not skill.</p>
+
+                    <p>Here is the simplest workflow I use. You can copy this exactly and start today.</p>
+
+                    <div class="quote-box">
+                        Perfection is the enemy of good. And in healthcare marketing, like it or not, <strong>jo dikhta
+                            hai woh bikta hai.</strong>
+                    </div>
+
+                    <p>Yes, watching yourself on camera can feel embarrassing. Yes, your first few videos will feel
+                        awkward. That is normal. Avoiding it does not make it go away. Doing it repeatedly does.</p>
+
+                    <ol>
+                        <li>
+                            <strong>Create a fresh Instagram account (important)</strong>
+                            <p>Use a fresh phone or a device where you have never logged into Instagram. Create a new
+                                Instagram account only for your medical content.</p>
+                            <p><strong>Why this matters:</strong> Your first videos will not immediately reach friends,
+                                relatives, or people you know in real life. This removes the embarrassment barrier. You
+                                are more likely to post consistently when you are not worried about judgement.</p>
+                        </li>
+
+                        <li>
+                            <strong>Generate video ideas using AI (do not brainstorm manually)</strong>
+                            <p>Do not sit and think, “What should I post?” Use a simple prompt like this:</p>
+                            <div class="prompt-box">
+                                You are a medical content assistant for a [your specialty] doctor. Search widely and
+                                come up with trendy, patient-friendly video ideas that help educate people and slowly
+                                build trust. These should not be ads. The goal is to attract patients or
+                                health-interested people.
+                            </div>
+                            <p>You will get a list of ideas. Pick one. Do not optimise. Do not compare. Just pick.</p>
+                        </li>
+
+                        <li>
+                            <strong>Turn the idea into a script (high retention, simple language)</strong>
+                            <p>Now take that idea and use another prompt:</p>
+                            <div class="prompt-box"
+                                style="font-size: 1.1rem; border-left: 4px solid var(--primary-color);">
+                                <strong>You are a medical content strategist and assistant for a [your specialty]
+                                    doctor.</strong><br><br>
+                                Your goal is to turn the following idea into a high-impact, short-form video script
+                                (under 60 seconds) for Instagram/Shorts. Use the 'Hook-Value-CTA' framework.<br><br>
+                                <strong>Hook:</strong> Start with a strong, curiosity-inducing hook that addresses a
+                                common patient pain point or myth.<br>
+                                <strong>Value:</strong> Explain the concept in 3-4 simple sentences. Use analogies
+                                instead of medical jargon. Focus on what the patient needs to know.<br>
+                                <strong>Style:</strong> Keep the language conversational, like a doctor talking to a
+                                patient in an OPD, not a classroom lecture.<br>
+                                <strong>CTA:</strong> End with a simple call to action like "Follow for more [specialty]
+                                tips" or "Share this with someone who needs it."<br><br>
+                                <strong>Topic: [paste your idea here]</strong>
+                            </div>
+                            <p>Read the script once. Make small additions in your own words if you want. Do not rewrite
+                                the entire thing.</p>
+                        </li>
+
+                        <li>
+                            <strong>Record using a teleprompter (no memorising)</strong>
+                            <p>Download any teleprompter app. Paste the script. Place the phone at eye level. Hit
+                                record. Read it out.</p>
+                            <p>That’s it. No retakes unless you completely mess up. Minor mistakes are fine. Recording
+                                is the easy part. Most doctors delay even this. Do not.</p>
+                        </li>
+
+                        <li>
+                            <strong>Editing (keep it stupidly simple)</strong>
+                            <p>Editing feels hard only because it is unfamiliar. You have two paths here:</p>
+
+                            <div class="option-grid">
+                                <div class="option-card"
+                                    style="border-color: var(--primary-color); background: rgba(30, 136, 229, 0.02);">
+                                    <h4><i class="fas fa-external-link-alt"></i> Option A: Outsource</h4>
+                                    <p>If editing is slowing you down, we can simplify this for you. You dump your raw
+                                        footage. We edit it and send it back ready to upload. <strong>Starting at ₹149
+                                            per video.</strong></p>
+
+                                    <div class="post-cta-wrapper">
+                                        <a href="https://wa.me/918527183292?text=I%20would%20like%20to%20learn%20more%20about%20your%20medical%20content%20editing%20service"
+                                            class="btn-post-cta">
+                                            <i class="fab fa-whatsapp"></i> Explore outsourcing the video
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="option-card">
+                                    <h4><i class="fas fa-user-edit"></i> Option B: DIY</h4>
+                                    <p>Use the <strong>Instagram Edits</strong> app. Inside the app: Adjust basic
+                                        filters, cut unnecessary pauses, use auto subtitles, pick a clean style, and
+                                        publish.</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+
+                    <div class="highlight-card">
+                        <h3>Time reality check</h3>
+                        <p>Once you get used to this workflow:</p>
+                        <ul style="list-style-type: none; padding: 0;">
+                            <li><i class="fas fa-clock" style="color: var(--primary-color); margin-right: 10px;"></i>
+                                Idea + script: 5 minutes</li>
+                            <li><i class="fas fa-clock" style="color: var(--primary-color); margin-right: 10px;"></i>
+                                Recording: 5 minutes</li>
+                            <li><i class="fas fa-clock" style="color: var(--primary-color); margin-right: 10px;"></i>
+                                Editing or upload: 10 minutes</li>
+                        </ul>
+                        <p><strong>20 minutes a day. That’s it.</strong> Consistency beats everything here. Not camera
+                            quality. Not confidence. Not editing skills.</p>
+                    </div>
+
+                    <div class="reality-check">
+                        <h3>Final reminder</h3>
+                        <p>You will cringe at your own videos initially. Everyone does. You will feel exposed. That does
+                            not mean you should stop.</p>
+                        <p>Doctors who win online are not better speakers. They just started earlier and stayed longer.
+                        </p>
+                        <p
+                            style="font-weight: 700; color: var(--primary-dark); font-size: 1.3rem; margin-top: 15px; border-left: 4px solid #f57c00; padding-left: 20px;">
+                            Start messy.<br>
+                            Post anyway.<br>
+                            You will make better videos eventually.<br>
+                            But only if you start.
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../Photos/weblogo.png" alt="MedCortico Logo"
+                        style="max-width: 200px; filter: brightness(0) invert(1);">
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="clinic-calculator.html">Calculator</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-products">
+                    <h3>Our Products</h3>
+                    <ul>
+                        <li><a href="website-building.html">Website Building</a></li>
+                        <li><a href="medical-transcription.html">Transcription</a></li>
+                        <li><a href="emr.html">EMR Systems</a></li>
+                        <li><a href="billing-analytics.html">Billing</a></li>
+                        <li><a href="clinic-calculator.html">Clinic Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> medcortico@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 8527183292</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something."
+                            target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MedCortico. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/whatsapp-widget.js"></script>
+</body>
+
+</html>
