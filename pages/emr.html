@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +19,8 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         /* Enhanced Footer Styles */
         footer {
@@ -28,7 +30,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         footer::before {
             content: '';
             position: absolute;
@@ -40,7 +42,7 @@
             background: rgba(255, 255, 255, 0.05);
             z-index: 0;
         }
-        
+
         .footer-content {
             display: flex;
             flex-wrap: wrap;
@@ -48,25 +50,27 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .footer-logo {
             flex: 1;
             min-width: 200px;
             margin-bottom: 30px;
         }
-        
+
         .footer-logo img {
             max-width: 180px;
             margin-bottom: 20px;
             filter: brightness(0) invert(1);
         }
-        
-        .footer-links, .footer-products, .footer-contact {
+
+        .footer-links,
+        .footer-products,
+        .footer-contact {
             flex: 1;
             min-width: 200px;
             margin-bottom: 30px;
         }
-        
+
         footer h3 {
             font-size: 1.3rem;
             margin-bottom: 20px;
@@ -74,7 +78,7 @@
             padding-bottom: 10px;
             display: inline-block;
         }
-        
+
         footer h3::after {
             content: '';
             position: absolute;
@@ -85,37 +89,37 @@
             background: var(--primary-light);
             border-radius: 2px;
         }
-        
+
         footer ul li {
             margin-bottom: 10px;
         }
-        
+
         footer ul li a {
             color: rgba(255, 255, 255, 0.8);
             transition: all 0.3s ease;
         }
-        
+
         footer ul li a:hover {
             color: var(--white);
             padding-left: 5px;
         }
-        
+
         .footer-contact p {
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             color: rgba(255, 255, 255, 0.8);
         }
-        
+
         .footer-contact p i {
             margin-right: 10px;
             color: var(--primary-light);
         }
-        
+
         .footer-social {
             margin-top: 20px;
         }
-        
+
         .footer-social a {
             display: inline-flex;
             align-items: center;
@@ -128,26 +132,26 @@
             color: var(--white);
             transition: all 0.3s ease;
         }
-        
+
         .footer-social a:hover {
             background: var(--primary-light);
             transform: translateY(-3px);
         }
-        
+
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 30px;
         }
-        
+
         .footer-bottom p {
             color: rgba(255, 255, 255, 0.6);
             font-size: 0.9rem;
         }
-        
+
         @media (max-width: 992px) {
-            .footer-content > div {
+            .footer-content>div {
                 flex: 100%;
                 margin-bottom: 40px;
             }
@@ -271,6 +275,7 @@
                 margin-bottom: 0;
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
+                line-clamp: 3;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
             }
@@ -313,6 +318,7 @@
             .feature-text p {
                 font-size: 0.85rem;
                 -webkit-line-clamp: 2;
+                line-clamp: 2;
             }
         }
 
@@ -531,6 +537,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Decorative Elements -->
     <div class="decorative-elements">
@@ -553,13 +560,17 @@
                 <ul class="nav-links">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="products.html">Products</a></li>
+                    <li><a href="clinic-calculator.html">Calculator</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
             <div class="social-icons">
-                <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
                 <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something." target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something."
+                    target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="hamburger">
                 <span></span>
@@ -575,10 +586,12 @@
             <div class="product-hero-content">
                 <div class="product-hero-text">
                     <h1>Electronic Medical Records</h1>
-                    <p>Digitalize patient records with customized formats tailored to your specialty. Simplify data entry and reduce the effort needed to navigate through the system.</p>
+                    <p>Digitalize patient records with customized formats tailored to your specialty. Simplify data
+                        entry and reduce the effort needed to navigate through the system.</p>
                     <div class="hero-buttons">
                         <div class="download-dropdown">
-                            <a href="#" class="btn btn-primary" data-href="coming-soon.html">Download Free 3-Month Trial</a>
+                            <a href="#" class="btn btn-primary" data-href="coming-soon.html">Download Free 3-Month
+                                Trial</a>
                             <div class="download-dropdown-content">
                                 <a href="coming-soon.html"><i class="fab fa-windows"></i> Windows</a>
                                 <a href="coming-soon.html"><i class="fab fa-android"></i> Android</a>
@@ -601,7 +614,7 @@
         <div class="container">
             <h2 class="section-title">Key Features of Our EMR</h2>
             <p class="section-description">Designed by doctors to make your clinical workflow smoother</p>
-            
+
             <div class="product-showcase-item">
                 <div class="product-showcase-content">
                     <div class="product-showcase-icon">
@@ -609,14 +622,16 @@
                     </div>
                     <div class="product-showcase-text">
                         <h2>Specialty-Specific Templates</h2>
-                        <p>Pre-built templates for various specialties that can be further customized to match your workflow. Includes customizable templates for all specialties, quick data entry options, and standardized documentation.</p>
+                        <p>Pre-built templates for various specialties that can be further customized to match your
+                            workflow. Includes customizable templates for all specialties, quick data entry options, and
+                            standardized documentation.</p>
                     </div>
                 </div>
                 <div class="product-showcase-image">
                     <img src="..\Photos\EMRallspeciality.jpeg" alt="Specialty-Specific Templates">
                 </div>
             </div>
-            
+
             <div class="product-showcase-item reverse">
                 <div class="product-showcase-content">
                     <div class="product-showcase-icon">
@@ -624,14 +639,16 @@
                     </div>
                     <div class="product-showcase-text">
                         <h2>More Time for Care</h2>
-                        <p>Quickly log complaints and prescribe with one-click options, giving you more time to focus on your patients. Features one-click prescription options, quick complaint logging, and an efficient workflow system.</p>
+                        <p>Quickly log complaints and prescribe with one-click options, giving you more time to focus on
+                            your patients. Features one-click prescription options, quick complaint logging, and an
+                            efficient workflow system.</p>
                     </div>
                 </div>
                 <div class="product-showcase-image">
                     <img src="..\Photos\EMRptdoc.jpeg" alt="Patient History">
                 </div>
             </div>
-            
+
             <div class="product-showcase-item">
                 <div class="product-showcase-content">
                     <div class="product-showcase-icon">
@@ -639,7 +656,9 @@
                     </div>
                     <div class="product-showcase-text">
                         <h2>Instant Digital Prescriptions</h2>
-                        <p>Generate sleek, professional e-prescriptions and share them with your patients instantly—no paper, no hassle. Includes professional e-prescriptions, instant sharing options, and digital signature support.</p>
+                        <p>Generate sleek, professional e-prescriptions and share them with your patients instantly—no
+                            paper, no hassle. Includes professional e-prescriptions, instant sharing options, and
+                            digital signature support.</p>
                     </div>
                 </div>
                 <div class="product-showcase-image">
@@ -671,7 +690,7 @@
         <div class="container">
             <h2 class="section-title">EMR Pricing</h2>
             <p class="section-description">Affordable solutions for practices of all sizes</p>
-            
+
             <div class="plans-container">
                 <div class="plan-card">
                     <div class="plan-header">
@@ -693,10 +712,11 @@
                         </ul>
                     </div>
                     <div class="plan-footer">
-                        <a href="https://razorpay.com/payment-link/plink_QA2PW10AbMPmai" class="btn btn-primary">Pay Now</a>
+                        <a href="https://razorpay.com/payment-link/plink_QA2PW10AbMPmai" class="btn btn-primary">Pay
+                            Now</a>
                     </div>
                 </div>
-                
+
                 <div class="plan-card featured">
                     <div class="plan-header">
                         <h3>Yearly Subscription</h3>
@@ -719,11 +739,12 @@
                         </ul>
                     </div>
                     <div class="plan-footer">
-                        <a href="https://razorpay.com/payment-link/plink_QA2PmowShqhdqk" class="btn btn-primary">Pay Now</a>
+                        <a href="https://razorpay.com/payment-link/plink_QA2PmowShqhdqk" class="btn btn-primary">Pay
+                            Now</a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="free-trial">
                 <h3>Experience Our EMR with a Free 3-Month Trial</h3>
                 <p>Try all features with no limitations. No credit card required.</p>
@@ -742,13 +763,16 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="../Photos/weblogo.png" alt="MedCortico Logo" style="max-width: 200px; filter: brightness(0) invert(1);">
+                    <img src="../Photos/weblogo.png" alt="MedCortico Logo"
+                        style="max-width: 200px; filter: brightness(0) invert(1);">
                 </div>
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="../index.html">Home</a></li>
                         <li><a href="products.html">Products</a></li>
+                        <li><a href="clinic-calculator.html">Calculator</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
@@ -759,6 +783,7 @@
                         <li><a href="medical-transcription.html">Medical Transcription</a></li>
                         <li><a href="emr.html">Electronic Medical Records</a></li>
                         <li><a href="billing-analytics.html">Billing & Analytics</a></li>
+                        <li><a href="clinic-calculator.html">Clinic Calculator</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -766,9 +791,11 @@
                     <p><i class="fas fa-envelope"></i> medcortico@gmail.com</p>
                     <p><i class="fas fa-phone"></i> +91 8527183292</p>
                     <div class="footer-social">
-                        <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i
+                                class="fab fa-linkedin"></i></a>
                         <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something." target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something."
+                            target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
@@ -783,4 +810,5 @@
     <script src="../js/dropdown.js"></script>
     <script src="../js/whatsapp-widget.js"></script>
 </body>
-</html> 
+
+</html>

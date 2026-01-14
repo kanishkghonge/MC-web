@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs - MedCortico</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <meta name="theme-color" content="#1e88e5">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .blogs-index-wrapper {
+            padding: 120px 0 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .blogs-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .blogs-hero h1 {
+            font-size: 3rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .blogs-hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .index-section {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(30, 136, 229, 0.1);
+        }
+
+        .index-section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .index-section h2 i {
+            color: var(--primary-color);
+        }
+
+        .blog-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .blog-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            padding: 25px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            margin-bottom: 20px;
+        }
+
+        .blog-card:hover {
+            background: rgba(30, 136, 229, 0.03);
+            border-color: rgba(30, 136, 229, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .blog-card-meta {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .blog-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .blog-card p {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+
+        .blog-card:hover .read-more {
+            gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .blogs-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .index-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Decorative Elements -->
+    <div class="decorative-elements">
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-line"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html"><img src="../Photos/weblogo.png" alt="MedCortico Logo"></a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="clinic-calculator.html">Calculator</a></li>
+                    <li><a href="blogs.html" class="active">Blogs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something."
+                    target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="blogs-index-wrapper">
+            <div class="blogs-hero">
+                <h1>Our Library</h1>
+                <p>Practical insights and strategies for modern medical practices.</p>
+            </div>
+
+            <section class="index-section">
+                <h2><i class="fas fa-book-open"></i> Published Entries</h2>
+                <div class="blog-list">
+                    <!-- Entry 1 -->
+                    <a href="blog-empty-clinic-phase.html" class="blog-card">
+                        <div class="blog-card-meta">Jan 14, 2026 • By Kanishk Ghonge</div>
+                        <h3>A Practical Checklist to Reduce the “Empty Clinic” Phase</h3>
+                        <p>Most doctors lose time before they even open their doors. Learn how to build discoverability
+                            and trust before your physical clinic exists.</p>
+                        <span class="read-more">Read Entry <i class="fas fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- Placeholder for future entries -->
+                    <div class="blog-card" style="opacity: 0.6; cursor: default;">
+                        <div class="blog-card-meta">Coming Soon</div>
+                        <h3>Growth Strategies for Established Clinics</h3>
+                        <p>Exploring how automation and advanced EMR systems can handle high patient volume efficiently.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../Photos/weblogo.png" alt="MedCortico Logo"
+                        style="max-width: 200px; filter: brightness(0) invert(1);">
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="clinic-calculator.html">Calculator</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-products">
+                    <h3>Our Products</h3>
+                    <ul>
+                        <li><a href="website-building.html">Website Building</a></li>
+                        <li><a href="medical-transcription.html">Transcription</a></li>
+                        <li><a href="emr.html">EMR Systems</a></li>
+                        <li><a href="billing-analytics.html">Billing</a></li>
+                        <li><a href="clinic-calculator.html">Clinic Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> medcortico@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 8527183292</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something."
+                            target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MedCortico. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/whatsapp-widget.js"></script>
+</body>
+
+</html>

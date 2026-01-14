@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +19,8 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         /* Enhanced Footer Styles */
         footer {
@@ -28,7 +30,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         footer::before {
             content: '';
             position: absolute;
@@ -40,7 +42,7 @@
             background: rgba(255, 255, 255, 0.05);
             z-index: 0;
         }
-        
+
         .footer-content {
             display: flex;
             flex-wrap: wrap;
@@ -48,25 +50,27 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .footer-logo {
             flex: 1;
             min-width: 200px;
             margin-bottom: 30px;
         }
-        
+
         .footer-logo img {
             max-width: 180px;
             margin-bottom: 20px;
             filter: brightness(0) invert(1);
         }
-        
-        .footer-links, .footer-products, .footer-contact {
+
+        .footer-links,
+        .footer-products,
+        .footer-contact {
             flex: 1;
             min-width: 200px;
             margin-bottom: 30px;
         }
-        
+
         footer h3 {
             font-size: 1.3rem;
             margin-bottom: 20px;
@@ -74,7 +78,7 @@
             padding-bottom: 10px;
             display: inline-block;
         }
-        
+
         footer h3::after {
             content: '';
             position: absolute;
@@ -85,37 +89,37 @@
             background: var(--primary-light);
             border-radius: 2px;
         }
-        
+
         footer ul li {
             margin-bottom: 10px;
         }
-        
+
         footer ul li a {
             color: rgba(255, 255, 255, 0.8);
             transition: all 0.3s ease;
         }
-        
+
         footer ul li a:hover {
             color: var(--white);
             padding-left: 5px;
         }
-        
+
         .footer-contact p {
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             color: rgba(255, 255, 255, 0.8);
         }
-        
+
         .footer-contact p i {
             margin-right: 10px;
             color: var(--primary-light);
         }
-        
+
         .footer-social {
             margin-top: 20px;
         }
-        
+
         .footer-social a {
             display: inline-flex;
             align-items: center;
@@ -128,26 +132,26 @@
             color: var(--white);
             transition: all 0.3s ease;
         }
-        
+
         .footer-social a:hover {
             background: var(--primary-light);
             transform: translateY(-3px);
         }
-        
+
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 30px;
         }
-        
+
         .footer-bottom p {
             color: rgba(255, 255, 255, 0.6);
             font-size: 0.9rem;
         }
-        
+
         @media (max-width: 992px) {
-            .footer-content > div {
+            .footer-content>div {
                 flex: 100%;
                 margin-bottom: 40px;
             }
@@ -156,15 +160,21 @@
         /* Hero Button Styling */
         .hero-buttons {
             display: flex;
-            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
-            gap: 15px; /* Add space between buttons */
-            margin-top: 30px; /* Add some space above the buttons */
+            flex-wrap: wrap;
+            /* Allow buttons to wrap on smaller screens */
+            gap: 15px;
+            /* Add space between buttons */
+            margin-top: 30px;
+            /* Add some space above the buttons */
         }
+
         .hero-buttons .btn {
-            margin-bottom: 10px; /* Add space below buttons when they wrap */
+            margin-bottom: 10px;
+            /* Add space below buttons when they wrap */
         }
     </style>
 </head>
+
 <body>
     <!-- Decorative Elements -->
     <div class="decorative-elements">
@@ -180,7 +190,9 @@
     <!-- Wave Pattern Top -->
     <div class="wave-container">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            <path
+                d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                class="shape-fill"></path>
         </svg>
     </div>
 
@@ -194,13 +206,17 @@
                 <ul class="nav-links">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="products.html">Products</a></li>
+                    <li><a href="clinic-calculator.html">Calculator</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
             <div class="social-icons">
-                <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
                 <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something." target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something."
+                    target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="hamburger">
                 <span></span>
@@ -216,10 +232,12 @@
             <div class="product-hero-content">
                 <div class="product-hero-text">
                     <h1>MedScribe: Medical Transcription Software</h1>
-                    <p>Convert speech to structured medical reports with our advanced AI-powered transcription software. Save time and focus on patient care.</p>
+                    <p>Convert speech to structured medical reports with our advanced AI-powered transcription software.
+                        Save time and focus on patient care.</p>
                     <div class="hero-buttons">
                         <div class="download-dropdown">
-                            <a href="#" class="btn btn-primary" data-href="coming-soon.html">Download Free 5-Day Trial</a>
+                            <a href="#" class="btn btn-primary" data-href="coming-soon.html">Download Free 5-Day
+                                Trial</a>
                             <div class="download-dropdown-content">
                                 <a href="coming-soon.html"><i class="fab fa-windows"></i> Windows</a>
                                 <a href="coming-soon.html"><i class="fab fa-android"></i> Android</a>
@@ -232,9 +250,12 @@
                 </div>
                 <div class="product-hero-image">
                     <!-- Replace with actual image -->
-                    <img src="../Photos/Msdocin.jpeg" alt="MedScribe Software" style="animation: none; transition: transform 0.3s ease;">
-                    <div style="position: absolute; bottom: -30px; right: 30px; width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 5px solid white; box-shadow: 0 5px 20px rgba(0,0,0,0.4); z-index: 10;">
-                        <img src="../Photos/MS logo.jpg" alt="MedScribe Logo" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="../Photos/Msdocin.jpeg" alt="MedScribe Software"
+                        style="animation: none; transition: transform 0.3s ease;">
+                    <div
+                        style="position: absolute; bottom: -30px; right: 30px; width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 5px solid white; box-shadow: 0 5px 20px rgba(0,0,0,0.4); z-index: 10;">
+                        <img src="../Photos/MS logo.jpg" alt="MedScribe Logo"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -245,8 +266,9 @@
     <section id="learn-more" class="product-features">
         <div class="container">
             <h2 class="section-title">How MedScribe Works</h2>
-            <p class="section-description">One-click recording, advanced medical speech recognition, and structured reports</p>
-            
+            <p class="section-description">One-click recording, advanced medical speech recognition, and structured
+                reports</p>
+
             <div class="how-it-works-steps">
                 <!-- Step 1: Recording -->
                 <div class="step-card fade-in-up">
@@ -255,10 +277,11 @@
                     </div>
                     <div class="step-content">
                         <h3>One-Click Recording</h3>
-                        <p>Start talking with just one click. MedScribe captures everything, documenting each finding into a structured report.</p>
+                        <p>Start talking with just one click. MedScribe captures everything, documenting each finding
+                            into a structured report.</p>
                     </div>
                 </div>
-                
+
                 <!-- Step 2: Formatting -->
                 <div class="step-card fade-in-up" style="animation-delay: 0.2s;"> <!-- Stagger animation -->
                     <div class="step-icon">
@@ -266,18 +289,20 @@
                     </div>
                     <div class="step-content">
                         <h3>Saved Report Formats</h3>
-                        <p>Easily select your pre-defined report formats for different types of consultations and procedures.</p>
+                        <p>Easily select your pre-defined report formats for different types of consultations and
+                            procedures.</p>
                     </div>
                 </div>
-                
+
                 <!-- Step 3: Terminology -->
                 <div class="step-card fade-in-up" style="animation-delay: 0.4s;"> <!-- Stagger animation -->
-                     <div class="step-icon">
+                    <div class="step-icon">
                         <i class="fas fa-brain"></i>
                     </div>
                     <div class="step-content">
                         <h3>Advanced Medical Terminology</h3>
-                        <p>Our AI understands complex medical terms across specialties, ensuring accurate transcription.</p>
+                        <p>Our AI understands complex medical terms across specialties, ensuring accurate transcription.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -288,16 +313,16 @@
     <section id="video-demo" class="product-video" style="padding: 60px 0; background-color: #f9f9f9;">
         <div class="container">
             <h2 class="section-title">See MedScribe in Action</h2>
-            <p class="section-description">Watch this video to learn how to download and use MedScribe for efficient reporting.</p>
-            <div class="video-container" style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0; overflow: hidden; max-width: 960px; /* Increased max-width */ margin: 20px auto; /* Keep margin for centering */ box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 8px;">
+            <p class="section-description">Watch this video to learn how to download and use MedScribe for efficient
+                reporting.</p>
+            <div class="video-container"
+                style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0; overflow: hidden; max-width: 960px; /* Increased max-width */ margin: 20px auto; /* Keep margin for centering */ box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 8px;">
                 <iframe
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; display: block; /* Ensure block display */"
                     src="https://www.youtube.com/embed/Xo30h1BgOOY"
-                    title="How to Download and Use MedScribe for Reporting"
-                    frameborder="0"
+                    title="How to Download and Use MedScribe for Reporting" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen>
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                 </iframe>
             </div>
         </div>
@@ -325,7 +350,7 @@
         <div class="container">
             <h2 class="section-title">MedScribe Plans</h2>
             <p class="section-description">Choose the plan that fits your practice</p>
-            
+
             <div class="pricing-card simplified">
                 <div class="pricing-options">
                     <div class="monthly-option">
@@ -334,9 +359,10 @@
                             <div class="original-price" style="font-size: 1.5rem;">₹3,500/month</div>
                             <div class="discounted-price">₹2,499/month</div>
                         </div>
-                        <a href="https://razorpay.com/payment-link/plink_QA2iUVNNrP5uU6" class="btn btn-primary btn-sm">Pay Now</a>
+                        <a href="https://razorpay.com/payment-link/plink_QA2iUVNNrP5uU6"
+                            class="btn btn-primary btn-sm">Pay Now</a>
                     </div>
-                    
+
                     <div class="yearly-option">
                         <span class="best-value">Best Value</span>
                         <h3>Yearly Plan</h3>
@@ -345,19 +371,22 @@
                             <div class="discounted-price">₹24,999/year</div>
                         </div>
                         <p class="savings">Save ₹5,000 compared to monthly</p>
-                        <a href="https://razorpay.com/payment-link/plink_QA2iXRdUTvjsRR" class="btn btn-primary btn-sm">Pay Now</a>
+                        <a href="https://razorpay.com/payment-link/plink_QA2iXRdUTvjsRR"
+                            class="btn btn-primary btn-sm">Pay Now</a>
                     </div>
                 </div>
-                
+
                 <div class="pricing-cta">
                     <div class="savings-header" style="background: none; color: var(--primary-dark);">
                         <h3>How Much Will You Save?</h3>
-                        <p>By not hiring a typist, you can save up to <span class="amount" style="color: #f57c00;">₹25,000</span> per month!</p>
+                        <p>By not hiring a typist, you can save up to <span class="amount"
+                                style="color: #f57c00;">₹25,000</span> per month!</p>
                     </div>
                     <div class="savings-content" style="margin-top: 20px;">
                         <div class="trial-box" style="padding: 20px; background: none;">
                             <h4>Try Before You Buy</h4>
-                            <p>Experience MedScribe with our free <span class="days">5-day</span> trial. No credit card required.</p>
+                            <p>Experience MedScribe with our free <span class="days">5-day</span> trial. No credit card
+                                required.</p>
                             <a href="coming-soon.html" class="btn btn-primary">Download Free Trial</a>
                             <div class="os-links">
                                 <a href="coming-soon.html"><i class="fab fa-windows"></i> Windows</a>
@@ -379,7 +408,9 @@
     <!-- Wave Pattern Bottom -->
     <div class="wave-container-bottom">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            <path
+                d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                class="shape-fill"></path>
         </svg>
     </div>
 
@@ -388,13 +419,16 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="../Photos/weblogo.png" alt="MedCortico Logo" style="max-width: 200px; filter: brightness(0) invert(1);">
+                    <img src="../Photos/weblogo.png" alt="MedCortico Logo"
+                        style="max-width: 200px; filter: brightness(0) invert(1);">
                 </div>
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="../index.html">Home</a></li>
                         <li><a href="products.html">Products</a></li>
+                        <li><a href="clinic-calculator.html">Calculator</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
@@ -405,6 +439,7 @@
                         <li><a href="medical-transcription.html">Medical Transcription</a></li>
                         <li><a href="emr.html">Electronic Medical Records</a></li>
                         <li><a href="billing-analytics.html">Billing & Analytics</a></li>
+                        <li><a href="clinic-calculator.html">Clinic Calculator</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -412,9 +447,11 @@
                     <p><i class="fas fa-envelope"></i> medcortico@gmail.com</p>
                     <p><i class="fas fa-phone"></i> +91 8527183292</p>
                     <div class="footer-social">
-                        <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i
+                                class="fab fa-linkedin"></i></a>
                         <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something." target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something."
+                            target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
@@ -429,4 +466,5 @@
     <script src="../js/dropdown.js"></script>
     <script src="../js/whatsapp-widget.js"></script>
 </body>
-</html> 
+
+</html>
