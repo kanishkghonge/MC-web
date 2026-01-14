@@ -183,24 +183,50 @@
 
         @media (max-width: 768px) {
             .blog-wrapper {
-                padding: 100px 15px 60px;
+                padding: 100px 5px 60px;
+                max-width: 100%;
             }
 
             .blog-post {
-                padding: 35px 20px;
+                padding: 25px 10px;
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
             }
 
             .blog-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
+                margin-bottom: 25px;
+            }
+
+            .blog-content {
+                font-size: 1.05rem;
+                line-height: 1.7;
             }
 
             .blog-content ol>li {
                 padding-left: 0;
-                padding-top: 50px;
+                padding-top: 55px;
+                margin-bottom: 50px;
             }
 
             .blog-content ol>li::before {
                 top: 0;
+                width: 45px;
+                height: 45px;
+            }
+
+            .quote-box {
+                padding: 20px;
+                margin: 25px 0;
+                font-size: 1.1rem;
+            }
+
+            .highlight-card,
+            .reality-check {
+                padding: 20px;
+                border-radius: 15px;
             }
         }
     </style>
