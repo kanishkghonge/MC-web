@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,7 +13,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Shortest Video Workflow for Doctors - MedCortico Blog</title>
+    <title>Optimising Google Business Profile for Doctors - MedCortico Blog</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="../favicon/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
@@ -140,71 +140,78 @@
             border: 1px dashed var(--primary-color);
         }
 
-        .prompt-box {
+        .example-box {
             background: #f8f9fa;
             border: 1px solid #e9ecef;
             padding: 20px;
             border-radius: 15px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1rem;
-            color: #333;
             margin: 20px 0;
-            position: relative;
         }
 
-        .prompt-box::before {
-            content: "AI PROMPT";
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: var(--primary-color);
-            color: white;
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 5px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
+        .example-box.bad {
+            border-left: 4px solid #f44336;
+        }
+
+        .example-box.good {
+            border-left: 4px solid #4caf50;
+        }
+
+        .example-label {
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .bad .example-label {
+            color: #f44336;
+        }
+
+        .good .example-label {
+            color: #4caf50;
         }
 
         /* Post CTA Button */
         .post-cta-wrapper {
-            margin: 30px 0;
-            text-align: left;
+            margin: 50px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            padding: 40px;
+            border-radius: 30px;
+            color: white;
+        }
+
+        .post-cta-wrapper h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .post-cta-wrapper p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 25px;
         }
 
         .btn-post-cta {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 15px 30px;
-            background: #25d366;
-            color: white;
+            padding: 18px 35px;
+            background: white;
+            color: var(--primary-color);
             text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
+            border-radius: 15px;
+            font-weight: 700;
             font-size: 1.1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .btn-post-cta:hover {
-            background: #128c7e;
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
-        }
-
-        .reality-check {
-            background: #fff8e1;
-            border: 1px solid #ffe082;
-            padding: 35px;
-            border-radius: 25px;
-            margin-top: 50px;
-        }
-
-        .reality-check h3 {
-            color: #f57c00;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            background: #f8f9fa;
         }
 
         .back-to-blogs {
@@ -223,30 +230,6 @@
             color: var(--primary-dark);
         }
 
-        .option-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .option-card {
-            background: white;
-            padding: 30px;
-            border-radius: 25px;
-            border: 1px solid rgba(30, 136, 229, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-        }
-
-        .option-card h4 {
-            font-size: 1.3rem;
-            color: var(--primary-dark);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
         @media (max-width: 768px) {
             .blog-wrapper {
                 padding: 100px 5px 60px;
@@ -254,7 +237,7 @@
             }
 
             .blog-post {
-                padding: 25px 10px;
+                padding: 25px 15px;
                 background: transparent;
                 box-shadow: none;
                 border: none;
@@ -281,10 +264,15 @@
                 top: 0;
                 width: 45px;
                 height: 45px;
-            }
-
-            .option-grid {
-                grid-template-columns: 1fr;
+                background: var(--primary-color);
+                color: white;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                font-size: 1.1rem;
+                box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
             }
         }
     </style>
@@ -336,138 +324,146 @@
 
             <article class="blog-post">
                 <div class="post-meta">
-                    <span><i class="far fa-calendar-alt"></i> Jan 14, 2026</span>
+                    <span><i class="far fa-calendar-alt"></i> Jan 17, 2026</span>
                     <span><i class="far fa-user"></i> Kanishk Ghonge</span>
-                    <span><i class="far fa-clock"></i> 5 min read</span>
+                    <span><i class="far fa-clock"></i> 8 min read</span>
                 </div>
 
-                <h1 class="blog-title">The shortest workflow to start making videos as a doctor (quite literally)</h1>
+                <h1 class="blog-title">A Doctor's Practical Guide to Optimising Google Business Profile</h1>
 
                 <div class="blog-content">
-                    <p>Most doctors overthink video creation. Cameras, lights, scripts, editing, how they look, what
-                        colleagues will say. That thinking is the real blocker. Not time. Not skill.</p>
+                    <p>When a patient searches "best doctor near me", Google is not judging your clinical skill. It
+                        is ranking <strong>trust, relevance, and consistency.</strong></p>
 
-                    <p>Here is the simplest workflow I use. You can copy this exactly and start today.</p>
+                    <p>Most doctors lose here not because they are bad clinicians, but because their Google Business
+                        Profile is half done, outdated, or treated as an afterthought.</p>
 
                     <div class="quote-box">
-                        Perfection is the enemy of good. And in healthcare marketing, like it or not, <strong>jo dikhta
-                            hai woh bikta hai.</strong>
+                        Stop thinking in terms of "SEO tricks". Think in terms of signal strength.
                     </div>
-
-                    <p>Yes, watching yourself on camera can feel embarrassing. Yes, your first few videos will feel
-                        awkward. That is normal. Avoiding it does not make it go away. Doing it repeatedly does.</p>
 
                     <ol>
                         <li>
-                            <strong>Create a fresh Instagram account (important)</strong>
-                            <p>Use a fresh phone or a device where you have never logged into Instagram. Create a new
-                                Instagram account only for your medical content.</p>
-                            <p><strong>Why this matters:</strong> Your first videos will not immediately reach friends,
-                                relatives, or people you know in real life. This removes the embarrassment barrier. You
-                                are more likely to post consistently when you are not worried about judgement.</p>
+                            <strong>Understand What Google Is Really Ranking</strong>
+                            <p>Google does not know who the "best" doctor is. It uses proxies. For local healthcare
+                                searches, the main signals are:</p>
+                            <ul>
+                                <li>Profile completeness</li>
+                                <li>Location relevance</li>
+                                <li>Activity and freshness</li>
+                                <li>Reviews and responses</li>
+                                <li>Consistency across the internet</li>
+                            </ul>
+                            <p>If any one of these is weak, you drop.</p>
                         </li>
 
                         <li>
-                            <strong>Generate video ideas using AI (do not brainstorm manually)</strong>
-                            <p>Do not sit and think, "What should I post?" Use a simple prompt like this:</p>
-                            <div class="prompt-box">
-                                You are a medical content assistant for a [your specialty] doctor. Search widely and
-                                come up with trendy, patient-friendly video ideas that help educate people and slowly
-                                build trust. These should not be ads. The goal is to attract patients or
-                                health-interested people.
+                            <strong>Choose the Right Primary Category (Non-Negotiable)</strong>
+                            <p>Your primary category is the strongest ranking signal. Pick what patients actually
+                                search, not what sounds impressive.</p>
+                            <div class="example-box good">
+                                <span class="example-label">Right Thinking</span>
+                                <p>What would a patient type at 11 pm when anxious?</p>
                             </div>
-                            <p>You will get a list of ideas. Pick one. Do not optimise. Do not compare. Just pick.</p>
-                        </li>
-
-                        <li>
-                            <strong>Turn the idea into a script (high retention, simple language)</strong>
-                            <p>Now take that idea and use another prompt:</p>
-                            <div class="prompt-box"
-                                style="font-size: 1.1rem; border-left: 4px solid var(--primary-color);">
-                                <strong>You are a medical content strategist and assistant for a [your specialty]
-                                    doctor.</strong><br><br>
-                                Your goal is to turn the following idea into a high-impact, short-form video script
-                                (under 60 seconds) for Instagram/Shorts. Use the 'Hook-Value-CTA' framework.<br><br>
-                                <strong>Hook:</strong> Start with a strong, curiosity-inducing hook that addresses a
-                                common patient pain point or myth.<br>
-                                <strong>Value:</strong> Explain the concept in 3-4 simple sentences. Use analogies
-                                instead of medical jargon. Focus on what the patient needs to know.<br>
-                                <strong>Style:</strong> Keep the language conversational, like a doctor talking to a
-                                patient in an OPD, not a classroom lecture.<br>
-                                <strong>CTA:</strong> End with a simple call to action like "Follow for more [specialty]
-                                tips" or "Share this with someone who needs it."<br><br>
-                                <strong>Topic: [paste your idea here]</strong>
+                            <div class="example-box bad">
+                                <span class="example-label">Avoid</span>
+                                <p>"General Physician" != "Internal Medicine Specialist"<br>
+                                    "Dermatologist" != "Skin Care Clinic"</p>
                             </div>
-                            <p>Read the script once. Make small additions in your own words if you want. Do not rewrite
-                                the entire thing.</p>
                         </li>
 
                         <li>
-                            <strong>Record using a teleprompter (no memorising)</strong>
-                            <p>Download any teleprompter app. Paste the script. Place the phone at eye level. Hit
-                                record. Read it out.</p>
-                            <p>That's it. No retakes unless you completely mess up. Minor mistakes are fine. Recording
-                                is the easy part. Most doctors delay even this. Do not.</p>
-                        </li>
-
-                        <li>
-                            <strong>Editing (keep it stupidly simple)</strong>
-                            <p>Editing feels hard only because it is unfamiliar. You have two paths here:</p>
-
-                            <div class="option-grid">
-                                <div class="option-card"
-                                    style="border-color: var(--primary-color); background: rgba(30, 136, 229, 0.02);">
-                                    <h4><i class="fas fa-external-link-alt"></i> Option A: Outsource</h4>
-                                    <p>If editing is slowing you down, we can simplify this for you. You dump your raw
-                                        footage. We edit it and send it back ready to upload. <strong>Starting at
-                                            &#8377;149
-                                            per video.</strong></p>
-
-                                    <div class="post-cta-wrapper">
-                                        <a href="https://wa.me/918527183292?text=I%20would%20like%20to%20learn%20more%20about%20your%20medical%20content%20editing%20service"
-                                            class="btn-post-cta">
-                                            <i class="fab fa-whatsapp"></i> Explore outsourcing the video
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="option-card">
-                                    <h4><i class="fas fa-user-edit"></i> Option B: DIY</h4>
-                                    <p>Use the <strong>Instagram Edits</strong> app. Inside the app: Adjust basic
-                                        filters, cut unnecessary pauses, use auto subtitles, pick a clean style, and
-                                        publish.</p>
-                                </div>
+                            <strong>Name Field: Do Not Stuff Keywords</strong>
+                            <p>Your clinic name should be exactly: <strong>Clinic Name + Doctor's Name (if
+                                    applicable)</strong>. Google penalises keyword stuffing, and patients subconsciously
+                                distrust it.</p>
+                            <div class="example-box bad">
+                                <span class="example-label">Bad Practice</span>
+                                <p>XYZ Clinic - Best Physician in Andheri - Diabetes Specialist</p>
                             </div>
+                            <p>If you need keywords, use them in the description, services, or posts.</p>
+                        </li>
+
+                        <li>
+                            <strong>Write a Description That Matches Patient Intent</strong>
+                            <p>Most doctors write bios. Patients are not reading bios. They want to know: What do you
+                                treat? Where are you? When are you available? Can I trust you?</p>
+                            <div class="highlight-card">
+                                <h3>Structure Your Description:</h3>
+                                <p><strong>Line 1:</strong> Who you are + location<br>
+                                    <strong>Line 2-3:</strong> Core problems you treat<br>
+                                    <strong>Line 4:</strong> Experience or approach<br>
+                                    <strong>Line 5:</strong> Availability or booking cue
+                                </p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Add Services Like a Patient Thinks</strong>
+                            <p>Doctors list diagnoses. Patients search symptoms. You are not dumbing it down; you are
+                                matching search behavior.</p>
+                            <div class="example-box good">
+                                <span class="example-label">Patient-Centric Terms</span>
+                                <p>"High blood pressure treatment" instead of "Hypertension"<br>
+                                    "Diabetes management" instead of "Type 2 Diabetes Mellitus"</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Photos Are a Ranking Signal</strong>
+                            <p>Clinics with regular photo updates rank higher. This reduces patient anxiety, and Google
+                                tracks that engagement.</p>
+                            <ul>
+                                <li>Clinic exterior (easy to recognise)</li>
+                                <li>Waiting area & Consultation room</li>
+                                <li>Doctor photo (professional)</li>
+                                <li>Staff photo (optional but powerful)</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Reviews Matter, But Quality & Keywords Count More</strong>
+                            <p>It's not just the number of reviews. Google looks at frequency, keywords in reviews,
+                                and your responses.</p>
+                            <div class="quote-box">
+                                Never copy-paste replies. Generic replies weaken trust signals.
+                            </div>
+                            <p>Ask patients to mention the condition treated, the area, and the doctor's name in their
+                                reviews.</p>
+                        </li>
+
+                        <li>
+                            <strong>Keep the Profile Active</strong>
+                            <p>An inactive profile slowly drops. Think of it like your OPD: if you stop showing up,
+                                Google assumes you are irrelevant.</p>
+                            <ul>
+                                <li>Post at least once per week</li>
+                                <li>Update hours immediately if they change</li>
+                                <li>Respond to <strong>every</strong> review (including bad ones)</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Location Consistency (NAP)</strong>
+                            <p>Your Name, Address, and Phone number (NAP) must be identical across Google, your Website,
+                                Practo, Justdial, and Maps. Even small differences confuse Google.</p>
                         </li>
                     </ol>
 
-                    <div class="highlight-card">
-                        <h3>Time reality check</h3>
-                        <p>Once you get used to this workflow:</p>
-                        <ul style="list-style-type: none; padding: 0;">
-                            <li><i class="fas fa-clock" style="color: var(--primary-color); margin-right: 10px;"></i>
-                                Idea + script: 5 minutes</li>
-                            <li><i class="fas fa-clock" style="color: var(--primary-color); margin-right: 10px;"></i>
-                                Recording: 5 minutes</li>
-                            <li><i class="fas fa-clock" style="color: var(--primary-color); margin-right: 10px;"></i>
-                                Editing or upload: 10 minutes</li>
-                        </ul>
-                        <p><strong>20 minutes a day. That's it.</strong> Consistency beats everything here. Not camera
-                            quality. Not confidence. Not editing skills.</p>
+                    <div class="highlight-card" style="background: #f1f8e9; border-color: #8bc34a;">
+                        <h3>The Bottom Line</h3>
+                        <p>"Best Doctor Near Me" is earned, not claimed. You rank because Google sees proof of trust.
+                            Consistency beats cleverness. Clarity beats keywords. Activity beats reputation alone.</p>
                     </div>
 
-                    <div class="reality-check">
-                        <h3>Final reminder</h3>
-                        <p>You will cringe at your own videos initially. Everyone does. You will feel exposed. That does
-                            not mean you should stop.</p>
-                        <p>Doctors who win online are not better speakers. They just started earlier and stayed longer.
-                        </p>
-                        <p
-                            style="font-weight: 700; color: var(--primary-dark); font-size: 1.3rem; margin-top: 15px; border-left: 4px solid #f57c00; padding-left: 20px;">
-                            Start messy.<br>
-                            Post anyway.<br>
-                            You will make better videos eventually.<br>
-                            But only if you start.
-                        </p>
+                    <div class="post-cta-wrapper">
+                        <h3>Ready to grow your practice?</h3>
+                        <p>We help doctors build high-converting websites and manage their digital presence so they can
+                            focus on what they do best-treating patients.</p>
+                        <a href="https://wa.me/918527183292?text=Hello%2C%20I%20read%20your%20blog%20and%20I%20want%20to%20set%20up%20my%20online%20clinic."
+                            class="btn-post-cta">
+                            <i class="fab fa-whatsapp"></i> Set up your online clinic today
+                        </a>
                     </div>
                 </div>
             </article>
