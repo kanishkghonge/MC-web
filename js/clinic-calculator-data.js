@@ -309,10 +309,16 @@ const SPECIALTY_DATA = {
         "Pathology Lab (Advanced)": { baseEquipmentCost: 4500000, complexity: 2.0 } // Histopathology & Molecular kits
     },
     "Dentist": {
-        "General Dentistry": { baseEquipmentCost: 1000000, complexity: 1.5 }, // Quality Chair, RVG, Compressor
-        "Orthodontist": { baseEquipmentCost: 1200000, complexity: 1.6 },
-        "Endodontist": { baseEquipmentCost: 1400000, complexity: 1.7 }, // Apex locators, Micro-motors
-        "Oral Surgeon": { baseEquipmentCost: 1800000, complexity: 1.8 }
+        "General Dentist (BDS / DDS)": { baseEquipmentCost: 1000000, complexity: 1.5 },
+        "Oral and Maxillofacial Surgeon": { baseEquipmentCost: 1800000, complexity: 1.8 },
+        "Orthodontist (Braces, Aligners)": { baseEquipmentCost: 1200000, complexity: 1.6 },
+        "Prosthodontist (Crowns, Bridges, Dentures, Implants)": { baseEquipmentCost: 1500000, complexity: 1.7 },
+        "Periodontist (Gums, Bone)": { baseEquipmentCost: 1100000, complexity: 1.5 },
+        "Endodontist (Root canal specialist)": { baseEquipmentCost: 1400000, complexity: 1.7 },
+        "Pedodontist / Pediatric Dentist": { baseEquipmentCost: 1000000, complexity: 1.5 },
+        "Oral Pathologist": { baseEquipmentCost: 800000, complexity: 1.4 },
+        "Oral Medicine and Radiology": { baseEquipmentCost: 1500000, complexity: 1.6 },
+        "Public Health Dentist": { baseEquipmentCost: 500000, complexity: 1.2 }
     },
     "Physiotherapist": {
         "General Rehab": { baseEquipmentCost: 300000, complexity: 1.2 },
@@ -320,11 +326,42 @@ const SPECIALTY_DATA = {
         "Neuro Rehab": { baseEquipmentCost: 500000, complexity: 1.4 }
     },
     "Ayurveda": {
-        "General Consultant": { baseEquipmentCost: 40000, complexity: 1.0 },
-        "Panchakarma Center": { baseEquipmentCost: 600000, complexity: 1.5 }
+        "Ayurvedic Physician (General)": { baseEquipmentCost: 40000, complexity: 1.0 },
+        "Kayachikitsa (Internal Medicine)": { baseEquipmentCost: 40000, complexity: 1.0 },
+        "Panchakarma Specialist": { baseEquipmentCost: 600000, complexity: 1.5 },
+        "Shalya Tantra (Surgery)": { baseEquipmentCost: 200000, complexity: 1.4 },
+        "Shalakya Tantra (ENT, Eye, Dental)": { baseEquipmentCost: 150000, complexity: 1.3 },
+        "Kaumarbhritya (Pediatrics)": { baseEquipmentCost: 60000, complexity: 1.1 },
+        "Prasuti & Stri Roga (Gynecology & Obstetrics)": { baseEquipmentCost: 100000, complexity: 1.2 },
+        "Agada Tantra (Toxicology)": { baseEquipmentCost: 40000, complexity: 1.0 },
+        "Rasayana & Vajikarana (Rejuvenation, Fertility)": { baseEquipmentCost: 40000, complexity: 1.0 },
+        "Panchakarma Therapist / Consultant": { baseEquipmentCost: 400000, complexity: 1.4 },
+        "Ayurvedic Diet & Lifestyle Consultant": { baseEquipmentCost: 30000, complexity: 1.0 },
+        "Ayurvedic Dermatologist (Skin & Hair focus)": { baseEquipmentCost: 200000, complexity: 1.3 },
+        "Ayurvedic Gastro Specialist": { baseEquipmentCost: 40000, complexity: 1.0 },
+        "Ayurvedic Pain Management Specialist": { baseEquipmentCost: 100000, complexity: 1.2 },
+        "Ayurvedic Oncology Support Practitioner": { baseEquipmentCost: 40000, complexity: 1.0 },
+        "Sports Ayurveda Specialist": { baseEquipmentCost: 150000, complexity: 1.3 },
+        "Ayurvedic Cosmetologist": { baseEquipmentCost: 300000, complexity: 1.4 },
+        "Ayurvedic Skin & Hair Specialist": { baseEquipmentCost: 250000, complexity: 1.3 },
+        "Ayurvedic Aesthetic Medicine Practitioner": { baseEquipmentCost: 350000, complexity: 1.5 },
+        "Anti-Aging Ayurveda Specialist": { baseEquipmentCost: 300000, complexity: 1.4 }
     },
     "Homeopath": {
-        "General Consultant": { baseEquipmentCost: 30000, complexity: 1.0 }
+        "General Homeopathic Physician": { baseEquipmentCost: 30000, complexity: 1.0 },
+        "Constitutional Homeopath": { baseEquipmentCost: 30000, complexity: 1.0 },
+        "Classical Homeopath (Kentian / Hahnemannian)": { baseEquipmentCost: 30000, complexity: 1.0 },
+        "Clinical Homeopath": { baseEquipmentCost: 30000, complexity: 1.0 },
+        "Homeopathic Dermatologist": { baseEquipmentCost: 50000, complexity: 1.1 },
+        "Homeopathic Pediatrician": { baseEquipmentCost: 40000, complexity: 1.0 },
+        "Homeopathic Gynecologist": { baseEquipmentCost: 60000, complexity: 1.1 },
+        "Homeopathic Psychiatric Practice": { baseEquipmentCost: 30000, complexity: 1.0 },
+        "Homeopathic Allergy Specialist": { baseEquipmentCost: 40000, complexity: 1.0 },
+        "Homeopathic Arthritis & Pain Specialist": { baseEquipmentCost: 50000, complexity: 1.1 },
+        "Homeopathic Cosmetologist": { baseEquipmentCost: 150000, complexity: 1.3 },
+        "Skin & Hair Homeopathy Specialist": { baseEquipmentCost: 120000, complexity: 1.2 },
+        "Anti-Aging Homeopathy Practitioner": { baseEquipmentCost: 150000, complexity: 1.3 },
+        "Lifestyle & Preventive Homeopath": { baseEquipmentCost: 30000, complexity: 1.0 }
     }
 };
 
