@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WPVQDVMZW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-0WPVQDVMZW');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Content Script Generator - MedCortico</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <meta name="theme-color" content="#1e88e5">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .generator-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 151px auto 80px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(30, 136, 229, 0.1);
+            box-sizing: border-box;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-section h1 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+
+        .header-section p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Insight Bank Education Section */
+        .insight-bank-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .insight-bank-box h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .insight-bank-box p {
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .insight-bank-box ul {
+            list-style: disk;
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .insight-bank-box ul li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        /* Form Section */
+        .generator-form {
+            display: grid;
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 1rem;
+        }
+
+        .form-group select,
+        .form-group textarea {
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            background: #fdfdfd;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.1);
+        }
+
+        .btn-generate {
+            padding: 18px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        /* Result Section */
+        .result-section {
+            margin-top: 40px;
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .prompt-result-box {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 30px;
+            border-radius: 16px;
+            position: relative;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+            border: 1px solid #444;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .generator-container {
+                margin: 100px 15px 40px;
+                padding: 25px 20px;
+            }
+
+            .header-section h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .success-message {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #25d366;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes loadBar {
+            0% {
+                width: 0%;
+            }
+
+            100% {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Decorative Elements -->
+    <div class="decorative-elements">
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html"><img src="../Photos/weblogo.png" alt="MedCortico Logo"></a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="clinic-calculator.html">Calculator</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something."
+                    target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="generator-container">
+            <div class="header-section">
+                <h1>Medical Content Script Generator</h1>
+                <p>Turn your daily OPD observations into high-impact video scripts instantly.</p>
+            </div>
+
+            <div class="insight-bank-box">
+                <h3><i class="fas fa-lightbulb"></i> How to use this tool:</h3>
+                <ol style="margin-left: 20px; color: #444; line-height: 1.8;">
+                    <li style="margin-bottom: 10px;"><strong>Build your Insight Bank:</strong> While you are in your
+                        OPD, simply note down the questions or fears your patients express.</li>
+                    <li style="margin-bottom: 10px;">Select your <strong>Specialty</strong> below and click
+                        <strong>Generate</strong> to get a world-class prompt.
+                    </li>
+                    <li style="margin-bottom: 10px;">Copy the prompt, paste it into a powerful AI like <strong>Claude
+                            Sonnet 4.5</strong>.</li>
+                    <li style="margin-bottom: 0;">Replace the placeholder <code>[PASTE YOUR PATIENT INSIGHT HERE]</code>
+                        with one of your OPD notes, and watch it generate an amazing script for you!</li>
+                </ol>
+                <p style="margin-top: 15px; margin-bottom: 0; color: var(--primary-dark); font-weight: 600;"><i
+                        class="fas fa-magic"></i> Result: High-retention, medically-accurate video scripts in seconds.
+                </p>
+            </div>
+
+            <form id="script-form" class="generator-form">
+                <div class="form-group">
+                    <label for="specialty"><i class="fas fa-stethoscope"></i> Select Your Specialty</label>
+                    <select id="specialty" required>
+                        <option value="" disabled selected>Select...</option>
+                        <option value="General Physician/Medicine">General Physician / Medicine</option>
+                        <option value="Surgeon">Surgeon</option>
+                        <option value="Pediatrician">Pediatrician</option>
+                        <option value="Gynecologist">Gynecologist</option>
+                        <option value="ENT Specialist">ENT Specialist</option>
+                        <option value="Ophthalmologist">Ophthalmologist</option>
+                        <option value="Dentist">Dentist</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="display:none;">
+                    <!-- Insight input removed as per request, kept hidden if logic needs revert or just deleted -->
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-generate">Generate AI Prompt <i
+                        class="fas fa-magic"></i></button>
+            </form>
+
+            <div id="loading-overlay"
+                style="display: none; margin-top: 40px; text-align: center; padding: 40px; background: rgba(30, 136, 229, 0.05); border-radius: 20px; border: 1px solid var(--primary-color);">
+                <h3 style="color: var(--primary-dark); margin-bottom: 20px;">Crafting prompt.. You are about to have
+                    great scripts but what about the editing? 🤔</h3>
+                <div
+                    style="width: 100%; height: 6px; background: #e0e0e0; border-radius: 10px; margin-bottom: 30px; overflow: hidden; position: relative;">
+                    <div
+                        style="width: 100%; height: 100%; background: linear-gradient(90deg, var(--primary-color), #25d366); animation: loadBar 5s ease-in-out;">
+                    </div>
+                </div>
+            </div>
+
+            <div id="result-section" class="result-section">
+                <!-- Swapped Order: Heading first, then Ad -->
+                <h3 style="margin-bottom: 15px; color: var(--primary-dark);">Your Custom ChatGPT Prompt:</h3>
+                <p style="margin-bottom: 15px; color: var(--text-light);">Copy the text below and paste it into ChatGPT,
+                    Gemini, or Claude.</p>
+
+                <!-- New Ad Block Moved Here -->
+                <div class="promo-ad-box"
+                    style="background: linear-gradient(135deg, #25d366, #128c7e); padding: 25px; border-radius: 16px; margin-bottom: 30px; color: white; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);">
+                    <div style="flex: 1; min-width: 250px;">
+                        <h3 style="color: white; margin-bottom: 8px; font-size: 1.3rem;">For professional edits starting
+                            250 per video. Text us!</h3>
+                        <p style="color: rgba(255,255,255,0.95); margin-bottom: 0;">Text us to learn more about our
+                            video edit quality.</p>
+                    </div>
+                    <a href="https://wa.me/918527183292?text=I%20am%20looking%20for%20an%20editor%20for%20my%20instagram"
+                        target="_blank"
+                        style="background: white; color: #128c7e; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s;">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+
+                <div class="prompt-result-box" id="prompt-output">
+                    <!-- Prompt will appear here -->
+                    <button class="copy-btn" onclick="copyPrompt()">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <div class="success-message" id="copy-success"><i class="fas fa-check"></i> Copied!</div>
+                </div>
+
+                <div style="margin-top: 30px; text-align: center;">
+                    <p style="margin-bottom: 15px; font-weight: 500;">Want us to handle the editing and posting for you?
+                    </p>
+                    <a href="https://wa.me/918527183292?text=I%20loved%20the%20script%20generator!%20I%20want%20to%20know%20more%20about%20your%20editing%20services."
+                        class="btn btn-secondary" style="background:#25d366; border:none; color: white;">
+                        <i class="fab fa-whatsapp"></i> Chat with us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../Photos/weblogo.png" alt="MedCortico Logo"
+                        style="max-width: 200px; filter: brightness(0) invert(1);">
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="clinic-calculator.html">Calculator</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-products">
+                    <h3>Our Products</h3>
+                    <ul>
+                        <li><a href="website-building.html">Website Building</a></li>
+                        <li><a href="medical-transcription.html">Transcription</a></li>
+                        <li><a href="emr.html">EMR Systems</a></li>
+                        <li><a href="billing-analytics.html">Billing</a></li>
+                        <li><a href="clinic-calculator.html">Clinic Calculator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> medcortico@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 8527183292</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something."
+                            target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MedCortico. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.getElementById('script-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const form = document.getElementById('script-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const specialty = document.getElementById('specialty').value;
+
+            // Fake loading screen with promotion
+            const loadingOverlay = document.getElementById('loading-overlay');
+            const resultSection = document.getElementById('result-section');
+            // const form = document.getElementById('script-form'); // Removed redundant declaration
+
+            form.style.display = 'none';
+            loadingOverlay.style.display = 'block';
+
+            // Simulate processing time (Updated to 5s)
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none';
+                form.style.display = 'grid'; // Restore form
+                resultSection.style.display = 'block';
+                resultSection.scrollIntoView({ behavior: 'smooth' });
+            }, 5000);
+
+            let finalPrompt = "";
+
+            switch (specialty) {
+                case "Pediatrician":
+                    finalPrompt = `ACT AS: A world-class Pediatric Content Strategist & Scriptwriter (Top 1% viral retention).
+CONTEXT: I am a Pediatrician engaging with anxious, information-overloaded parents.
+GOAL: Create 3 high-retention Viral Video Script variations (under 60s) based on the insight below.
+
+PATIENT INSIGHT/TOPIC:
+"[PASTE YOUR PATIENT INSIGHT HERE]"
+
+GUIDELINES:
+1. TONE: Warm, Empathetic, Reassuring, yet Authoritative. "I'm the expert parent-friend you trust."
+2. HOOKS (Choose 5 distinct angles):
+   - Hook 1 (The Myth Buster): "Stop believing this lie about [Topic]..."
+   - Hook 2 (The Fear Reversal): "If you're worried about [Topic], watch this..."
+   - Hook 3 (The Direct Question): "Does your child always [Action]?"
+   - Hook 4 (The 'Secret' Reveal): "The one thing most parents miss..."
+   - Hook 5 (The Story): "I saw a patient today who..."
+3. STRUCTURE:
+   - 0-3s: Thumb-stopping Hook.
+   - 3-15s: Validate the feeling/problem (The "I get it" moment).
+   - 15-45s: The Medical Solution (Simple, actionable, no jargon).
+   - 45-60s: Strong CTA (Call to Action).
+4. RETENTION HACKS:
+   - Include cues for [Text Overlay], [B-Roll], and [Camera Zoom In] to keep attention.
+
+OUTPUT FORMAT:
+Provide 3 script options in a structured table with columns: 'Visual Direction' (what happens on screen) and 'Audio Script' (what I say).`;
+                    break;
+
+                case "Surgeon":
+                    finalPrompt = `ACT AS: An elite Surgical Educator & Thought Leader on Social Media.
+CONTEXT: I am a Surgeon creating content to demystify complex procedures and build immense trust.
+GOAL: Create 3 viral, high-authority Video Script variations (under 60s).
+
+PATIENT INSIGHT/TOPIC:
+"[PASTE YOUR PATIENT INSIGHT HERE]"
+
+GUIDELINES:
+1. TONE: Confident, Precise, Calm, and Human. Break down complexity into simple, everyday analogies.
+2. HOOKS (Choose 5 distinct angles):
+   - Hook 1 (Behind the Scenes): "What I actually do before every surgery..."
+   - Hook 2 (The Truth Bomb): "Nobody tells you this about recovery..."
+   - Hook 3 (The Object Lesson): "This [Everyday Object] explains exactly how your [Part] works..."
+   - Hook 4 (Opinion/Controversy): "Why I almost never recommend [Popular Procedure]..."
+   - Hook 5 (The Transformation): "From this... to THIS."
+3. STRUCTURE:
+   - 0-3s: Visual or startling verbal hook.
+   - 3-50s: The 'Meat'. Explain the 'Why' and 'How' simply. Use 'leaky pipe' or 'blocked filter' style analogies.
+   - 50-60s: CTA (e.g., "DM me 'SURGERY' for my guide").
+4. RETENTION HACKS:
+   - Use 'Green Screen' cues to show diagrams/X-rays.
+
+OUTPUT FORMAT:
+Provide 3 script options in a structured table with columns: 'Visual Direction' and 'Audio Script'.`;
+                    break;
+
+                case "Gynecologist":
+                    finalPrompt = `ACT AS: A Fearless Women's Health Advocate & Expert Gynecologist.
+CONTEXT: I am a Gynecologist breaking taboos and empowering women to understand their bodies.
+GOAL: Create 3 viral, empowering Video Script variations (under 60s).
+
+PATIENT INSIGHT/TOPIC:
+"[PASTE YOUR PATIENT INSIGHT HERE]"
+
+GUIDELINES:
+1. TONE: Safe, Non-judgmental, 'Big Sister' energy, Advocating for patients.
+2. HOOKS (Choose 5 distinct angles):
+   - Hook 1 (The Taboo Breaker): "Let's talk about the [Body Part/Fluid] nobody discusses..."
+   - Hook 2 (Validation): "If you've ever felt dismissed by a doctor about [Topic], listen up."
+   - Hook 3 (The Normalizer): "Is [Symptom] normal? Here is the answer."
+   - Hook 4 (The Warning): "Stop using [Product] immediately."
+   - Hook 5 (The Hack): "The one cycle-syncing hack that actually works."
+3. STRUCTURE:
+   - Hook -> Validate the shame/fear -> Drop the Knowledge -> Empowering CTA.
+4. RETENTION HACKS:
+   - Use conversational pacing. Suggest using props (e.g., fruit analogies) where appropriate.
+
+OUTPUT FORMAT:
+Provide 3 script options in a structured table with columns: 'Visual Direction' and 'Audio Script'.`;
+                    break;
+
+                case "Dentist":
+                    finalPrompt = `ACT AS: A Viral Cosmetic & Health Dentist.
+CONTEXT: I am a Dentist making oral health aesthetic, cool, and non-scary.
+GOAL: Create 3 viral, high-engagement Video Script variations (under 60s).
+
+PATIENT INSIGHT/TOPIC:
+"[PASTE YOUR PATIENT INSIGHT HERE]"
+
+GUIDELINES:
+1. TONE: Friendly, Aesthetic, confident, and gentle. Focus on 'Confidence' and 'Beauty' alongside health.
+2. HOOKS (Choose 5 distinct angles):
+   - Hook 1 (The Aesthetic Hack): "Do this for a whiter smile in 5 seconds..."
+   - Hook 2 (The Mistake): "You are brushing WRONG. Here is why."
+   - Hook 3 (The Reaction): "My reaction when a patient uses [Product]..."
+   - Hook 4 (The Fear Remover): "Root canals are NOT painful. Watch this."
+   - Hook 5 (The Show & Tell): "These are the 3 tools I use to fix..."
+3. STRUCTURE:
+   - Hook -> The 'Aha!' Moment -> The Easy Fix -> CTA.
+4. RETENTION HACKS:
+   - Focus on visual ASMR elements (sound of brushing, water, brightness).
+
+OUTPUT FORMAT:
+Provide 3 script options in a structured table with columns: 'Visual Direction' and 'Audio Script'.`;
+                    break;
+
+                case "Ophthalmologist":
+                    finalPrompt = `ACT AS: An Expert Ophthalmologist (Eye Doctor) & Digital Health Strategist.
+CONTEXT: I am helping people save their vision in a screen-obsessed world.
+GOAL: Create 3 viral, educational Video Script variations (under 60s).
+
+PATIENT INSIGHT/TOPIC:
+"[PASTE YOUR PATIENT INSIGHT HERE]"
+
+GUIDELINES:
+1. TONE: Clear, Visual, and Urgent. Vision is our most treasured sense—play on that value.
+2. HOOKS (Choose 5 distinct angles):
+   - Hook 1 (The Visual Test): "Can you read this text? If not..."
+   - Hook 2 (The Warning): "Stop rubbing your eyes like this!"
+   - Hook 3 (The Myth): "Blue light glasses are a SCAM? Let's discuss."
+   - Hook 4 (The Simulation): "This is what the world looks like with [Disease]..."
+   - Hook 5 (The Habit): "Do this every 20 minutes to save your eyes."
+3. STRUCTURE:
+   - Hook -> The Visual Proof/Analogy -> The Medical Fact -> CTA.
+4. RETENTION HACKS:
+   - Use 'POV' (Point of View) visual descriptions.
+
+OUTPUT FORMAT:
+Provide 3 script options in a structured table with columns: 'Visual Direction' and 'Audio Script'.`;
+                    break;
+
+                case "ENT Specialist":
+                    finalPrompt = `ACT AS: An ENT Specialist (Ear, Nose, Throat) & Life Hack Expert.
+CONTEXT: I provide immediate relief for the daily annoyances people ignore (snoring, blocked nose).
+GOAL: Create 3 viral, 'Satisfying' Video Script variations (under 60s).
+
+PATIENT INSIGHT/TOPIC:
+"[PASTE YOUR PATIENT INSIGHT HERE]"
+
+GUIDELINES:
+1. TONE: Practical, Problem-Solver, "Satisfying" (think ear wax removal video vibes).
+2. HOOKS (Choose 5 distinct angles):
+   - Hook 1 (The Relatable Pain): "Woke up with a blocked nose again?"
+   - Hook 2 (The 'Gross' Fact): "Here is what actually comes out of your tonsils..."
+   - Hook 3 (The Warning): "Put the Q-tip DOWN."
+   - Hook 4 (The Instant Fix): "Try this maneuver to pop your ears..."
+   - Hook 5 (The Myth): "Ear candles do NOT work."
+3. STRUCTURE:
+   - Hook -> The Anatomy (Simpified) -> The Fix -> CTA.
+4. RETENTION HACKS:
+   - Suggest using 3D anatomy filters or simple diagrams.
+
+OUTPUT FORMAT:
+Provide 3 script options in a structured table with columns: 'Visual Direction' and 'Audio Script'.`;
+                    break;
+
+                default: // General Physician and others
+                    finalPrompt = `ACT AS: A Viral Family Doctor & Health Guardian.
+CONTEXT: I am a General Physician simplifying health, dispelling myths, and catching diseases early.
+GOAL: Create 3 viral, broad-appeal Video Script variations (under 60s).
+
+PATIENT INSIGHT/TOPIC:
+"[PASTE YOUR PATIENT INSIGHT HERE]"
+
+GUIDELINES:
+1. TONE: Trustworthy, Accessible, Urgent but Calm. The voice of reason in a noisy world.
+2. HOOKS (Choose 5 distinct angles):
+   - Hook 1 (The Myth Buster): "Drinking 8 glasses of water? You might not need to."
+   - Hook 2 (The Symptom Check): "If your nails look like this, see a doctor."
+   - Hook 3 (The Lifestyle Hack): "Eat this for 3 days to fix your gut."
+   - Hook 4 (The Trending Topic): "Everyone is buying [Supplement], but does it work?"
+   - Hook 5 (The PSA): "Please stop ignoring this pain."
+3. STRUCTURE:
+   - Hook -> The Common Misconception -> The Medical Reality -> CTA.
+4. RETENTION HACKS:
+   - Use listicles ("3 Signs", "5 Foods").
+
+OUTPUT FORMAT:
+Provide 3 script options in a structured table with columns: 'Visual Direction' and 'Audio Script'.`;
+            }
+
+            const outputContainer = document.getElementById('prompt-output');
+            const btn = outputContainer.querySelector('.copy-btn');
+            const successMsg = outputContainer.querySelector('.success-message');
+
+            const textSpan = document.createElement('span');
+            textSpan.id = 'generated-text';
+            textSpan.innerText = finalPrompt;
+
+            outputContainer.innerHTML = '';
+            outputContainer.appendChild(btn);
+            outputContainer.appendChild(successMsg);
+            outputContainer.appendChild(textSpan);
+        });
+
+        function copyPrompt() {
+            const text = document.getElementById('generated-text').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const successMsg = document.getElementById('copy-success');
+                const copyBtn = document.querySelector('.copy-btn');
+
+                successMsg.style.display = 'block';
+                copyBtn.style.display = 'none';
+
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                    copyBtn.style.display = 'flex';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>
