@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WPVQDVMZW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-0WPVQDVMZW');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Dictionary for Doctors - MedCortico</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .glossary-wrapper {
+            padding: 120px 0 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .glossary-hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .glossary-hero h1 {
+            font-size: 3rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .glossary-hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Search */
+        .search-container {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 20px 20px 20px 55px;
+            font-size: 1.1rem;
+            border: 2px solid rgba(30, 136, 229, 0.2);
+            border-radius: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .search-container input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 20px rgba(30, 136, 229, 0.1);
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+
+        /* Alphabet Nav */
+        .alphabet-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .alphabet-nav a {
+            display: inline-flex;
+            width: 35px;
+            height: 35px;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border: 1px solid rgba(30, 136, 229, 0.2);
+            border-radius: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .alphabet-nav a:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        /* Letters & Items */
+        .letter-section {
+            margin-top: 40px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--primary-dark);
+            font-size: 2rem;
+            font-weight: 700;
+            scroll-margin-top: 100px;
+        }
+
+        .glossary-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .glossary-item {
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .glossary-item:last-child {
+            border-bottom: none;
+        }
+
+        .term-title {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .term-def {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-use-case {
+            background: rgba(37, 211, 102, 0.05);
+            padding: 15px 20px;
+            border-left: 3px solid #25d366;
+            font-size: 0.95rem;
+            color: #444;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .term-use-case strong {
+            color: #25d366;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+            display: none;
+            background: #fff;
+            border-radius: 15px;
+            border: 1px dashed rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .glossary-wrapper {
+                padding: 100px 15px 60px;
+            }
+
+            .glossary-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html"><img src="../Photos/weblogo.png" alt="MedCortico Logo"></a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="blogs.html" class="active">Resources</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://wa.me/918527183292" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="glossary-wrapper">
+            <div class="glossary-hero">
+                <h1>AI Dictionary for Doctors</h1>
+                <p>Artificial Intelligence is changing medicine. Use this comprehensive, alphabetical glossary to
+                    understand 80+ key AI concepts and exactly how they apply to your clinical practice.</p>
+            </div>
+
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput"
+                    placeholder="Search for a term (e.g., Prompt, LLM, Hallucination)...">
+            </div>
+
+            <div class="alphabet-nav">
+                <a href="#A">A</a><a href="#B">B</a><a href="#C">C</a><a href="#D">D</a>
+                <a href="#E">E</a><a href="#F">F</a><a href="#G">G</a><a href="#H">H</a>
+                <a href="#I">I</a><a href="#J">J</a><a href="#K">K</a><a href="#L">L</a>
+                <a href="#M">M</a><a href="#N">N</a><a href="#O">O</a><a href="#P">P</a>
+                <a href="#Q">Q</a><a href="#R">R</a><a href="#S">S</a><a href="#T">T</a>
+                <a href="#U">U</a><a href="#V">V</a><a href="#W">W</a><a href="#X">X</a><a href="#Z">Z</a>
+            </div>
+
+            <div class="no-results" id="noResults">
+                <p>No terms found matching your search. Try a different keyword!</p>
+            </div>
+
+            <div class="glossary-list" id="glossaryList">
+
+                <!-- A -->
+                <div class="letter-section" id="A">A</div>
+                <div class="glossary-item">
+                    <div class="term-title">AI Agent</div>
+                    <div class="term-def">An advanced autonomous AI program capable of breaking down complex medical
+                        requests into steps, actively calling external software tools, and executing actions unprompted
+                        until the goal is achieved.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An AI Agent told to "reschedule all
+                        Dr. Smith's afternoon patients" actively opens the EMR, finds the schedule, drafts messages, and
+                        automatically books alternative slots simultaneously.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Anomaly Detection</div>
+                    <div class="term-def">A specific machine learning technique exclusively optimized for identifying
+                        rare, suspicious, or medically abnormal items within immense sets of normal routine data.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> AI silently monitoring a hospital's
+                        entire billing database specifically to spot subtle, unusual coding patterns that suggest
+                        deliberate Medicare fraud.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Actuator</div>
+                    <div class="term-def">The mechanical part of an AI robotic system that moves or controls a
+                        mechanism.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> The highly precise robotic arms in
+                        a Da Vinci surgical system moving exactly based on AI-processed hand inputs.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">AGI (Artificial General Intelligence)</div>
+                    <div class="term-def">A theoretical future AI that can understand, learn, and apply knowledge across
+                        any domain identically to a human being.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Current AI tools are narrow (they
+                        just read text or read X-rays). Real AGI could theoretically run an entire hospital.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Algorithm</div>
+                    <div class="term-def">A set of rules or calculations an AI uses to turn data into a prediction.
+                    </div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> EMR systems flagging a patient as
+                        high-risk for readmission using a mathematical predictive algorithm.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">AlphaFold</div>
+                    <div class="term-def">An incredibly famous AI developed by Google DeepMind that predicts 3D protein
+                        structures from their amino acid sequences.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Radically accelerating the
+                        discovery of new drugs and targeted disease therapies.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Ambient Clinical Voice (AI Scribe)</div>
+                    <div class="term-def">AI tools that passively listen to the doctor-patient conversation in the room
+                        and generate a structured clinical note.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Automatically drafting SOAP notes
+                        so you don't have to look at your computer while talking to a patient.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">API (Application Programming Interface)</div>
+                    <div class="term-def">A software bridge allowing two distinct applications to safely talk and
+                        exchange data.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Connecting ChatGPT securely to your
+                        clinic's scheduling software.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Artificial Intelligence (AI)</div>
+                    <div class="term-def">The simulation of human intelligence processes by computer systems.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Using software to read X-rays,
+                        automate billing, or summarize patient histories.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Automation</div>
+                    <div class="term-def">Using technology to perform tasks without human intervention.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Automatically sending post-op care
+                        texts to patients exactly 24 hours after their procedure.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Autoregressive Model</div>
+                    <div class="term-def">An AI model that predicts future outcomes based on strictly past outcomes,
+                        generating text one word at a time based on context.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> This is exactly how ChatGPT writes
+                        patient letters: by predicting what the next most logical word should be.</div>
+                </div>
+
+                <!-- B -->
+                <div class="letter-section" id="B">B</div>
+                <div class="glossary-item">
+                    <div class="term-title">Batch Processing</div>
+                    <div class="term-def">The execution of a series of AI programs or medical data analysis jobs
+                        concurrently without manual intervention.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Running an AI tool strictly
+                        overnight to collectively scan all 500 patient records from the day to properly prep billing
+                        codes automatically.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Backpropagation</div>
+                    <div class="term-def">The mathematical mechanism by which neural networks learn, working backward
+                        from an error to adjust internal weights.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> How an AI algorithm learns over
+                        time that its early predictions for sepsis risk were wrong and self-corrects.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Bias (in AI)</div>
+                    <div class="term-def">When an AI produces results that are systematically prejudiced due to
+                        unrepresentative training data.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An AI dermatology tool failing to
+                        diagnose skin cancer correctly on darker skin tones because it was only trained on light skin.
+                    </div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Big Data</div>
+                    <div class="term-def">Massive, incredibly complex data sets that must be analyzed computationally to
+                        reveal clinical patterns.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Analyzing millions of EMR records
+                        across completely different hospital networks to track the early spread of a viral outbreak.
+                    </div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Black Box AI</div>
+                    <div class="term-def">An AI model whose internal decision process is completely hidden or too
+                        mathematically complex for humans to verify.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An AI flags a patient for heart
+                        failure but cannot explain which exact blood labs or history led to that conclusion.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Bot / Chatbot</div>
+                    <div class="term-def">A software application programmed to logically simulate human conversation.
+                    </div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An automated widget on your clinic
+                        website that handles repetitive questions about accepted insurances.</div>
+                </div>
+
+                <!-- C -->
+                <div class="letter-section" id="C">C</div>
+                <div class="glossary-item">
+                    <div class="term-title">Classification</div>
+                    <div class="term-def">A core machine learning task fundamentally assigning a precise categorical
+                        label to a given piece of unstructured qualitative medical data.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Feeding an undetermined skin lesion
+                        photo into an AI and it cleanly categorizing it explicitly into either "Melanoma" or "Benign."
+                    </div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Cohort Analysis</div>
+                    <div class="term-def">Computationally breaking down patient macro data realistically into strictly
+                        defined smaller groups (cohorts) based strictly on shared characteristics to track medical
+                        outcomes precisely over time.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Tracking completely uniquely how
+                        diabetic males aged 40-50 respond specifically to a novel GLP-1 drug compared broadly against
+                        females in the exact identical cohort.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">CAD (Computer-Aided Detection)</div>
+                    <div class="term-def">Older systems that assist doctors in interpreting medical images, pre-dating
+                        modern deep learning AI.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Highlighting microcalcifications on
+                        a mammogram for a radiologist's review.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Causal AI</div>
+                    <div class="term-def">An emerging type of AI that can identify highly specific cause-and-effect
+                        relationships, not just mere correlations.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Determining if a specific new
+                        diabetes medication actually *caused* a patient's liver enzyme spike, or if it was just
+                        coincidence.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">ChatGPT</div>
+                    <div class="term-def">An incredibly popular language model developed by OpenAI optimized for natural
+                        conversations.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Generating a polite letter to fire
+                        an abusive patient from the practice.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Claude</div>
+                    <div class="term-def">An advanced AI built by Anthropic, renowned for its massive memory (context)
+                        and extreme caution regarding medical advice.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Pasting a dense 50-page complex
+                        patient medical chart into Claude to instantly summarize their cardiac history.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Clinical Decision Support System (CDSS)</div>
+                    <div class="term-def">Software providing clinicians with knowledge to intelligently enhance patient
+                        care decisions in real-time.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An EMR alert warning you of a
+                        severe drug-drug interaction right as you click "prescribe."</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Cognitive Computing</div>
+                    <div class="term-def">Technology intended to precisely mimic human thought processes (like IBM
+                        Watson previously attempted).</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An AI cross-referencing a patient's
+                        rare symptoms with millions of medical journals to suggest an obscure differential diagnosis.
+                    </div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Computer Vision</div>
+                    <div class="term-def">The field of AI that uniquely trains computers to deeply derive meaningful
+                        information from medical images or video.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Diagnosing early diabetic
+                        retinopathy from a retinal scan far faster than a human ophthalmologist could spot it.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Context Window</div>
+                    <div class="term-def">The absolute maximum amount of text an AI model can reliably "remember" in a
+                        single interaction.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> If an AI has a small context
+                        window, it will randomly "forget" the beginning of the dense research paper you asked it to
+                        summarize.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Conversational AI</div>
+                    <div class="term-def">Advanced technologies that users can logically speak to via highly natural
+                        voice interactions.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> A voice-automated phone system that
+                        allows an elderly patient to comfortably dictate symptoms without complex menus.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Copilot</div>
+                    <div class="term-def">An AI assistant directly embedded within software to aggressively help users
+                        code or write alongside them.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Using an Epic Copilot tool to
+                        auto-draft a reply to a patient portal message while you literally watch it type.</div>
+                </div>
+
+                <!-- D -->
+                <div class="letter-section" id="D">D</div>
+                <div class="glossary-item">
+                    <div class="term-title">Data Lake</div>
+                    <div class="term-def">A centralized, wildly massive repository securely storing strictly raw,
+                        unstructured, unformatted complex medical records natively until intentionally needed for deep
+                        algorithmic training.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> A messy, gigantic hospital server
+                        securely holding millions of raw DICOM scans, sloppy PDF notes, and unorganized lab values
+                        explicitly awaiting future AI research.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Decision Tree</div>
+                    <div class="term-def">A rigidly simple, highly transparent logical AI model structurally splitting
+                        complex medical data through a flowchart-like series of strict, explicit true/false branching
+                        questions accurately.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An AI explicitly mimicking basic
+                        clinical logic realistically: "Does patient have fever?" -> YES -> "Is cough present?" -> YES ->
+                        "Classify as potential pneumonia."</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Data Mining</div>
+                    <div class="term-def">Computationally analyzing massive databases uniquely to generate new insights.
+                    </div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Extracting patterns from hospital
+                        records to confidently identify which zip codes have the highest asthma exacerbations.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Data Sanitization (De-identification)</div>
+                    <div class="term-def">The heavily automated process of forcibly stripping all Protected Health
+                        Information (PHI) from records.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Scrubbing patient names and dates
+                        from your notes before legally sending them to a university for model training.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Deep Learning</div>
+                    <div class="term-def">A core subset of machine learning based on intricate neural networks that
+                        learn autonomously from unstructured data.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An AI analyzing a continuous EEG
+                        signal to accurately predict the onset of an epileptic seizure 15 minutes before it occurs.
+                    </div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Digital Twin</div>
+                    <div class="term-def">A perfectly accurate virtual simulation of a physical organ or system.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Simulating exactly how a patient's
+                        3D digital heart twin will handle the flow dynamics of a new pacemaker before actual surgery.
+                    </div>
+                </div>
+
+                <!-- E -->
+                <div class="letter-section" id="E">E</div>
+                <div class="glossary-item">
+                    <div class="term-title">Ensemble Model</div>
+                    <div class="term-def">An advanced incredibly robust AI technique simultaneously combining the
+                        predictions cleanly of multiple distinct, separate AI algorithms perfectly to produce one single
+                        drastically hyper-accurate final medical output.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Running a patient's blurry MRI
+                        strictly through five completely different distinct tumor-detection algorithms securely and
+                        aggressively averaging their explicitly divergent opinions accurately together.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">ETL (Extract, Transform, Load)</div>
+                    <div class="term-def">The highly painful strictly necessary fundamental database integration process
+                        deliberately extracting messy data securely, formatting it cleanly, and loading it safely into
+                        the AI accurately.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Securely carefully exporting
+                        thousands of sloppy Cerner spreadsheets natively, cleaning the wildly inconsistent date formats
+                        precisely, and strictly feeding them safely into your new predictive analytics dashboard
+                        natively.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Edge AI</div>
+                    <div class="term-def">Running an AI algorithm directly on a local physical device (like a
+                        smartwatch) rather than communicating up to a cloud server.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> A Holter monitor instantly flagging
+                        an arrhythmia via Edge AI locally even when the patient has absolutely zero Wi-Fi connection.
+                    </div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">EHR/EMR Integration</div>
+                    <div class="term-def">The highly necessary technical process of linking a third-party AI directly
+                        into your record system.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> So an ambient scribe doesn't just
+                        type out text, it clicks the actual buttons in Epic to put text in the correct boxes.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Entity Recognition (NER)</div>
+                    <div class="term-def">An NLP technique that intelligently identifies and strongly classifies medical
+                        terms in an unstructured text.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An AI reads your messy dictated
+                        note and instantly highlights "Lisinopril" as a Medication and "10mg" as the Dose.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Explainable AI (XAI)</div>
+                    <div class="term-def">Transparent AI purposefully designed to explicitly show humans exactly how it
+                        arrived at a medical decision.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Instead of just saying "Pneumonia",
+                        the XAI highlights the exact cloudy pixels on the lung X-ray so you can verify its logic.</div>
+                </div>
+
+                <!-- F -->
+                <div class="letter-section" id="F">F</div>
+                <div class="glossary-item">
+                    <div class="term-title">Federated Learning</div>
+                    <div class="term-def">Training a massive AI model flawlessly across multiple isolated servers
+                        without ever explicitly exchanging raw protected data.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Five rival hospitals teaming up to
+                        train a rare-disease AI without risking any HIPAA breaches or exposing their patient lists.
+                    </div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Few-Shot Prompting</div>
+                    <div class="term-def">Providing the AI with a few explicit examples of your desired output squarely
+                        embedded in your prompt.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> "Draft a refusal of care letter.
+                        Here are two examples of my past letters... Now write one for John Doe in this exact same firm
+                        tone."</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Fine-Tuning</div>
+                    <div class="term-def">Taking a broad, pre-trained basic AI and rigorously training it further on
+                        your specific niche data.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Training ChatGPT strictly on your
+                        clinic's customized postoperative guidelines so it never accidentally hallucinates a
+                        competitor's guidelines.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Foundation Model</div>
+                    <div class="term-def">A gigantic AI model (like GPT-4) comprehensively trained on massive data,
+                        serving as a blank slate for adaptation.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Health tech startups don't build
+                        LLMs from scratch; they take Foundation Models and heavily modify them into medical assistants.
+                    </div>
+                </div>
+
+                <!-- G -->
+                <div class="letter-section" id="G">G</div>
+                <div class="glossary-item">
+                    <div class="term-title">GANs (Generative Adversarial Networks)</div>
+                    <div class="term-def">Two distinct neural networks mathematically competing against each other (one
+                        generating, one judging) to create hyper-realistic data.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Fabricating millions of
+                        hyper-realistic, completely synthetic MRI scans to safely train other diagnostic AIs without
+                        using real patient data.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Generative AI</div>
+                    <div class="term-def">A branch of AI that structurally generates categorically *new* content rather
+                        than just classifying old data.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Using AI to write a completely
+                        original patient education handout translated perfectly into vernacular Spanish.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">GPU (Graphics Processing Unit)</div>
+                    <div class="term-def">The powerful hardware computer chips inherently required to rapidly train
+                        neural networks.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Hospitals trying to host private,
+                        offline AIs on their own network must purchase hundreds of thousands of dollars of GPUs.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Guardrails</div>
+                    <div class="term-def">Hard-coded safety rules rigorously designed to prevent an AI from ever
+                        generating unethical or dangerous outputs.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Your clinic's AI chatbot is blocked
+                        from ever providing dosages, replying: "I cannot prescribe. Please contact the physician."</div>
+                </div>
+
+                <!-- H -->
+                <div class="letter-section" id="H">H</div>
+                <div class="glossary-item">
+                    <div class="term-title">Hallucination</div>
+                    <div class="term-def">When an AI confidently deliberately provides an utterly incorrect, fabricated,
+                        or nonsensical factual answer.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An AI invents a fake clinical trial
+                        that perfectly supports your hypothesis. You must strictly verify all generated medical facts.
+                    </div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Heuristics</div>
+                    <div class="term-def">Logical rules of thumb intentionally used by older clinical algorithms to
+                        roughly solve basic problems.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Traditional calculators using
+                        heuristics ("If age > 65 AND Smoker = High Risk") rather than the nuanced pattern matching of
+                        deep learning.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">HIPAA-Compliant AI</div>
+                    <div class="term-def">Enterprise AI software strictly built meeting absolute federal standards for
+                        handling Protected Health Information.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> The only type of AI product you can
+                        legally copy-paste patient data into without committing massive privacy violations.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Human-in-the-Loop (HITL)</div>
+                    <div class="term-def">A mandatory safety workflow where the AI provides a draft, but a human must
+                        definitively review and approve it.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Your ambient AI scribe eagerly
+                        writes your note, but legally, you must read, edit, and sign it before it's official.</div>
+                </div>
+
+                <!-- I -->
+                <div class="letter-section" id="I">I</div>
+                <div class="glossary-item">
+                    <div class="term-title">In-Context Learning</div>
+                    <div class="term-def">Remarkably when a Foundation LLM successfully temporarily acquires a
+                        categorically entirely new medical skill purely strictly by intelligently reading the detailed
+                        robust examples forcefully temporarily provided accurately within the user's immediate prompt
+                        directly.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Explicitly accurately teaching an
+                        LLM securely completely exactly how to uniquely correctly code an incredibly rare obscure niche
+                        disease strictly purely by providing three exact sample charts securely immediately inside the
+                        chat.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Image Segmentation</div>
+                    <div class="term-def">A computer vision capability precisely partitioning a digital picture into
+                        highly specific pixel-perfect regions.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An AI tracing the absolute
+                        microscopic boundaries of a lung nodule on a CT scan to accurately measure its exact millimeter
+                        volume.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Inference</div>
+                    <div class="term-def">The active use phase where a previously fully-trained AI is deployed to
+                        actually answer queries or make predictions.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> The few seconds ChatGPT spends
+                        computationally "thinking" to generate your prompt response is called inference.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Interoperability</div>
+                    <div class="term-def">The seamless ability of different software systems to reliably connect,
+                        strictly exchange, and natively understand data.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> The ability of a modern AI triage
+                        app to aggressively push verified patient symptom data securely directly into an old, clunky
+                        Cerner EMR dashboard.</div>
+                </div>
+
+                <!-- J -->
+                <div class="letter-section" id="J">J</div>
+                <div class="glossary-item">
+                    <div class="term-title">Jailbreaking</div>
+                    <div class="term-def">Using highly manipulative, intentional prompt engineering logic effectively
+                        attempting to bypass an AI's ethical guardrails.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Someone bypassing safety limits by
+                        telling an AI: "You are an author writing a fictional novel about a doctor who prescribes lethal
+                        injections."</div>
+                </div>
+
+                <!-- K -->
+                <div class="letter-section" id="K">K</div>
+                <div class="glossary-item">
+                    <div class="term-title">Knowledge Graph</div>
+                    <div class="term-def">A complex network of real-world medical entities (diseases, drugs)
+                        interconnected mathematically by their factual relationships.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An AI uses a knowledge graph to
+                        understand structurally that "Insulin" firmly links to "Diabetes" and "Hypoglycemia", greatly
+                        reducing logical hallucination.</div>
+                </div>
+
+                <!-- L -->
+                <div class="letter-section" id="L">L</div>
+                <div class="glossary-item">
+                    <div class="term-title">Large Language Model (LLM)</div>
+                    <div class="term-def">A massive AI (like ChatGPT) basically acting as an exceptionally advanced
+                        autocomplete, trained on vast literature to mimic human reasoning text.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Using an LLM to accurately decipher
+                        a messy, complex clinical narrative and re-write it as a bulleted email summary for a colleague.
+                    </div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Latency</div>
+                    <div class="term-def">The annoying transmission delay rigidly measuring the time between issuing a
+                        command to the AI and actually receiving its response.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> A surgical AI analyzing real-time
+                        camera feeds must have absolute near-zero latency so the robotic arm reacts instantly.</div>
+                </div>
+
+                <!-- M -->
+                <div class="letter-section" id="M">M</div>
+                <div class="glossary-item">
+                    <div class="term-title">Machine Vision</div>
+                    <div class="term-def">A subset of computer vision focused on using cameras and AI for automated
+                        industrial or medical inspection and process control.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> AI monitoring a high-speed
+                        pharmaceutical manufacturing line to instantly detect microscopic defects in pill casings or
+                        sterile packaging.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Machine Learning (ML)</div>
+                    <div class="term-def">The broader study of giving computers the ability to definitively
+                        progressively improve mathematically at a task without explicit re-programming.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An ML predictive algorithm
+                        continuously getting better at predicting which clinic timeslots are likely to experience
+                        patient no-shows.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Medical Ontology</div>
+                    <div class="term-def">A formally organized, rigidly universally established taxonomy defining
+                        medical concepts precisely and their strict relationships (e.g., SNOMED CT).</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> It ensures that the AI explicitly
+                        understands diagnosing a "heart attack" means the same thing medically as diagnosing a
+                        "myocardial infarction."</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Model Weights</div>
+                    <div class="term-def">The billions of internal numerical variable values within a neural network
+                        absolutely defining how strongly different concepts logically connect.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> When downloading an "open-weight"
+                        offline medical AI model locally, you are literally downloading these intricate numbers to host
+                        on your PC.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Multi-modal AI</div>
+                    <div class="term-def">An exceptionally versatile AI capable of concurrently deeply analyzing
+                        entirely different data streams simultaneously (text + image + sound).</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Uploading a picture of a wound,
+                        alongside a recorded voice memo describing the pain, directly for the AI to provide a single
+                        coherent differential.</div>
+                </div>
+
+                <!-- N -->
+                <div class="letter-section" id="N">N</div>
+                <div class="glossary-item">
+                    <div class="term-title">Narrow AI</div>
+                    <div class="term-def">Artificial intelligence that is fiercely optimized to exclusively flawlessly
+                        perform exactly one designated cognitive task.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An FDA-cleared AI specifically
+                        designed uniquely to solely detect bone fractures on pediatric wrist X-rays. It literally cannot
+                        do anything else.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Natural Language Processing (NLP)</div>
+                    <div class="term-def">A dedicated deep branch of computer science uniquely enabling programs to
+                        rapidly precisely understand and interpret human language text.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> NLP explicitly allows your EMR's
+                        search function to correctly categorize "patient denies CP" as negative for chest pain during
+                        audits.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Neural Network</div>
+                    <div class="term-def">Intricate series of interconnected algorithmic layers fundamentally
+                        computationally mimicking how biological human brain neurons fundamentally process signals.
+                    </div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Deep neural networks are the
+                        necessary foundational architecture mathematically powering complex medical imaging diagnostic
+                        AIs perfectly.</div>
+                </div>
+
+                <!-- O -->
+                <div class="letter-section" id="O">O</div>
+                <div class="glossary-item">
+                    <div class="term-title">Open-Source AI</div>
+                    <div class="term-def">AI models purposefully intentionally distributed freely, allowing developers
+                        to legally download, locally host, and heavily modify the fundamental code entirely.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Highly secure hospitals prefer
+                        heavily fine-tuning free open-source models offline so their incredibly sensitive patient data
+                        never structurally touches the internet.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Overfitting</div>
+                    <div class="term-def">A severe AI training error literally memorizing the noise in practice data so
+                        perfectly it subsequently fails to logically accurately analyze realistically new data.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> A diagnostic AI mistakenly learning
+                        to explicitly accurately correlate a specific technician's pen mark strictly with cancer,
+                        heavily corrupting its logic.</div>
+                </div>
+
+                <!-- P -->
+                <div class="letter-section" id="P">P</div>
+                <div class="glossary-item">
+                    <div class="term-title">Parameter</div>
+                    <div class="term-def">The internal settings or "weights" within an AI model that dictate how it
+                        processes information. Larger models have billions or trillions of parameters.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> When downloading a localized
+                        medical AI, its gigabyte file size is primarily composed of these billions of complex
+                        mathematical parameters.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Pattern Recognition</div>
+                    <div class="term-def">The core mechanism by which AI identifies regularities or recurring structures
+                        within complex data sets.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> EKG software analyzing rhythmic
+                        electrical signals to recognize the specific waveform patterns diagnostic of atrial
+                        fibrillation.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Precision Medicine</div>
+                    <div class="term-def">An innovative approach leveraging advanced data analytics and AI to tailor
+                        medical treatments to individual patient characteristics.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Using AI to analyze a patient's
+                        unique genomic sequence to select a highly targeted chemotherapy drug guaranteed to be effective
+                        for their specific tumor profile.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Predictive Analytics</div>
+                    <div class="term-def">The widespread clinical use of historical data thoroughly computationally
+                        modeled to correctly strictly identify the mathematical statistical likelihood of explicit
+                        future medical events.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Tracking subtle drops strictly in
+                        multiple vitals uniquely simultaneously to strongly predict an impending sepsis crash hours
+                        before symptoms manifest fully.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Prompt Engineering</div>
+                    <div class="term-def">The incredibly meticulous deliberate skill of strictly carefully structuring a
+                        text instruction logically to forcefully ensure an LLM fundamentally generates extremely
+                        accurate, high-quality formatted text.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> "Act as an empathetic physician
+                        accurately comprehensively summarizing this biopsy cleanly in a bulleted structurally
+                        understandable format strictly meant for a terrified layman."</div>
+                </div>
+
+                <!-- Q -->
+                <div class="letter-section" id="Q">Q</div>
+                <div class="glossary-item">
+                    <div class="term-title">Quantum Computing (in Med)</div>
+                    <div class="term-def">Extremely experimental, drastically radically powerful fundamental computing
+                        technology inherently uniquely solving unimaginably complex molecular structural problems
+                        natively.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Theoretically securely modeling
+                        highly realistically incredibly complex protein folding structures entirely flawlessly strictly
+                        for highly impossibly advanced rapid drug discovery pipelines natively.</div>
+                </div>
+
+                <!-- R -->
+                <div class="letter-section" id="R">R</div>
+                <div class="glossary-item">
+                    <div class="term-title">Reinforcement Learning</div>
+                    <div class="term-def">A type of machine learning where an AI agent learns by interacting with its
+                        environment, receiving rewards for good outputs and penalties for bad ones.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Training an AI to adjust internal
+                        ventilator settings in real-time by giving it a mathematical "reward" every time the patient's
+                        blood oxygenation improves.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">RAG (Retrieval-Augmented Generation)</div>
+                    <div class="term-def">An absolutely critical AI safety technique completely forcefully demanding an
+                        LLM rigorously solely exclusively extracts answers fundamentally from a pre-approved, securely
+                        trusted external document database strictly.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Explicitly thoroughly forcing your
+                        clinic's AI explicitly securely to strictly exclusively cite UpToDate PDFs securely completely
+                        eliminating deadly medical hallucination explicitly.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Robotic Process Automation (RPA)</div>
+                    <div class="term-def">Dumb, reliably obedient, strictly completely logic-rule-based automated
+                        software robots exclusively fundamentally performing deeply repetitive administrative clicking
+                        functions endlessly flawlessly.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> An RPA bot faithfully manually
+                        dragging, relentlessly perfectly copying exclusively every single incoming faxed demographic
+                        data realistically directly securely into your utterly outdated EMR software exactly reliably.
+                    </div>
+                </div>
+
+                <!-- S -->
+                <div class="letter-section" id="S">S</div>
+                <div class="glossary-item">
+                    <div class="term-title">Semantic Search</div>
+                    <div class="term-def">Advanced AI search technology that understands the clinical meaning and intent
+                        behind a query, rather than just matching exactly typed keywords.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Typing "patient has trouble
+                        breathing" into a semantic EMR search will intuitively also successfully return records
+                        mentioning "dyspnea", "SOB", and "hypoxia."</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Supervised Learning</div>
+                    <div class="term-def">Training an AI model using large datasets that have already been explicitly
+                        labeled with the correct answers by human domain experts.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Feeding an AI 10,000 chest X-rays
+                        where human radiologists have already drawn red circles specifically around every instance of
+                        pneumonia.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Scribe (AI Scribe)</div>
+                    <div class="term-def">A specific, highly valuable class of ambient voice tool dedicated entirely to
+                        automating manual physician documentation tasks.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Tools like Nuance DAX or Freed AI
+                        that instantly generate a pristine, structured SOAP note immediately after an encounter ends.
+                    </div>
+                </div>
+
+                <!-- T -->
+                <div class="letter-section" id="T">T</div>
+                <div class="glossary-item">
+                    <div class="term-title">Tokenization</div>
+                    <div class="term-def">The fundamental process where an LLM breaks down full words or sentences into
+                        smaller grammatical fragments ("tokens") that it can mathematically process.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> When uploading a dense 30-page
+                        patient history into Claude, tokenization is how the software chops the medical jargon into
+                        processable chunks before summarizing.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Transfer Learning</div>
+                    <div class="term-def">Taking a powerful model trained on a massive general task and repurposing its
+                        acquired knowledge to solve a highly specialized secondary task.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Taking Google's base image
+                        recognition AI (trained on millions of internet photos of cats and cars) and specifically
+                        retraining it to identify retinal tears.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Transformer</div>
+                    <div class="term-def">The revolutionary deep learning architecture invented in 2017 that enables
+                        LLMs to track and understand the complex context of words across incredibly long conversational
+                        distances.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> The core foundational technology
+                        that explicitly allows ChatGPT to remember your specific patient scenario from the beginning of
+                        the chat when diagnosing five paragraphs later.</div>
+                </div>
+                <div class="glossary-item">
+                    <div class="term-title">Triage Bot</div>
+                    <div class="term-def">An automated patient-facing system that logically asks a series of weighted
+                        clinical questions to safely determine the objective urgency of a patient's condition.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> A patient messages the clinic
+                        portal reporting severe chest pain; the triage bot instantly escalates the message to the urgent
+                        queue and suggests calling 911.</div>
+                </div>
+
+                <!-- U -->
+                <div class="letter-section" id="U">U</div>
+                <div class="glossary-item">
+                    <div class="term-title">Unsupervised Learning</div>
+                    <div class="term-def">An AI training method where the model is given massive amounts of raw,
+                        completely unlabeled medical data and asked to independently discover hidden structures or
+                        logical clusters within it.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Feeding millions of anonymous
+                        genetic sequences into an algorithm and asking it to group patients sharing undiscovered genetic
+                        anomalies together without human guidance.</div>
+                </div>
+
+                <!-- V -->
+                <div class="letter-section" id="V">V</div>
+                <div class="glossary-item">
+                    <div class="term-title">Vector Database</div>
+                    <div class="term-def">A complex database designed to strictly store vast, intricate data
+                        functionally mimicking intelligent memory connections, granting LLMs accurate recall.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Uploading your clinic's entire
+                        500-page operational manual into a vector database so an internal AI chatbot can flawlessly
+                        answer any staff policy question instantly.</div>
+                </div>
+
+                <!-- W -->
+                <div class="letter-section" id="W">W</div>
+                <div class="glossary-item">
+                    <div class="term-title">Wearable AI</div>
+                    <div class="term-def">Smart, portable biometric devices integrated intimately with AI algorithms
+                        capable of analyzing complex physiological data completely locally in real-time.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> A smartwatch monitoring continuous
+                        subtle sweat and temperature readings to accurately predict an impending depressive episode
+                        before the patient consciously feels it.</div>
+                </div>
+
+                <!-- Z -->
+                <div class="letter-section" id="Z">Z</div>
+                <div class="glossary-item">
+                    <div class="term-title">Zero-Shot Prompting</div>
+                    <div class="term-def">Instructing an AI model to perform a task without giving it any explicit prior
+                        examples or templates within the prompt.</div>
+                    <div class="term-use-case"><strong>Clinical Application</strong> Writing: "Simply translate this
+                        single medical sentence into fluent Spanish." without providing it past translations to base its
+                        work on.</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../Photos/weblogo.png" alt="MedCortico Logo"
+                        style="max-width: 200px; filter: brightness(0) invert(1);">
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="blogs.html">Resources</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MedCortico. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function (e) {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            const items = document.querySelectorAll('.glossary-item');
+            const letterSections = document.querySelectorAll('.letter-section');
+            const noResults = document.getElementById('noResults');
+            let hasVisibleItems = false;
+
+            items.forEach(item => {
+                const title = item.querySelector('.term-title').innerText.toLowerCase();
+                const def = item.querySelector('.term-def').innerText.toLowerCase();
+                const useCase = item.querySelector('.term-use-case').innerText.toLowerCase();
+
+                if (title.includes(searchTerm) || def.includes(searchTerm) || useCase.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasVisibleItems = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Handle letter headers
+            letterSections.forEach(section => {
+                let nextElem = section.nextElementSibling;
+                let hasVisibleSibling = false;
+                while (nextElem && !nextElem.classList.contains('letter-section')) {
+                    if (nextElem.classList.contains('glossary-item') && nextElem.style.display !== 'none') {
+                        hasVisibleSibling = true;
+                        break;
+                    }
+                    nextElem = nextElem.nextElementSibling;
+                }
+                section.style.display = hasVisibleSibling ? 'block' : 'none';
+            });
+
+            // Handle alphabet nav style
+            const navLinks = document.querySelectorAll('.alphabet-nav a');
+            if (searchTerm === "") {
+                navLinks.forEach(link => {
+                    link.style.opacity = '1';
+                    link.style.pointerEvents = 'auto';
+                });
+            } else {
+                navLinks.forEach(link => {
+                    link.style.opacity = '0.5';
+                    link.style.pointerEvents = 'none';
+                });
+            }
+
+            if (!hasVisibleItems && searchTerm !== '') {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

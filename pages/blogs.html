@@ -31,7 +31,7 @@
     <style>
         .blogs-index-wrapper {
             padding: 120px 0 80px;
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -55,10 +55,11 @@
 
         .index-section {
             background: white;
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             border: 1px solid rgba(30, 136, 229, 0.1);
+            margin-bottom: 40px;
         }
 
         .index-section h2 {
@@ -77,45 +78,81 @@
         .blog-list {
             list-style: none;
             padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .blog-card {
-            display: block;
+            display: flex;
+            flex-direction: column;
             text-decoration: none;
             color: inherit;
-            padding: 25px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 16px;
             transition: all 0.3s ease;
-            border: 1px solid transparent;
-            margin-bottom: 20px;
+            border: 1px solid rgba(30, 136, 229, 0.1);
+            background: #fdfdfd;
+            height: 100%;
         }
 
         .blog-card:hover {
             background: rgba(30, 136, 229, 0.03);
-            border-color: rgba(30, 136, 229, 0.2);
+            border-color: rgba(30, 136, 229, 0.3);
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
         }
 
         .blog-card-meta {
-            margin-bottom: 10px;
-            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
             color: var(--primary-color);
-            font-weight: 500;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .blog-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--primary-dark);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .tool-card {
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.05) 0%, rgba(100, 181, 246, 0.05) 100%);
+            border: 1px solid rgba(30, 136, 229, 0.2);
+        }
+
+        .tool-card:hover {
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.1) 0%, rgba(100, 181, 246, 0.05) 100%);
+            border-color: rgba(30, 136, 229, 0.4);
+        }
+
+        .tool-card .blog-card-meta {
+            background: rgba(30, 136, 229, 0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-block;
             margin-bottom: 15px;
-            line-height: 1.3;
+            width: fit-content;
+            color: var(--primary-dark);
+        }
+
+        .blog-article-card {
+            border-left: 3px solid transparent;
+        }
+
+        .blog-article-card:hover {
+            border-left: 3px solid var(--primary-color);
         }
 
         .blog-card p {
             color: var(--text-light);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
 
         .read-more {
@@ -125,6 +162,7 @@
             font-weight: 600;
             color: var(--primary-color);
             font-size: 0.95rem;
+            margin-top: auto;
         }
 
         .blog-card:hover .read-more {
@@ -133,8 +171,7 @@
 
         @media (max-width: 768px) {
             .blogs-index-wrapper {
-                padding: 100px 10px 60px;
-                max-width: 100%;
+                padding: 100px 15px 60px;
             }
 
             .blogs-hero h1 {
@@ -142,16 +179,12 @@
             }
 
             .index-section {
-                padding: 15px 5px;
-                background: transparent;
-                box-shadow: none;
-                border: none;
+                padding: 25px 20px;
+                border-radius: 20px;
             }
 
-            .blog-card {
-                padding: 15px 10px;
-                background: rgba(30, 136, 229, 0.05);
-                border-radius: 15px;
+            .blog-list {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -177,8 +210,7 @@
                 <ul class="nav-links">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="products.html">Products</a></li>
-                    <li><a href="clinic-calculator.html">Calculator</a></li>
-                    <li><a href="blogs.html" class="active">Blogs</a></li>
+                    <li><a href="blogs.html" class="active">Resources</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
@@ -200,16 +232,66 @@
     <div class="container">
         <div class="blogs-index-wrapper">
             <div class="blogs-hero">
-                <h1>Our Library</h1>
-                <p>Practical insights and strategies for modern medical practices.</p>
+                <h1>Resources & Tools</h1>
+                <p>Everything you need to grow your medical practice - from practical insights to specialized tools.</p>
             </div>
 
-            <section class="index-section">
-                <h2><i class="fas fa-book-open"></i> Published Entries</h2>
+            <section class="index-section" style="margin-bottom: 40px;">
+                <h2><i class="fas fa-tools"></i> Medical Tools</h2>
                 <div class="blog-list">
+                    <!-- Calculator -->
+                    <a href="clinic-calculator.html" class="blog-card tool-card">
+                        <div class="blog-card-meta"><i class="fas fa-calculator" style="margin-right: 5px;"></i>
+                            Interactive Tool</div>
+                        <h3>Clinic Setup Calculator</h3>
+                        <p>Planning to open your own clinic? Estimate the total investment required, including
+                            equipment, interiors, and buffer amount, tailored to your location and specialty.</p>
+                        <span class="read-more">Try Calculator <i class="fas fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- Script Generator -->
+                    <a href="content-script-generator.html" class="blog-card tool-card">
+                        <div class="blog-card-meta"><i class="fas fa-robot" style="margin-right: 5px;"></i> AI Tool
+                        </div>
+                        <h3>Medical Context Prompt Generator</h3>
+                        <p>A specialized tool that generates the perfect AI prompt for doctors. Just select your
+                            specialty, copy the generated prompt, and paste it into ChatGPT or Claude to write
+                            high-engagement video scripts.</p>
+                        <span class="read-more">Generate Prompt <i class="fas fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- AI Dictionary -->
+                    <a href="ai-glossary.html" class="blog-card tool-card">
+                        <div class="blog-card-meta"><i class="fas fa-book" style="margin-right: 5px;"></i> Reference
+                            Tool
+                        </div>
+                        <h3>AI Dictionary for Doctors</h3>
+                        <p>A searchable glossary of key Artificial Intelligence terms explained specifically for
+                            clinical practice. Make sense of LLMs, Prompts, Hallucinations, and how to use them safely.
+                        </p>
+                        <span class="read-more">Open Dictionary <i class="fas fa-arrow-right"></i></span>
+                    </a>
+
+                    <!-- Diagnostic Tool -->
+                    <a href="clinic-improvement.html" class="blog-card tool-card">
+                        <div class="blog-card-meta"><i class="fas fa-stethoscope" style="margin-right: 5px;"></i>
+                            Diagnostic Tool</div>
+                        <h3>Clinic Improvement Advisor</h3>
+                        <p>Provide some insights about your current practice operations. Our intelligent engine will
+                            analyze your inputs to generate a comprehensive, tailored action plan for maximizing
+                            efficiency and patient satisfaction.</p>
+                        <span class="read-more">Take the Audit <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="index-section">
+                <h2><i class="fas fa-book-open"></i> Published Insights</h2>
+                <div class="blog-list" style="grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));">
                     <!-- Entry 3 -->
-                    <a href="blog-google-business-profile.html" class="blog-card">
-                        <div class="blog-card-meta">Jan 17, 2026 • By Kanishk Ghonge</div>
+                    <a href="blog-google-business-profile.html" class="blog-card blog-article-card">
+                        <div class="blog-card-meta"><i class="far fa-calendar-alt" style="margin-right: 5px;"></i> Jan
+                            17, 2026 • By Kanishk Ghonge</div>
                         <h3>A Doctor's Practical Guide to Optimising Google Business Profile</h3>
                         <p>Learn how to rank for "best doctor near me" by understanding trust signals, choosing
                             categories wisely, and maintaining consistency.</p>
@@ -217,8 +299,9 @@
                     </a>
 
                     <!-- Entry 2 -->
-                    <a href="blog-doctor-video-workflow.html" class="blog-card">
-                        <div class="blog-card-meta">Jan 14, 2026 • By Kanishk Ghonge</div>
+                    <a href="blog-doctor-video-workflow.html" class="blog-card blog-article-card">
+                        <div class="blog-card-meta"><i class="far fa-calendar-alt" style="margin-right: 5px;"></i> Jan
+                            14, 2026 • By Kanishk Ghonge</div>
                         <h3>The Shortest Video Workflow for Doctors</h3>
                         <p>Most doctors overthink video creation. Learn the simplest 20-minute workflow to start posting
                             medical content consistently without perfection.</p>
@@ -226,8 +309,9 @@
                     </a>
 
                     <!-- Entry 1 -->
-                    <a href="blog-empty-clinic-phase.html" class="blog-card">
-                        <div class="blog-card-meta">Jan 14, 2026 • By Kanishk Ghonge</div>
+                    <a href="blog-empty-clinic-phase.html" class="blog-card blog-article-card">
+                        <div class="blog-card-meta"><i class="far fa-calendar-alt" style="margin-right: 5px;"></i> Jan
+                            14, 2026 • By Kanishk Ghonge</div>
                         <h3>A Practical Checklist to Reduce the "Empty Clinic" Phase</h3>
                         <p>Most doctors lose time before they even open their doors. Learn how to build discoverability
                             and trust before your physical clinic exists.</p>
@@ -251,8 +335,7 @@
                     <ul>
                         <li><a href="../index.html">Home</a></li>
                         <li><a href="products.html">Products</a></li>
-                        <li><a href="clinic-calculator.html">Calculator</a></li>
-                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="blogs.html">Resources</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
@@ -262,8 +345,7 @@
                         <li><a href="website-building.html">Website Building</a></li>
                         <li><a href="medical-transcription.html">Transcription</a></li>
                         <li><a href="emr.html">EMR Systems</a></li>
-                        <li><a href="billing-analytics.html">Billing</a></li>
-                        <li><a href="clinic-calculator.html">Clinic Calculator</a></li>
+                        <li><a href="billing-analytics.html">ReceptionMate</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">

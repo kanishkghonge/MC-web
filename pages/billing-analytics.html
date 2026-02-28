@@ -13,7 +13,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Billing and Analytics - MedCortico</title>
+    <title>ReceptionMate - MedCortico</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="../favicon/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
@@ -343,8 +343,7 @@
                 <ul class="nav-links">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="products.html">Products</a></li>
-                    <li><a href="clinic-calculator.html">Calculator</a></li>
-                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="blogs.html">Resources</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
@@ -363,26 +362,278 @@
         </div>
     </header>
 
-    <!-- Product Hero Section -->
-    <section class="product-hero">
+    <style>
+        .fancy-hero {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 100%);
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fancy-hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(30, 136, 229, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            top: -100px;
+            right: -200px;
+            border-radius: 50%;
+        }
+
+        .fancy-hero-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            z-index: 1;
+            position: relative;
+        }
+
+        .product-hero-text {
+            flex: 1;
+            min-width: 320px;
+            z-index: 2;
+        }
+
+        .gradient-text {
+            font-size: 3.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #004080, #1e88e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #444;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .pulse-btn {
+            padding: 16px 35px;
+            font-size: 1.15rem;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(30, 136, 229, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .pulse-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(30, 136, 229, 0.4);
+        }
+
+        .glass-btn {
+            padding: 16px 35px;
+            font-size: 1.15rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #004080;
+            transition: all 0.3s;
+        }
+
+        .glass-btn:hover {
+            background: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .fancy-image {
+            flex: 1;
+            min-width: 320px;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .main-hero-img {
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            border: 4px solid #fff;
+        }
+
+        .floating-badge {
+            position: absolute;
+            bottom: -40px;
+            right: 20px;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 6px solid #fff;
+            z-index: 10;
+            animation: badgePop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            transform: scale(0.5);
+            animation-delay: 0.5s;
+        }
+
+        @keyframes badgePop {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .floating-badge img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+        }
+
+        .fancy-features {
+            padding: 100px 0;
+            background: #fff;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .fancy-card {
+            background: #fff;
+            border: 1px solid #edf2f7;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fancy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #1e88e5, #004080);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            transform-origin: left;
+        }
+
+        .fancy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .fancy-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .fancy-icon-wrap {
+            width: 80px;
+            height: 80px;
+            background: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: #1e88e5;
+            transition: all 0.4s ease;
+        }
+
+        .fancy-card:hover .fancy-icon-wrap {
+            background: #1e88e5;
+            color: #fff;
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .fancy-card h3 {
+            color: #004080;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .fancy-card p {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .gradient-text {
+                font-size: 2.8rem;
+            }
+
+            .fancy-hero {
+                padding: 120px 0 60px;
+            }
+
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .pulse-btn,
+            .glass-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .floating-badge {
+                width: 100px;
+                height: 100px;
+                bottom: -20px;
+                right: 10px;
+            }
+        }
+    </style>
+
+    <!-- Fancy Product Hero Section -->
+    <section class="product-hero fancy-hero">
         <div class="container">
-            <div class="product-hero-content">
+            <div class="product-hero-content fancy-hero-content">
                 <div class="product-hero-text">
-                    <h1>Billing and Analytics</h1>
-                    <p>Streamline your practice's financial operations with integrated billing and performance
-                        analytics. Gain valuable insights into your practice's performance and optimize revenue.</p>
+                    <h1 class="gradient-text">ReceptionMate</h1>
+                    <p class="hero-subtitle">The ultimate all-in-one clinic management solution. Streamline
+                        your inventory, scheduling, billing, and follow-ups with ease.</p>
                     <div class="hero-buttons">
-                        <a href="https://medcortico-pvt-ltd.github.io/Billing-web/" class="btn btn-primary">Start using
-                            for free!</a>
-                        <a href="#learn-more" class="btn btn-secondary">Learn More</a>
+                        <a href="https://medcortico-pvt-ltd.github.io/Billing-web/"
+                            class="btn btn-primary pulse-btn">Start Using for Free!</a>
+                        <a href="#features" class="btn glass-btn">Explore Features</a>
                     </div>
                 </div>
-                <div class="product-hero-image">
-                    <img src="../Photos/mbheroin.jpeg" alt="Billing and Analytics Software">
-                    <div
-                        style="position: absolute; bottom: -30px; right: 30px; width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 5px solid white; box-shadow: 0 5px 20px rgba(0,0,0,0.4); z-index: 10;">
-                        <img src="../Photos/MBlogo.jpg" alt="MedCortico Billing Logo"
-                            style="width: 100%; height: 100%; object-fit: scale-down; background-color: white; padding: 10px;">
+                <div class="product-hero-image fancy-image">
+                    <img src="../Photos/receptionmate hero image.jpeg" alt="ReceptionMate Dashboard"
+                        class="main-hero-img">
+                    <div class="floating-badge">
+                        <img src="../Photos/receptionmateappiconbgremoved.png" alt="ReceptionMate Logo">
                     </div>
                 </div>
             </div>
@@ -390,34 +641,74 @@
     </section>
 
     <!-- Features Section -->
-    <section id="learn-more" class="product-features">
+    <section id="features" class="product-features fancy-features">
         <div class="container">
-            <h2 class="section-title">Key Features</h2>
-            <p class="section-description">Powerful tools to manage your clinic's finances and track performance</p>
+            <h2 class="section-title"
+                style="text-align: center; color: #004080; font-size: 2.8rem; font-weight: 700; margin-bottom: 15px;">
+                Powerful Features</h2>
+            <p class="section-description"
+                style="text-align: center; color: #666; font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+                Everything you need to automate your clinic's front desk operations seamlessly.</p>
 
-            <div class="how-it-works-steps two-steps">
-                <!-- Step 1: Billing -->
-                <div class="step-card fade-in-up">
-                    <div class="step-icon">
-                        <i class="fas fa-file-invoice-dollar"></i>
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="fancy-card fade-in-up">
+                    <div class="fancy-icon-wrap">
+                        <i class="fas fa-boxes"></i>
                     </div>
-                    <div class="step-content">
-                        <h3>Streamlined Billing</h3>
-                        <p>Generate professional invoices and track payments with ease. Our billing system integrates
-                            seamlessly with your patient records for error-free financial management.</p>
-                    </div>
+                    <h3>Smart Inventory Tracking</h3>
+                    <p>Keep precise track of your medical supplies and medications. Get alerted before you
+                        run out of essential stock.</p>
                 </div>
 
-                <!-- Step 2: Analytics -->
-                <div class="step-card fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="step-icon">
-                        <i class="fas fa-chart-line"></i>
+                <!-- Feature 2 -->
+                <div class="fancy-card fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="fancy-icon-wrap">
+                        <i class="fas fa-calendar-alt"></i>
                     </div>
-                    <div class="step-content">
-                        <h3>Performance Analytics</h3>
-                        <p>Track key metrics including patient visits, revenue, and growth trends. Visualize your
-                            practice's performance with intuitive graphs and dashboards.</p>
+                    <h3>Appointment Scheduling</h3>
+                    <p>Effortlessly book, manage, and reschedule patient appointments with a seamless
+                        user-friendly digital calendar.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="fancy-card fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="fancy-icon-wrap">
+                        <i class="fas fa-bell"></i>
                     </div>
+                    <h3>Follow-up Reminders</h3>
+                    <p>Never lose track of patients requiring routine check-ups. Automated reminders ensure
+                        they return for follow-ups.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="fancy-card fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="fancy-icon-wrap">
+                        <i class="fab fa-whatsapp" style="font-size: 1.05em;"></i>
+                    </div>
+                    <h3>WhatsApp Digital Billing</h3>
+                    <p>Generate instant digital bills and send them directly to your patients' WhatsApp for
+                        a frictionless payment experience.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="fancy-card fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="fancy-icon-wrap">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Clinic Analytics</h3>
+                    <p>Gain valuable insights into your practice's performance, revenue growth, and patient
+                        footfall with visual dashboards.</p>
+                </div>
+
+                <!-- Expanded Feature 6 to even out the 3x2 grid nicely -->
+                <div class="fancy-card fade-in-up" style="animation-delay: 0.5s;">
+                    <div class="fancy-icon-wrap">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Enhanced Patient Profile</h3>
+                    <p>Maintain complete and organized profiles for all your patients. Access medical
+                        history and consultation records easily.</p>
                 </div>
             </div>
         </div>
@@ -432,7 +723,7 @@
             <div class="pricing-container">
                 <div class="pricing-card">
                     <div class="pricing-header">
-                        <h3>Billing & Analytics</h3>
+                        <h3>ReceptionMate</h3>
                         <div class="price">
                             <span class="amount">&#8377;1,999</span>
                             <span class="duration">one-time payment</span>
@@ -449,7 +740,7 @@
                         </ul>
                     </div>
                     <div id="download" class="pricing-footer">
-                        <p>Purchase our Billing and Analytics software now. Upon payment completion, you will be redirected to the download link.</p>
+                        <p>Purchase our ReceptionMate now. Upon payment completion, you will be redirected to the download link.</p>
                         <a href="https://razorpay.com/payment-link/plink_QA2o87ZPCQIFB1" class="btn btn-primary pricing-btn">Purchase Now</a>
                         <div class="os-links">
                             <a href="coming-soon.html"><i class="fab fa-windows"></i> Windows</a>
@@ -476,8 +767,7 @@
                     <ul>
                         <li><a href="../index.html">Home</a></li>
                         <li><a href="products.html">Products</a></li>
-                        <li><a href="clinic-calculator.html">Calculator</a></li>
-                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="blogs.html">Resources</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                         <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     </ul>
@@ -488,8 +778,8 @@
                         <li><a href="website-building.html">Website Building</a></li>
                         <li><a href="medical-transcription.html">Medical Transcription</a></li>
                         <li><a href="emr.html">Electronic Medical Records</a></li>
-                        <li><a href="billing-analytics.html">Billing & Analytics</a></li>
-                        <li><a href="clinic-calculator.html">Clinic Calculator</a></li>
+                        <li><a href="billing-analytics.html">ReceptionMate</a></li>
+
                     </ul>
                 </div>
                 <div class="footer-contact">

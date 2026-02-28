@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WPVQDVMZW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-0WPVQDVMZW');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Improvement Advisor - MedCortico</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <meta name="theme-color" content="#1e88e5">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+    <link rel="stylesheet" href="../css/whatsapp-widget.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- html2pdf for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        .audit-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 151px auto 80px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(30, 136, 229, 0.15);
+            box-sizing: border-box;
+        }
+
+        .audit-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .audit-header h1 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-size: 2.8rem;
+        }
+
+        .audit-header p {
+            color: var(--text-light);
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .audit-form {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 30px;
+        }
+
+        .form-section-title {
+            grid-column: span 2;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: -10px;
+            border-bottom: 2px solid rgba(30, 136, 229, 0.1);
+            padding-bottom: 8px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--primary-dark);
+            font-size: 1rem;
+            white-space: normal;
+        }
+
+        .form-group select,
+        .form-group input,
+        .form-group textarea {
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid #dcdcdc;
+            background: #fdfdfd;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.1);
+        }
+
+        .btn-analyze {
+            grid-column: span 2;
+            margin-top: 30px;
+            padding: 18px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border: none;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-analyze:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(30, 136, 229, 0.3);
+        }
+
+        /* Loading / Analyzing Animation Styles */
+        #computation-overlay {
+            display: none;
+            margin-top: 50px;
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(248, 251, 255, 0.9);
+            border-radius: 20px;
+            border: 1px solid rgba(30, 136, 229, 0.2);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .brain-loader {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            animation: pulse-brain 1.5s infinite alternate;
+        }
+
+        @keyframes pulse-brain {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(30, 136, 229, 0.3));
+            }
+
+            100% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 25px rgba(30, 136, 229, 0.8));
+            }
+        }
+
+        #processing-status {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-top: 20px;
+            font-weight: 600;
+            min-height: 35px;
+            transition: all 0.3s;
+        }
+
+        .progress-bar {
+            width: 80%;
+            margin: 30px auto;
+            height: 14px;
+            background: #e0e0e0;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #1e88e5, #00acc1, #1e88e5);
+            background-size: 200% 200%;
+            animation: gradientMove 2s linear infinite;
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Results Display */
+        #results-section {
+            display: none;
+            margin-top: 50px;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .score-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .score-card {
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .score-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .score-card.operational::before {
+            background: #ff9800;
+        }
+
+        .score-card.patient::before {
+            background: #4caf50;
+        }
+
+        .score-card.digital::before {
+            background: #2196f3;
+        }
+
+        .score-value {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 15px 0 5px;
+            color: var(--primary-dark);
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 1rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .advice-box {
+            background: #f8faff;
+            border-left: 5px solid var(--primary-color);
+            padding: 30px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .advice-box h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .advice-box h3 i {
+            color: var(--primary-color);
+        }
+
+        .advice-item {
+            margin-bottom: 25px;
+        }
+
+        .advice-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .advice-item h4 {
+            color: #1e88e5;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .advice-item p {
+            line-height: 1.7;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .recommendation-cta {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .recommendation-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .recommendation-cta p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .btn-whatsapp-large {
+            background-color: #25d366;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+        }
+
+        .btn-whatsapp-large:hover {
+            background-color: #128c7e;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .audit-container {
+                margin: 100px 15px 40px;
+                padding: 30px 20px;
+            }
+
+            .audit-form {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .form-section-title,
+            .form-group.full-width,
+            .btn-analyze {
+                grid-column: span 1;
+            }
+
+            .score-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .audit-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+            color: white;
+        }
+
+        /* Print formatting */
+        #printable-report {
+            background: white;
+            border-radius: 20px;
+            padding: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html"><img src="../Photos/weblogo.png" alt="MedCortico Logo"></a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="blogs.html">Resources</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something."
+                    target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="audit-container">
+            <div class="audit-header">
+                <h1>Clinic Improvement Advisor</h1>
+                <p>Provide some insights about your current practice operations. Our intelligent engine will analyze
+                    your inputs to generate a comprehensive, tailored action plan for maximizing efficiency and patient
+                    satisfaction.</p>
+            </div>
+
+            <form id="audit-form" class="audit-form">
+                <div class="form-section-title">Patient Flow & Acquisition</div>
+
+                <div class="form-group">
+                    <label for="patientVolume">Average daily patient volume</label>
+                    <select id="patientVolume" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="low">Under 15 patients</option>
+                        <option value="medium">15 - 40 patients</option>
+                        <option value="high">40 - 80 patients</option>
+                        <option value="veryHigh">80+ patients</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="acquisitionChannel">Primary way patients find you</label>
+                    <select id="acquisitionChannel" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="referrals">Doctor Referrals / Word of Mouth</option>
+                        <option value="walkins">Walk-ins / Local Signage</option>
+                        <option value="online">Online Search / Google My Business</option>
+                        <option value="aggregator">Aggregators (Practo, Justdial, etc.)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="waitTimes">Average patient waiting time</label>
+                    <select id="waitTimes" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="excellent">Under 15 minutes</option>
+                        <option value="moderate">15 - 30 minutes</option>
+                        <option value="poor">30 - 60 minutes</option>
+                        <option value="critical">Over an hour</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="noShowRate">Estimated appointment no-show rate</label>
+                    <select id="noShowRate" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="low">Less than 5% (Very Rare)</option>
+                        <option value="medium">5% - 15% (Occasional)</option>
+                        <option value="high">Over 15% (Frequent Issue)</option>
+                        <option value="noAppt">I don't track / mostly walk-ins</option>
+                    </select>
+                </div>
+
+                <div class="form-section-title">Reputation & Reviews</div>
+
+                <div class="form-group">
+                    <label for="reviewCount">Number of Google Reviews</label>
+                    <select id="reviewCount" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="none">0 - I don't have a Google Business Profile</option>
+                        <option value="few">1 to 20 Reviews (Starting Out)</option>
+                        <option value="moderate">21 to 100 Reviews (Established)</option>
+                        <option value="many">100+ Reviews (Authority)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reviewScore">Average Google Review Rating</label>
+                    <select id="reviewScore" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="excellent">4.8 to 5.0 (Excellent)</option>
+                        <option value="good">4.0 to 4.7 (Good but needs work)</option>
+                        <option value="poor">Below 4.0 (Warning Sign)</option>
+                        <option value="na">N/A (No reviews yet)</option>
+                    </select>
+                </div>
+
+                <div class="form-section-title">Operations & Technology</div>
+
+                <div class="form-group">
+                    <label for="digitalMaturity">Level of digitalization</label>
+                    <select id="digitalMaturity" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="paper">Mostly Paper (Physical files, written prescriptions)</option>
+                        <option value="hybrid">Hybrid (Basic software + some paper)</option>
+                        <option value="digital">Digital (Using an EMR effectively)</option>
+                        <option value="advanced">Advanced (EMR, patient portal, online booking)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="painPoint">Biggest operational pain point</label>
+                    <select id="painPoint" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="time">Not enough time with patients / charting takes too long</option>
+                        <option value="marketing">Not getting enough new patients</option>
+                        <option value="staffing">Staffing issues / front desk management</option>
+                        <option value="billing">Billing, insurance, and revenue collection</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-analyze">
+                    <i class="fas fa-microchip"></i> Generate Comprehensive Analysis
+                </button>
+            </form>
+
+            <!-- Computation Animation Overlay -->
+            <div id="computation-overlay">
+                <i class="fas fa-brain brain-loader"></i>
+                <h3 style="font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 10px;">Synthesizing Practice
+                    Data</h3>
+                <p style="color: var(--text-light); font-size: 1.1rem; margin-bottom: 25px;">Our expert system is
+                    evaluating your parameters
+                    against thousands of optimal clinic profiles...</p>
+
+                <div
+                    style="background: rgba(30, 136, 229, 0.05); border: 1px solid rgba(30, 136, 229, 0.2); border-radius: 12px; padding: 20px; text-align: left; max-width: 600px; margin: 0 auto 30px;">
+                    <p style="color: var(--primary-dark); font-weight: 600; font-size: 1.1rem; margin-bottom: 8px;"><i
+                            class="fas fa-lightbulb" style="color: #ffb300; margin-right: 8px;"></i> Pro Tip:</p>
+                    <p style="color: var(--text-color); font-size: 1rem; line-height: 1.5; margin-bottom: 12px;">Track
+                        your clinic analytics daily along with making bills and tracking inventory using our
+                        <strong>free billing software</strong>.
+                    </p>
+                    <a href="billing-analytics.html" class="btn btn-outline"
+                        style="font-size: 0.9rem; padding: 8px 16px; border-color: var(--primary-color); color: var(--primary-color);">Explore
+                        ReceptionMate</a>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="analysis-progress"></div>
+                </div>
+
+                <div id="processing-status">Normalizing workflow metrics...</div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-section">
+
+                <!-- PROMINENT MC BILLING CTA -->
+                <div class="recommendation-cta"
+                    style="margin-top: 0; margin-bottom: 45px; background: linear-gradient(135deg, #1565c0 0%, #00838f 100%); box-shadow: 0 15px 35px rgba(30, 136, 229, 0.25); border: 1px solid rgba(255,255,255,0.2);">
+                    <h2
+                        style="font-size: 2.3rem; display: flex; justify-content: center; align-items: center; gap: 15px;">
+                        <i class="fas fa-chart-pie"
+                            style="color: #ffeb3b; text-shadow: 0 0 10px rgba(255,235,59,0.5);"></i> Optimize Your
+                        Clinic Daily
+                    </h2>
+                    <p style="font-size: 1.2rem; max-width: 750px; margin: 0 auto 30px; line-height: 1.7; opacity: 1;">
+                        Based on your profile, the fastest way to boost efficiency is through digital tracking. Track
+                        your clinic analytics daily, seamlessly generate bills, and manage inventory with our
+                        <strong>powerful, free software.</strong>
+                    </p>
+                    <a href="billing-analytics.html" class="btn btn-primary"
+                        style="background: #ffffff; color: #1565c0; padding: 20px 45px; border-radius: 50px; font-size: 1.25rem; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 25px rgba(0,0,0,0.3)';"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)';">
+                        <i class="fas fa-bolt" style="color: #ff9800;"></i> Start Using ReceptionMate For Free
+                    </a>
+                </div>
+
+                <div id="printable-report">
+                    <div style="text-align: center; margin-bottom: 35px; position: relative;">
+                        <h2 style="font-size: 2.4rem; color: var(--primary-dark); margin-bottom: 10px;">Your Clinic
+                            Diagnostic Report</h2>
+                        <p style="font-size: 1.15rem; color: var(--text-light); max-width: 700px; margin: 0 auto;">Based
+                            on your inputs, here is a strategic breakdown of your
+                            clinic's performance potential and areas for vital improvement.</p>
+
+                        <div id="download-btn-container" style="margin-top: 25px;" data-html2canvas-ignore="true">
+                            <button id="download-pdf-btn" class="btn-download">
+                                <i class="fas fa-file-pdf"></i> Download Report as PDF
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="score-cards">
+                        <div class="score-card operational">
+                            <i class="fas fa-cogs" style="font-size: 2rem; color: #ff9800;"></i>
+                            <div class="score-value" id="score-ops">0/100</div>
+                            <div class="score-label">Operational Efficiency</div>
+                        </div>
+                        <div class="score-card patient">
+                            <i class="fas fa-users" style="font-size: 2rem; color: #4caf50;"></i>
+                            <div class="score-value" id="score-pat">0/100</div>
+                            <div class="score-label">Patient Experience</div>
+                        </div>
+                        <div class="score-card digital">
+                            <i class="fas fa-laptop-medical" style="font-size: 2rem; color: #2196f3;"></i>
+                            <div class="score-value" id="score-dig">0/100</div>
+                            <div class="score-label">Digital Readiness</div>
+                        </div>
+                    </div>
+
+                    <div class="advice-box">
+                        <h3><i class="fas fa-search-chart"></i> Executive Summary & Core Insights</h3>
+                        <div id="dynamic-summary" class="advice-item">
+                            <!-- Filled by JS -->
+                        </div>
+                    </div>
+
+                    <div class="advice-box" style="border-left-color: #4caf50; background: #f4fbf5;">
+                        <h3 style="color: #2e7d32;"><i class="fas fa-check-double" style="color: #4caf50;"></i>
+                            Prescribed
+                            Action Plan</h3>
+                        <div id="dynamic-actions">
+                            <!-- Filled by JS -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../Photos/weblogo.png" alt="MedCortico Logo" style="filter: brightness(0) invert(1);">
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="blogs.html">Resources</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> medcortico@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 8527183292</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MedCortico. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/clinic-improvement.js"></script>
+</body>
+
+</html>
