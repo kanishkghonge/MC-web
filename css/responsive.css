@@ -30,6 +30,12 @@
 
 /* Small Screens */
 @media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
     .nav-links, .social-icons {
         display: none;
     }
