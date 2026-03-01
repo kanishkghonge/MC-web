@@ -83,6 +83,10 @@
             gap: 25px;
         }
 
+        .published-insights {
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        }
+
         .blog-card {
             display: flex;
             flex-direction: column;
@@ -183,7 +187,8 @@
                 border-radius: 20px;
             }
 
-            .blog-list {
+            .blog-list,
+            .published-insights {
                 grid-template-columns: 1fr;
             }
         }
@@ -287,7 +292,7 @@
 
             <section class="index-section">
                 <h2><i class="fas fa-book-open"></i> Published Insights</h2>
-                <div class="blog-list" style="grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));">
+                <div class="blog-list published-insights">
                     <!-- Entry 3 -->
                     <a href="blog-google-business-profile.html" class="blog-card blog-article-card">
                         <div class="blog-card-meta"><i class="far fa-calendar-alt" style="margin-right: 5px;"></i> Jan
