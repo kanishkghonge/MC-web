@@ -71,9 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const avgSalary = parseInt(document.getElementById('avg-salary').value) || 0;
         const marketingBudget = parseInt(document.getElementById('marketing-budget').value) || 0;
         const maintenanceCost = parseInt(document.getElementById('maintenance-cost').value) || 0;
+        const doctorIncome = parseInt(document.getElementById('doctor-income').value) || 0;
+        const spaceStatus = document.getElementById('space-status').value;
         const patientsPerDay = parseInt(document.getElementById('patients-per-day').value) || 1;
         const category = categorySelect.value;
         const specialty = specialtySelect.value;
+        const state = stateSelect.value;
         const city = citySelect.value;
 
         // Hide previous results and warning, show loading
@@ -116,9 +119,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }, updateInterval);
 
         function completeCalculation() {
+            // Retrieve tier data for rent calculations
+            let multiplier = 1.0;
+            if (typeof LOCATION_DATA !== 'undefined' && LOCATION_DATA[state] && LOCATION_DATA[state][city]) {
+                const tier = LOCATION_DATA[state][city].tier;
+                multiplier = TIER_MULTIPLIERS[tier] || 1.0;
+            }
+
+            let monthlyRent = 0;
+            if (spaceStatus === 'rent' && typeof BASE_COSTS !== 'undefined') {
+                monthlyRent = BASE_COSTS.minArea * BASE_COSTS.rentPerSqFt * multiplier;
+            }
+
             // Calculations
             const monthlyStaffCost = staffCount * avgSalary;
-            const totalMonthlyCost = monthlyStaffCost + marketingBudget + maintenanceCost;
+            const totalMonthlyCost = monthlyStaffCost + marketingBudget + maintenanceCost + monthlyRent + doctorIncome;
 
             // Assuming 30 days a month operation avg for simpler math based on per day
             const expectedMonthlyPatients = patientsPerDay * 30;
@@ -132,6 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Display Results
             displayResults({
+                monthlyRent,
+                doctorIncome,
                 staffCount,
                 avgSalary,
                 monthlyStaffCost,
@@ -159,9 +176,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const perConsultCostFormatted = formatCurrency(data.perConsultationCost);
 
         document.getElementById('consultation-charge').textContent = perConsultCostFormatted;
+        document.getElementById('cost-rent').textContent = formatCurrency(data.monthlyRent);
         document.getElementById('cost-staff').textContent = formatCurrency(data.monthlyStaffCost);
         document.getElementById('cost-marketing').textContent = formatCurrency(data.marketingBudget);
         document.getElementById('cost-maintenance').textContent = formatCurrency(data.maintenanceCost);
+        document.getElementById('cost-income').textContent = formatCurrency(data.doctorIncome);
         document.getElementById('cost-total-monthly').textContent = formatCurrency(data.totalMonthlyCost);
 
         // Warning Logic
