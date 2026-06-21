@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WPVQDVMZW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-0WPVQDVMZW');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online OPD & Website-in-Bio - MedCortico</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <meta name="theme-color" content="#1e88e5">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+    <link rel="stylesheet" href="../css/whatsapp-widget.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Custom styles for Online OPD page */
+        .funnel-comparison {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--white) 0%, #f0f7ff 100%);
+        }
+
+        .funnel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .funnel-card {
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .funnel-card.leaky {
+            background: linear-gradient(135deg, #fffcfc 0%, #fff5f5 100%);
+            border-color: rgba(229, 115, 115, 0.2);
+        }
+
+        .funnel-card.secured {
+            background: linear-gradient(135deg, #f7fcff 0%, #eef7ff 100%);
+            border-color: rgba(30, 136, 229, 0.2);
+        }
+
+        .funnel-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .funnel-card.leaky h3 {
+            color: #d32f2f;
+        }
+
+        .funnel-card.secured h3 {
+            color: var(--primary-dark);
+        }
+
+        .funnel-steps {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .funnel-steps li {
+            position: relative;
+            padding-left: 35px;
+            font-size: 1.05rem;
+            color: var(--text-color);
+        }
+
+        .funnel-steps li i {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            font-size: 1.2rem;
+        }
+
+        .funnel-card.leaky .funnel-steps li i {
+            color: #e57373;
+        }
+
+        .funnel-card.secured .funnel-steps li i {
+            color: var(--primary-color);
+        }
+
+        .funnel-badge {
+            align-self: flex-start;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .funnel-card.leaky .funnel-badge {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .funnel-card.secured .funnel-badge {
+            background-color: #e3f2fd;
+            color: var(--primary-dark);
+        }
+
+        .wa-btn {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: var(--white) !important;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wa-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            color: var(--white) !important;
+        }
+
+        .tagline-badge {
+            background-color: rgba(30, 136, 229, 0.1);
+            color: var(--primary-dark);
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 992px) {
+            .funnel-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Decorative Elements -->
+    <div class="decorative-elements">
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-line"></div>
+        <div class="decorative-line"></div>
+        <div class="decorative-line"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../Photos/weblogo.png" alt="MedCortico Logo">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="blogs.html">Resources</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/company/medcortico" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/medcortico" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something."
+                    target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Product Hero Section -->
+    <section class="product-hero">
+        <div class="container">
+            <div class="product-hero-content">
+                <div class="product-hero-text">
+                    <span class="tagline-badge">Maximize Social Media Conversion</span>
+                    <h1>Posting Reels is Useless If You Don't Have a Website in Bio</h1>
+                    <p>Stop letting interested scrollers drift away. MedCortico sets up a premium Link-in-Bio website for your practice so patients can book appointments instantly and securely.</p>
+                    <div class="hero-buttons">
+                        <a href="https://wa.me/918527183292?text=Hi%2C%20I%20want%20to%20set%20up%20my%20Online%20OPD%20website%20in%20bio%20to%20convert%20my%20social%20media%20audience.%20Please%20share%20the%20pricing%20details." 
+                           target="_blank" class="btn wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp Us for Prices</a>
+                        <a href="#how-it-works" class="btn btn-secondary">How it Works</a>
+                    </div>
+                </div>
+                <div class="product-hero-image">
+                    <img src="../Photos/online-opd-hero.png" alt="Online OPD Mobile Website Demo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funnel Comparison Section -->
+    <section class="funnel-comparison">
+        <div class="container">
+            <h2 class="section-title">The Social Media Patient Funnel</h2>
+            <p class="section-description">Traditional social media posting leaks valuable patients. Our Online OPD solution secures your funnel, converting passive viewers into paying appointments.</p>
+            
+            <div class="funnel-grid">
+                <!-- Leaky Funnel -->
+                <div class="funnel-card leaky">
+                    <span class="funnel-badge">Without Online OPD</span>
+                    <h3><i class="fas fa-filter-circle-xmark"></i> The Leaky Funnel</h3>
+                    <ul class="funnel-steps">
+                        <li><i class="fas fa-times-circle"></i> <strong>Reel goes viral:</strong> Thousands of people view your clinical content.</li>
+                        <li><i class="fas fa-times-circle"></i> <strong>Friction in bio:</strong> Interested viewers find no clear booking link, or just a phone number that is often busy.</li>
+                        <li><i class="fas fa-times-circle"></i> <strong>Garbage Leads:</strong> Casual scrollers flood your Instagram DMs or WhatsApp with unstructured questions and window-shopping.</li>
+                        <li><i class="fas fa-times-circle"></i> <strong>Administrative burden:</strong> Your staff spends hours manually filtering out non-serious inquiries, yielding minimal bookings.</li>
+                    </ul>
+                </div>
+
+                <!-- Secured Funnel -->
+                <div class="funnel-card secured">
+                    <span class="funnel-badge">With MedCortico Online OPD</span>
+                    <h3><i class="fas fa-circle-check"></i> The High-Converting Funnel</h3>
+                    <ul class="funnel-steps">
+                        <li><i class="fas fa-check-circle"></i> <strong>Reel goes viral:</strong> Thousands of people view your clinical content.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Clear Action Link:</strong> Viewers click your premium Website-in-Bio to view your credentials and timings.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Prepaid Bookings:</strong> Patients are guided to pay the full consultation fee or a token deposit upfront to unlock a booking.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>No Garbage Leads:</strong> Unserious inquiries are automatically filtered out. Your calendar fills only with committed, pre-paying patients.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Online OPD Section -->
+    <section class="why-website">
+        <div class="container">
+            <h2 class="section-title">Why Set Up an Online OPD?</h2>
+            <p class="section-description">It's a critical component for modern private practices scaling via digital channels.</p>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3>Filter Out Time-Wasters</h3>
+                    <p>No more administrative fatigue. Booking is only confirmed after a patient makes a payment, guaranteeing committed patient leads.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>24/7 Digital Front Desk</h3>
+                    <p>Let patients schedule appointments at their convenience, even late at night, without requiring staff intervention.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-laptop-medical"></i>
+                    </div>
+                    <h3>Done-For-You Integration</h3>
+                    <p>We handle the technical setup, from payment gateway links to clean calendar configurations, in the cheapest and best possible way.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works Steps Section -->
+    <section id="how-it-works" class="get-started">
+        <div class="container">
+            <h2 class="section-title">How We Set It Up For You</h2>
+            <p class="section-description">We take care of all technical details so you can focus entirely on patient care.</p>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>WhatsApp Us</h3>
+                    <p>Connect with our team on WhatsApp to review templates and pricing plans.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Provide Details</h3>
+                    <p>Share your specialties, timing slots, consultation fee structure, and clinic logo.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Payment Integration</h3>
+                    <p>We set up your UPI/payment gateway links so patient fees route directly to your bank account.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Go Live</h3>
+                    <p>Place your new, high-converting Online OPD link in your bio and start converting scrollers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="products-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Scale Your Digital Practice?</h2>
+                <p>We are the industry leaders, having already helped dozens of doctors establish high-converting online practices. Let us build your Online OPD in the cheapest and best possible way.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/918527183292?text=Hi%2C%20I%20want%20to%20set%20up%20my%20Online%20OPD%20website%20in%20bio%20to%20convert%20my%20social%20media%20audience.%20Please%20share%20the%20pricing%20details." 
+                       target="_blank" class="btn wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp Us for Prices</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="../index.html">
+                        <img src="../Photos/weblogo.png" alt="MedCortico Logo" style="max-width: 200px; filter: brightness(0) invert(1);">
+                    </a>
+                    <p>Empowering healthcare with innovative technology solutions.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="blogs.html">Resources</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="data-deletion.html">Data Deletion</a></li>
+                        <li><a href="eula.html">EULA</a></li>
+                    </ul>
+                </div>
+                <div class="footer-products">
+                    <h3>Our Products</h3>
+                    <ul>
+                        <li><a href="website-building.html">Website Building</a></li>
+                        <li><a href="online-opd.html">Online OPD</a></li>
+                        <li><a href="online-opd.html">Online OPD</a></li>
+                        <li><a href="medical-transcription.html">Transcription</a></li>
+                        <li><a href="emr.html">EMR Systems</a></li>
+                        <li><a href="billing-analytics.html">ReceptionMate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> medcortico@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 8527183292</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/medcortico" target="_blank" aria-label="LinkedIn"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/medcortico" target="_blank" aria-label="Twitter"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/918527183292?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20something."
+                            target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 MedCortico. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/whatsapp-widget.js"></script>
+</body>
+
+</html>
