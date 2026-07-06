@@ -450,35 +450,111 @@
         }
 
         .quote-toggle input:checked + span {
-            background: var(--primary-color);
-        }
-
-        .quote-toggle input:checked + span::after {
-            transform: translateX(24px);
-        }
-
-        .quote-toggle span::after {
-            content: '';
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            width: 22px;
-            height: 22px;
-            border-radius: 999px;
-            background: #ffffff;
-            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
-            transition: transform 0.2s ease;
+            border-color: #059669;
+            background: #059669;
+            color: #ffffff;
         }
 
         .quote-switch-track {
-            position: relative;
-            display: inline-block;
-            width: 54px;
-            height: 30px;
-            flex: 0 0 54px;
+            display: inline-flex;
+            width: 42px;
+            height: 42px;
+            flex: 0 0 42px;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #cbd5e1;
+            border-radius: 50%;
+            background: #ffffff;
+            color: #475569;
+            transition: all 0.2s ease;
+        }
+
+        .quote-switch-track .fa-check,
+        .quote-toggle input:checked + .quote-switch-track .fa-plus { display: none; }
+        .quote-toggle input:checked + .quote-switch-track .fa-check { display: inline-block; }
+
+        [data-option-card] { position: relative; overflow: hidden; }
+        [data-option-card].is-selected {
+            border-color: #34d399 !important;
+            background: linear-gradient(135deg, #ffffff 0%, #ecfdf5 100%);
+            box-shadow: 0 14px 35px rgba(5, 150, 105, 0.12);
+        }
+        [data-option-card].is-selected::before {
+            content: '';
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 4px;
+            background: #10b981;
+        }
+        .option-action-label {
+            display: block;
+            margin-top: 6px;
+            color: #64748b;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        [data-option-card].is-selected .option-action-label { color: #047857; }
+
+        .journey-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            margin-top: 28px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: #e2e8f0;
+        }
+        .journey-step { padding: 18px; background: #ffffff; }
+        .journey-step span {
+            color: #0284c7;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .journey-step strong {
+            display: block;
+            margin-top: 5px;
+            color: #0f172a;
+            font-size: 0.9rem;
+        }
+        .recommended-pill {
+            display: inline-flex;
+            margin-left: 8px;
+            padding: 3px 8px;
             border-radius: 999px;
-            background: #cbd5e1;
-            transition: background 0.2s ease;
+            background: #dcfce7;
+            color: #047857;
+            font-size: 0.65rem;
+            font-weight: 800;
+            vertical-align: middle;
+            text-transform: uppercase;
+        }
+        .sales-proof {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 8px;
+            background: #f0fdf4;
+            color: #166534;
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+        .selected-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin: 4px 4px 0 0;
+            padding: 5px 8px;
+            border-radius: 999px;
+            background: #e0f2fe;
+            color: #075985;
+            font-size: 0.75rem;
+            font-weight: 700;
         }
 
         .quote-toggle input {
@@ -488,6 +564,31 @@
             overflow: hidden;
             clip: rect(0, 0, 0, 0);
         }
+
+        .quote-toggle input:focus-visible + .quote-switch-track {
+            outline: 3px solid rgba(14, 165, 233, 0.3);
+            outline-offset: 3px;
+        }
+
+        .final-cta {
+            padding: 72px 0;
+            background: #f8fafc;
+        }
+
+        .final-cta-card {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 32px;
+            align-items: center;
+            padding: 40px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #0f172a 0%, #0c4a6e 100%);
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
+        }
+
+        .final-cta-card h2 { color: #ffffff; font-size: clamp(1.8rem, 4vw, 2.5rem); }
+        .final-cta-card p { max-width: 680px; margin-top: 12px; color: #cbd5e1; line-height: 1.7; }
+        .final-cta-card .wa-btn { white-space: nowrap; padding: 15px 22px; border-radius: 8px; }
 
         /* Local Tailwind-style fallback for this page. */
         .tw-block { display: block; }
@@ -742,6 +843,11 @@
                 min-width: 0;
                 text-align: left;
             }
+
+            .journey-strip { grid-template-columns: 1fr; }
+            .quote-switch-track { width: 38px; height: 38px; flex-basis: 38px; }
+            .final-cta-card { grid-template-columns: 1fr; padding: 28px 22px; }
+            .final-cta-card .wa-btn { white-space: normal; }
         }
     </style>
 
@@ -809,29 +915,32 @@
                 <div>
                     <span class="tw-inline-flex tw-items-center tw-gap-2 tw-rounded-full tw-bg-sky-100 tw-px-4 tw-py-2 tw-text-sm tw-font-semibold tw-text-sky-800">
                         <i class="fas fa-stethoscope"></i>
-                        Online OPD Quote Builder
+                        Your clinic, open online
                     </span>
                     <h1 class="tw-mt-6 tw-text-4xl md:tw-text-5xl tw-font-bold tw-leading-tight tw-text-slate-950">
-                        Build the digital clinic that turns attention into qualified appointments.
+                        Turn patient interest into confirmed appointments—not endless DMs.
                     </h1>
                     <p class="tw-mt-5 tw-max-w-2xl tw-text-lg tw-leading-8 tw-text-slate-600">
-                        Your videos and medical explainers should not end in random DMs. We build a website, blog flow,
-                        appointment booking, teleconsultation, and paywall logic so patients understand your expertise,
-                        trust your process, and book only when they are serious.
+                        We build one clear online journey where patients understand your expertise, choose how to consult,
+                        pay if required, and arrive ready for care. Your staff gets fewer casual enquiries and more serious bookings.
                     </p>
-                    <div class="tw-mt-8 tw-grid tw-grid-cols-1 sm:tw-grid-cols-3 tw-gap-3">
-                        <div class="tw-rounded-lg tw-border tw-border-sky-100 tw-bg-white tw-p-4 tw-shadow-sm">
-                            <i class="fas fa-video tw-text-sky-600 tw-text-xl"></i>
-                            <p class="tw-mt-3 tw-text-sm tw-font-semibold tw-text-slate-900">Doctor video becomes a blog asset</p>
+                    <div class="journey-strip" aria-label="Patient booking journey">
+                        <div class="journey-step">
+                            <span>01 · Discover</span>
+                            <strong>Patient finds and trusts you</strong>
                         </div>
-                        <div class="tw-rounded-lg tw-border tw-border-emerald-100 tw-bg-white tw-p-4 tw-shadow-sm">
-                            <i class="fas fa-calendar-check tw-text-emerald-600 tw-text-xl"></i>
-                            <p class="tw-mt-3 tw-text-sm tw-font-semibold tw-text-slate-900">Patients are guided to book</p>
+                        <div class="journey-step">
+                            <span>02 · Choose</span>
+                            <strong>They select the right consultation</strong>
                         </div>
-                        <div class="tw-rounded-lg tw-border tw-border-indigo-100 tw-bg-white tw-p-4 tw-shadow-sm">
-                            <i class="fas fa-filter tw-text-indigo-600 tw-text-xl"></i>
-                            <p class="tw-mt-3 tw-text-sm tw-font-semibold tw-text-slate-900">You get qualified leads only</p>
+                        <div class="journey-step">
+                            <span>03 · Confirm</span>
+                            <strong>You receive a ready patient</strong>
                         </div>
+                    </div>
+                    <div class="tw-mt-8 tw-flex tw-flex-col sm:tw-flex-row tw-gap-3">
+                        <a href="#quote-builder" class="btn btn-primary">Build My Online OPD <i class="fas fa-arrow-down"></i></a>
+                        <a href="https://wa.me/918527183292?text=Hi%2C%20I%20want%20to%20set%20up%20an%20Online%20OPD%20for%20my%20practice.%20Please%20help%20me%20choose%20the%20right%20setup." target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Talk to an Expert</a>
                     </div>
                 </div>
 
@@ -839,8 +948,8 @@
                     <div class="tw-rounded-lg tw-bg-slate-950 tw-p-5 tw-text-white">
                         <div class="tw-flex tw-items-center tw-justify-between tw-gap-4">
                             <div>
-                                <p class="tw-text-sm tw-text-sky-200">Live estimate</p>
-                                <h2 class="tw-mt-1 tw-text-2xl tw-font-bold">Start with the website. Add what your OPD needs.</h2>
+                                <p class="tw-text-sm tw-text-sky-200">A complete patient pathway</p>
+                                <h2 class="tw-mt-1 tw-text-2xl tw-font-bold">Your new digital front desk can be simpler than this.</h2>
                             </div>
                             <i class="fas fa-calculator tw-text-3xl tw-text-emerald-300"></i>
                         </div>
@@ -856,7 +965,7 @@
                         </div>
                     </div>
                     <p class="tw-mt-5 tw-text-sm tw-leading-6 tw-text-slate-600">
-                        Select the features below and send the exact requirement list to WhatsApp in one click.
+                        Start with your clinic website, then choose only the capabilities that fit your practice. We will confirm the details with you before any work begins.
                     </p>
                 </div>
             </div>
@@ -867,9 +976,9 @@
     <section id="quote-builder" class="tw-bg-slate-50 tw-py-20">
         <div class="container">
             <div class="tw-mx-auto tw-max-w-3xl tw-text-center">
-                <h2 class="tw-text-3xl md:tw-text-4xl tw-font-bold tw-text-slate-950">Choose Your Online OPD Plan</h2>
+                <h2 class="tw-text-3xl md:tw-text-4xl tw-font-bold tw-text-slate-950">Build the patient journey you need</h2>
                 <p class="tw-mt-4 tw-text-lg tw-leading-8 tw-text-slate-600">
-                    Pricing is transparent. The full digital clinic bundle unlocks the best setup value.
+                    Your website is the foundation. Tap <strong>+</strong> to include a capability; a <strong>✓</strong> means it is part of your setup.
                 </p>
             </div>
 
@@ -882,7 +991,7 @@
                                     <i class="fas fa-globe"></i>
                                 </div>
                                 <div>
-                                    <h3 class="tw-text-xl tw-font-bold tw-text-slate-950">Base Plan: Website Only</h3>
+                                    <h3 class="tw-text-xl tw-font-bold tw-text-slate-950">Your Clinic Website</h3>
                                     <p class="tw-mt-2 tw-text-sm tw-leading-6 tw-text-slate-600">
                                         A fast clinic website with doctor profile, services, timings, testimonials, and contact flow.
                                     </p>
@@ -890,7 +999,7 @@
                             </div>
                             <div class="tw-text-left sm:tw-text-right">
                                 <p class="tw-text-2xl tw-font-bold tw-text-slate-950">₹5,962</p>
-                                <p class="tw-text-xs tw-font-semibold tw-text-emerald-700">Always included</p>
+                                <p class="tw-text-xs tw-font-semibold tw-text-emerald-700"><i class="fas fa-check"></i> Included foundation</p>
                             </div>
                         </div>
                     </div>
@@ -902,16 +1011,17 @@
                                     <i class="fas fa-calendar-check"></i>
                                 </div>
                                 <div>
-                                    <h3 class="tw-text-lg tw-font-bold tw-text-slate-950">Appointment Booking</h3>
+                                    <h3 class="tw-text-lg tw-font-bold tw-text-slate-950">Appointment Booking <span class="recommended-pill">Recommended</span></h3>
                                     <p class="tw-mt-2 tw-text-sm tw-leading-6 tw-text-slate-600">
                                         Patients move from blog or video pages into structured appointment slots instead of open-ended chats.
                                     </p>
                                     <p class="tw-mt-3 tw-text-sm tw-font-bold tw-text-slate-900">₹2,962 setup</p>
                                 </div>
                             </div>
-                            <span class="quote-toggle tw-relative tw-inline-flex tw-shrink-0">
+                            <span class="quote-toggle tw-relative tw-inline-flex tw-flex-col tw-shrink-0">
                                 <input class="tw-sr-only quote-addon" type="checkbox" value="Appointment Booking" data-key="appointment">
-                                <span class="tw-relative tw-h-[30px] tw-w-[54px] tw-rounded-full tw-bg-slate-300 tw-transition"></span>
+                                <span class="quote-switch-track"><i class="fas fa-plus"></i><i class="fas fa-check"></i></span>
+                                <small class="option-action-label">Add</small>
                             </span>
                         </div>
                     </label>
@@ -930,9 +1040,10 @@
                                     <p class="tw-mt-3 tw-text-sm tw-font-bold tw-text-slate-900">₹2,962 setup</p>
                                 </div>
                             </div>
-                            <span class="quote-toggle tw-relative tw-inline-flex tw-shrink-0">
+                            <span class="quote-toggle tw-relative tw-inline-flex tw-flex-col tw-shrink-0">
                                 <input class="tw-sr-only quote-addon" type="checkbox" value="Teleconsultation" data-key="teleconsultation">
-                                <span class="tw-relative tw-h-[30px] tw-w-[54px] tw-rounded-full tw-bg-slate-300 tw-transition"></span>
+                                <span class="quote-switch-track"><i class="fas fa-plus"></i><i class="fas fa-check"></i></span>
+                                <small class="option-action-label">Add</small>
                             </span>
                         </div>
                     </label>
@@ -944,16 +1055,17 @@
                                     <i class="fas fa-lock"></i>
                                 </div>
                                 <div>
-                                    <h3 class="tw-text-lg tw-font-bold tw-text-slate-950">Paywall Integration</h3>
+                                    <h3 class="tw-text-lg tw-font-bold tw-text-slate-950">Online Payment</h3>
                                     <p class="tw-mt-2 tw-text-sm tw-leading-6 tw-text-slate-600">
-                                        Filter casual scrollers with paid booking, token collection, or gated consult flows.
+                                        Collect a consultation fee or booking token before a slot is confirmed, reducing no-shows and casual enquiries.
                                     </p>
                                     <p class="tw-mt-3 tw-text-sm tw-font-bold tw-text-slate-900">₹2,962 setup</p>
                                 </div>
                             </div>
-                            <span class="quote-toggle tw-relative tw-inline-flex tw-shrink-0">
-                                <input class="tw-sr-only quote-addon" type="checkbox" value="Paywall Integration" data-key="paywall">
-                                <span class="tw-relative tw-h-[30px] tw-w-[54px] tw-rounded-full tw-bg-slate-300 tw-transition"></span>
+                            <span class="quote-toggle tw-relative tw-inline-flex tw-flex-col tw-shrink-0">
+                                <input class="tw-sr-only quote-addon" type="checkbox" value="Online Payment" data-key="paywall">
+                                <span class="quote-switch-track"><i class="fas fa-plus"></i><i class="fas fa-check"></i></span>
+                                <small class="option-action-label">Add</small>
                             </span>
                         </div>
                     </label>
@@ -965,16 +1077,17 @@
                                     <i class="fas fa-pen-nib"></i>
                                 </div>
                                 <div>
-                                    <h3 class="tw-text-lg tw-font-bold tw-text-slate-950">Weekly Blog Updates</h3>
+                                    <h3 class="tw-text-lg tw-font-bold tw-text-slate-950">Patient Education &amp; SEO</h3>
                                     <p class="tw-mt-2 tw-text-sm tw-leading-6 tw-text-slate-600">
-                                        Turn doctor videos, patient FAQs, and awareness topics into weekly articles that warm patients up before they book.
+                                        We turn your videos and common patient questions into useful weekly articles that build trust before booking.
                                     </p>
                                     <p class="tw-mt-3 tw-text-sm tw-font-bold tw-text-slate-900">₹1,962 / month</p>
                                 </div>
                             </div>
-                            <span class="quote-toggle tw-relative tw-inline-flex tw-shrink-0">
-                                <input id="blog-option" class="tw-sr-only" type="checkbox" value="Weekly Blog Updates">
-                                <span class="tw-relative tw-h-[30px] tw-w-[54px] tw-rounded-full tw-bg-slate-300 tw-transition"></span>
+                            <span class="quote-toggle tw-relative tw-inline-flex tw-flex-col tw-shrink-0">
+                                <input id="blog-option" class="tw-sr-only" type="checkbox" value="Patient Education &amp; SEO">
+                                <span class="quote-switch-track"><i class="fas fa-plus"></i><i class="fas fa-check"></i></span>
+                                <small class="option-action-label">Add</small>
                             </span>
                         </div>
                     </label>
@@ -989,7 +1102,8 @@
                         <p class="tw-mt-2 tw-text-sm tw-text-emerald-800">You save ₹2,886 on setup versus buying all add-ons individually.</p>
                     </div>
 
-                    <h3 class="tw-text-xl tw-font-bold tw-text-slate-950">Your Quote</h3>
+                    <h3 class="tw-text-xl tw-font-bold tw-text-slate-950">Your Online OPD</h3>
+                    <p class="tw-mt-2 tw-text-sm tw-leading-6 tw-text-slate-600">A clear starting estimate—no checkout and no commitment.</p>
                     <div class="tw-mt-5 tw-space-y-4">
                         <div class="tw-flex tw-items-center tw-justify-between tw-gap-4 tw-border-b tw-border-slate-100 tw-pb-4">
                             <div>
@@ -1000,8 +1114,8 @@
                         </div>
 
                         <div class="tw-rounded-lg tw-bg-slate-50 tw-p-4">
-                            <p class="tw-text-sm tw-font-semibold tw-text-slate-600">Selected Add-ons</p>
-                            <p id="selected-addons" class="tw-mt-2 tw-text-sm tw-leading-6 tw-text-slate-900">None selected</p>
+                            <p class="tw-text-sm tw-font-semibold tw-text-slate-600">Your selected capabilities</p>
+                            <div id="selected-addons" class="tw-mt-2 tw-text-sm tw-leading-6 tw-text-slate-900">Website foundation only</div>
                         </div>
 
                         <div class="tw-grid tw-grid-cols-1 tw-gap-3">
@@ -1018,11 +1132,9 @@
 
                     <a id="quote-whatsapp" href="#" target="_blank" rel="noopener" class="btn wa-btn tw-mt-6 tw-w-full tw-justify-center tw-rounded-lg tw-px-5 tw-py-4 tw-text-center tw-text-base tw-font-bold">
                         <i class="fab fa-whatsapp"></i>
-                        Get Custom Quote via WhatsApp
+                        Discuss This Setup on WhatsApp
                     </a>
-                    <p class="tw-mt-3 tw-text-xs tw-leading-5 tw-text-slate-500">
-                        Replace the placeholder phone number in the script before launch.
-                    </p>
+                    <div class="sales-proof"><i class="fas fa-shield-heart"></i><span>Speak directly with our team. We will review your clinic workflow and confirm what you actually need.</span></div>
                 </aside>
             </div>
         </div>
@@ -1032,32 +1144,46 @@
     <section id="how-it-works" class="tw-bg-white tw-py-20">
         <div class="container">
             <div class="tw-mx-auto tw-max-w-3xl tw-text-center">
-                <h2 class="tw-text-3xl md:tw-text-4xl tw-font-bold tw-text-slate-950">How The Online OPD Workflow Converts Better</h2>
+                <h2 class="tw-text-3xl md:tw-text-4xl tw-font-bold tw-text-slate-950">From “I saw your video” to a confirmed patient</h2>
                 <p class="tw-mt-4 tw-text-lg tw-leading-8 tw-text-slate-600">
-                    The goal is not more messages. The goal is fewer, better, warmer patients who already understand what you offer.
+                    A good Online OPD answers the patient’s next question at every step, without adding more work for your staff.
                 </p>
             </div>
             <div class="tw-mt-12 tw-grid tw-grid-cols-1 md:tw-grid-cols-4 tw-gap-5">
                 <div class="tw-rounded-lg tw-border tw-border-slate-200 tw-bg-slate-50 tw-p-6">
                     <div class="tw-flex tw-h-11 tw-w-11 tw-items-center tw-justify-center tw-rounded-lg tw-bg-sky-600 tw-font-bold tw-text-white">1</div>
-                    <h3 class="tw-mt-5 tw-text-lg tw-font-bold tw-text-slate-950">Doctor records a video</h3>
-                    <p class="tw-mt-3 tw-text-sm tw-leading-6 tw-text-slate-600">You explain a condition, treatment, myth, or patient question in your natural voice.</p>
+                    <h3 class="tw-mt-5 tw-text-lg tw-font-bold tw-text-slate-950">They discover your expertise</h3>
+                    <p class="tw-mt-3 tw-text-sm tw-leading-6 tw-text-slate-600">A video, Google search, or shared article brings the patient to a trusted clinic page—not a confusing inbox.</p>
                 </div>
                 <div class="tw-rounded-lg tw-border tw-border-slate-200 tw-bg-slate-50 tw-p-6">
                     <div class="tw-flex tw-h-11 tw-w-11 tw-items-center tw-justify-center tw-rounded-lg tw-bg-indigo-600 tw-font-bold tw-text-white">2</div>
-                    <h3 class="tw-mt-5 tw-text-lg tw-font-bold tw-text-slate-950">We shape it into a blog</h3>
-                    <p class="tw-mt-3 tw-text-sm tw-leading-6 tw-text-slate-600">The blog gives patients context, confidence, and an SEO-friendly reason to discover your clinic.</p>
+                    <h3 class="tw-mt-5 tw-text-lg tw-font-bold tw-text-slate-950">They understand their options</h3>
+                    <p class="tw-mt-3 tw-text-sm tw-leading-6 tw-text-slate-600">Your services, consultation modes, fees, timings, and next steps are explained clearly in one place.</p>
                 </div>
                 <div class="tw-rounded-lg tw-border tw-border-slate-200 tw-bg-slate-50 tw-p-6">
                     <div class="tw-flex tw-h-11 tw-w-11 tw-items-center tw-justify-center tw-rounded-lg tw-bg-emerald-600 tw-font-bold tw-text-white">3</div>
-                    <h3 class="tw-mt-5 tw-text-lg tw-font-bold tw-text-slate-950">Patient gets guided</h3>
-                    <p class="tw-mt-3 tw-text-sm tw-leading-6 tw-text-slate-600">Each content page nudges serious patients toward appointment booking or teleconsultation.</p>
+                    <h3 class="tw-mt-5 tw-text-lg tw-font-bold tw-text-slate-950">They choose and confirm</h3>
+                    <p class="tw-mt-3 tw-text-sm tw-leading-6 tw-text-slate-600">The patient selects a clinic visit or teleconsultation, picks a slot, and pays when required.</p>
                 </div>
                 <div class="tw-rounded-lg tw-border tw-border-slate-200 tw-bg-slate-50 tw-p-6">
                     <div class="tw-flex tw-h-11 tw-w-11 tw-items-center tw-justify-center tw-rounded-lg tw-bg-amber-600 tw-font-bold tw-text-white">4</div>
-                    <h3 class="tw-mt-5 tw-text-lg tw-font-bold tw-text-slate-950">Only qualified leads book</h3>
-                    <p class="tw-mt-3 tw-text-sm tw-leading-6 tw-text-slate-600">Payment, timing, and booking filters reduce casual enquiries before they reach your staff.</p>
+                    <h3 class="tw-mt-5 tw-text-lg tw-font-bold tw-text-slate-950">Your team receives the booking</h3>
+                    <p class="tw-mt-3 tw-text-sm tw-leading-6 tw-text-slate-600">Staff gets the details needed to follow up, while casual enquiries are filtered before they consume clinic time.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta" aria-labelledby="final-cta-title">
+        <div class="container">
+            <div class="final-cta-card">
+                <div>
+                    <h2 id="final-cta-title">Not sure which setup fits your clinic?</h2>
+                    <p>Tell us how patients currently find and book you. We’ll recommend the simplest Online OPD setup that removes friction without adding unnecessary tools.</p>
+                </div>
+                <a href="https://wa.me/918527183292?text=Hi%2C%20I%20want%20a%20simpler%20way%20for%20patients%20to%20find%20and%20book%20my%20clinic.%20Can%20you%20recommend%20the%20right%20Online%20OPD%20setup%3F" target="_blank" rel="noopener" class="btn wa-btn">
+                    <i class="fab fa-whatsapp"></i> Plan My Online OPD
+                </a>
             </div>
         </div>
     </section>
@@ -1088,7 +1214,6 @@
                     <h3>Our Products</h3>
                     <ul>
                         <li><a href="website-building.html">Website Building</a></li>
-                        <li><a href="online-opd.html">Online OPD</a></li>
                         <li><a href="online-opd.html">Online OPD</a></li>
                         <li><a href="medical-transcription.html">Transcription</a></li>
                         <li><a href="emr.html">EMR Systems</a></li>
@@ -1124,7 +1249,7 @@
                 baseMonthly: 962,
                 weeklyBlogsMonthly: 1962
             };
-            const WHATSAPP_PHONE = '91XXXXXXXXXX';
+            const WHATSAPP_PHONE = '918527183292';
 
             const addonInputs = Array.from(document.querySelectorAll('.quote-addon'));
             const blogInput = document.getElementById('blog-option');
@@ -1143,25 +1268,38 @@
 
             function updateQuote() {
                 const selected = addonInputs.filter((input) => input.checked).map((input) => input.value);
+                const selectedCapabilities = blogInput.checked
+                    ? [...selected, blogInput.value]
+                    : selected;
                 const isBundle = selected.length === addonInputs.length;
                 const setup = isBundle
                     ? PRICING.bundleSetup
                     : PRICING.baseSetup + (selected.length * PRICING.addonSetup);
                 const monthly = PRICING.baseMonthly + (blogInput.checked ? PRICING.weeklyBlogsMonthly : 0);
                 const packageLabel = isBundle ? 'Digital Clinic Bundle' : 'Custom Build';
-                const addonsLabel = selected.length ? selected.join(', ') : 'None selected';
+                const capabilitiesLabel = selectedCapabilities.length
+                    ? selectedCapabilities.join(', ')
+                    : 'Website foundation only';
 
                 packageName.textContent = packageLabel;
-                selectedAddons.textContent = addonsLabel;
+                selectedAddons.innerHTML = selectedCapabilities.length
+                    ? selectedCapabilities.map((name) => `<span class="selected-chip"><i class="fas fa-check"></i>${name}</span>`).join('')
+                    : 'Website foundation only';
                 setupTotal.textContent = formatINR(setup);
                 monthlyTotal.textContent = formatINR(monthly);
                 bundleBadge.classList.toggle('tw-hidden', !isBundle);
 
+                document.querySelectorAll('[data-option-card]').forEach((card) => {
+                    const input = card.querySelector('input[type="checkbox"]');
+                    const actionLabel = card.querySelector('.option-action-label');
+                    card.classList.toggle('is-selected', input.checked);
+                    if (actionLabel) actionLabel.textContent = input.checked ? 'Added' : 'Add';
+                });
+
                 const message = `Hello! I just generated a custom quote on your website. Here are my selected requirements:
 
 *Package:* ${packageLabel}
-*Selected Add-ons:* ${addonsLabel}
-*Weekly Blogs:* ${blogInput.checked ? 'Yes' : 'No'}
+*Selected capabilities:* ${capabilitiesLabel}
 
 *Estimated One-Time Setup:* ${formatINR(setup)}
 *Estimated Monthly Subscription:* ${formatINR(monthly)}
