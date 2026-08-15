@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1e88e5">
+    <title>Build Your Online OPD - MedCortico</title>
+    <link rel="shortcut icon" href="../favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/whatsapp-widget.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --opd-ink: #10233b; --opd-muted: #607087; --opd-line: #dce6f0; --opd-tint: #f5faff; }
+        .onboarding-page { min-height: 100vh; padding: 132px 0 72px; background: radial-gradient(circle at 10% 0%, #dff3ff 0, transparent 27%), radial-gradient(circle at 92% 12%, #ddf9eb 0, transparent 24%), #f8fbff; }
+        .onboarding-shell { max-width: 900px; margin: 0 auto; }
+        .onboarding-intro { text-align: center; margin-bottom: 32px; }
+        .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #09638e; background: #dff2ff; border-radius: 999px; padding: 8px 14px; font-size: .84rem; font-weight: 700; }
+        .onboarding-intro h1 { margin: 16px auto 10px; max-width: 720px; color: var(--opd-ink); font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.16; }
+        .onboarding-intro p { max-width: 620px; margin: 0 auto; color: var(--opd-muted); font-size: 1.03rem; }
+        .onboarding-card { background: #fff; border: 1px solid var(--opd-line); box-shadow: 0 18px 50px rgba(21, 71, 112, .1); border-radius: 20px; overflow: hidden; }
+        .progress-area { padding: 25px 32px 21px; border-bottom: 1px solid var(--opd-line); background: linear-gradient(90deg, #fcfeff, #f4fbff); }
+        .progress-topline { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 11px; color: var(--opd-muted); font-size: .88rem; font-weight: 600; }
+        .progress-topline strong { color: #0873a8; }
+        .progress-track { height: 9px; border-radius: 50px; background: #dbeaf4; overflow: hidden; }
+        .progress-fill { height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, #1e88e5, #12a2bf); transition: width .45s cubic-bezier(.22, 1, .36, 1); }
+        .question-stage { padding: 38px 32px 30px; }
+        .form-step { display: none; animation: stepIn .28s ease; }
+        .form-step.active { display: block; }
+        @keyframes stepIn { from { opacity: .1; transform: translateX(14px); } to { opacity: 1; transform: translateX(0); } }
+        .step-kicker { color: #1e88e5; font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; }
+        .form-step h2 { margin: 5px 0 6px; color: var(--opd-ink); font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.25; }
+        .step-help { color: var(--opd-muted); margin-bottom: 27px; }
+        .field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+        .field { display: flex; flex-direction: column; gap: 7px; }
+        .field.full { grid-column: 1 / -1; }
+        .field label, .choice-label { color: #263e58; font-size: .92rem; font-weight: 700; }
+        .field label span { color: #8290a1; font-size: .8rem; font-weight: 500; }
+        input, textarea, select { width: 100%; border: 1px solid #cbd9e6; border-radius: 10px; background: #fff; color: var(--opd-ink); padding: 12px 13px; font: inherit; font-size: .95rem; outline: none; transition: border-color .2s, box-shadow .2s; }
+        textarea { min-height: 110px; resize: vertical; }
+        input:focus, textarea:focus, select:focus { border-color: #1e88e5; box-shadow: 0 0 0 4px rgba(30, 136, 229, .12); }
+        .choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .choice { position: relative; display: block; cursor: pointer; }
+        .choice input { position: absolute; opacity: 0; pointer-events: none; }
+        .choice span { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 75px; padding: 13px; text-align: center; border: 1px solid #cbd9e6; border-radius: 12px; color: #3f536b; font-size: .92rem; font-weight: 600; transition: .2s; }
+        .choice input:checked + span { border-color: #1688d5; color: #075f95; background: #eaf6ff; box-shadow: inset 0 0 0 1px #1688d5; }
+        .conditional { display: none; margin-top: 18px; padding: 18px; border-radius: 12px; background: var(--opd-tint); border: 1px solid #d8e8f4; }
+        .conditional.visible { display: block; }
+        .doctor-count { max-width: 270px; margin-top: 20px; }
+        .doctor-list { display: grid; gap: 20px; }
+        .doctor-card { padding: 22px; border-radius: 14px; border: 1px solid #d5e1eb; background: #fcfeff; }
+        .doctor-card-title { display: flex; align-items: center; gap: 10px; margin-bottom: 19px; color: var(--opd-ink); font-size: 1.05rem; font-weight: 700; }
+        .doctor-card-title i { display: inline-flex; align-items: center; justify-content: center; width: 31px; height: 31px; color: #fff; border-radius: 50%; background: #1e88e5; font-size: .8rem; }
+        .mode-note { margin: -6px 0 20px; color: #668097; font-size: .86rem; }
+        .step-actions { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-top: 31px; padding-top: 23px; border-top: 1px solid #e5edf3; }
+        .action-right { display: flex; gap: 10px; }
+        .step-actions .btn { margin: 0; padding: 11px 19px; }
+        .back-btn { color: #64748b; background: transparent; font: inherit; font-size: .9rem; border: 0; cursor: pointer; padding: 8px 3px; }
+        .back-btn:hover { color: #1e88e5; }
+        .field.is-missing input, .field.is-missing textarea, .field.is-missing select, .choice-grid.is-missing { border-color: #e5484d; box-shadow: 0 0 0 4px rgba(229, 72, 77, .12); }
+        .choice-grid.is-missing { padding: 7px; border: 1px solid #e5484d; border-radius: 14px; }
+        .finish-panel { padding: 24px; border-radius: 14px; background: linear-gradient(135deg, #ecf8ff, #f0fdf6); border: 1px solid #ccead9; }
+        .finish-panel h3 { color: var(--opd-ink); font-size: 1.25rem; }
+        .finish-panel p { margin-top: 7px; color: var(--opd-muted); font-size: .94rem; }
+        .send-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 21px; }
+        .send-grid .btn { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0; }
+        .btn-whatsapp { background: #25d366; color: #fff; box-shadow: 0 4px 15px rgba(37, 211, 102, .32); }
+        .btn-whatsapp:hover { color: #fff; background: #1fb658; transform: translateY(-2px); }
+        .send-heading { margin-top: 9px; color: #0873a8; font-size: .84rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+        .manual-send { margin-top: 16px; text-align: center; color: #536b82; font-size: .86rem; line-height: 1.55; }
+        .manual-send button { display: inline-flex; align-items: center; gap: 6px; margin: 6px auto 0; padding: 5px 0; color: #075f95; background: transparent; border: 0; border-bottom: 1px dashed #075f95; font: inherit; font-weight: 700; cursor: pointer; }
+        .signup-callout { margin-top: 20px; padding: 25px 24px; border: 0; border-radius: 14px; background: linear-gradient(135deg, #005cb2, #1688d5); box-shadow: 0 12px 25px rgba(0, 92, 178, .2); }
+        .receptionmate-mark { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; color: #dff3ff; font-size: .82rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+        .receptionmate-mark img { width: 39px; height: 39px; object-fit: contain; padding: 3px; border-radius: 9px; background: #fff; }
+        .signup-callout strong { display: block; color: #fff; font-size: 1.18rem; line-height: 1.4; }
+        .signup-callout p { margin: 8px 0 16px; color: #e0f2fe; font-size: .92rem; }
+        .signup-callout a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 8px; background: #fff; color: #005cb2; font-weight: 700; }
+        .quote-callout { display: block; margin-top: 20px; padding: 20px; border-radius: 14px; color: #fff; background: linear-gradient(135deg, #102f61, #0873a8); box-shadow: 0 12px 25px rgba(16, 47, 97, .18); text-align: center; }
+        .quote-callout strong { display: block; font-size: 1.17rem; }
+        .quote-callout span { display: block; margin-top: 4px; color: #d8efff; font-size: .9rem; }
+        .quote-callout em { display: inline-flex; align-items: center; gap: 8px; margin-top: 13px; padding: 9px 14px; border-radius: 8px; color: #075f95; background: #fff; font-style: normal; font-weight: 700; }
+        .missing-modal { position: fixed; z-index: 2000; inset: 0; display: none; align-items: center; justify-content: center; padding: 22px; background: rgba(15, 30, 48, .52); }
+        .missing-modal.open { display: flex; }
+        .missing-modal-box { width: min(100%, 430px); padding: 27px; border-radius: 17px; background: #fff; box-shadow: 0 24px 60px rgba(0, 0, 0, .2); }
+        .missing-modal-box h2 { color: var(--opd-ink); font-size: 1.38rem; line-height: 1.3; }
+        .missing-modal-box p { margin-top: 10px; color: var(--opd-muted); font-size: .94rem; }
+        .missing-modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 23px; }
+        @media (max-width: 640px) { .onboarding-page { padding: 107px 0 45px; } .onboarding-shell { width: 92%; } .onboarding-intro { margin-bottom: 24px; } .progress-area, .question-stage { padding-left: 20px; padding-right: 20px; } .question-stage { padding-top: 28px; } .field-grid, .choice-grid, .send-grid { grid-template-columns: 1fr; } .choice span { min-height: 56px; } .step-actions { align-items: flex-start; flex-direction: column-reverse; } .action-right { width: 100%; justify-content: space-between; } }
+    </style>
+</head>
+
+<body>
+    <header class="glass-header">
+        <div class="container">
+            <a class="logo" href="../index.html"><img src="../Photos/weblogo.png" alt="MedCortico Logo"></a>
+            <nav><ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="products.html" class="active">Products</a></li><li><a href="blogs.html">Resources</a></li><li><a href="contact.html">Contact Us</a></li></ul></nav>
+            <div class="social-icons"><a href="https://www.linkedin.com/company/medcortico" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a><a href="https://x.com/medcortico" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a><a href="https://wa.me/918527183292" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </header>
+
+    <main class="onboarding-page">
+        <div class="container onboarding-shell">
+            <div class="onboarding-intro">
+                <span class="eyebrow"><i class="fas fa-heartbeat"></i> Online OPD onboarding</span>
+                <h1>Let’s build your online OPD.</h1>
+                <p>A few quick details now help us create a clear patient journey for your practice. The more you add, the better we can make your Online OPD.</p>
+            </div>
+
+            <section class="onboarding-card" aria-label="Online OPD setup form">
+                <div class="progress-area">
+                    <div class="progress-topline"><span id="progress-label">Getting to know your practice</span><strong id="progress-value">0% complete</strong></div>
+                    <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" id="progress-fill"></div></div>
+                </div>
+                <form id="opd-form" novalidate>
+                    <div class="question-stage">
+                        <section class="form-step active" data-step="0" data-progress="0" data-label="Your practice basics">
+                            <p class="step-kicker">Step 1 of 5</p><h2>First, tell us about your practice.</h2><p class="step-help">This is what patients will see when they land on your Online OPD.</p>
+                            <div class="field-grid">
+                                <div class="field"><label for="practiceName">Name of your practice / clinic</label><input id="practiceName" name="practiceName" autocomplete="organization" placeholder="e.g. Healing Hands Clinic"></div>
+                                <div class="field"><label for="contactName">Your name</label><input id="contactName" name="contactName" autocomplete="name" placeholder="Dr. or team contact name"></div>
+                                <div class="field"><label for="contactPhone">Contact number <span>(for our team to reach you)</span></label><input id="contactPhone" name="contactPhone" inputmode="tel" autocomplete="tel" placeholder="e.g. +91 98XXXXXXXX"></div>
+                                <div class="field"><label for="contactEmail">Email address</label><input id="contactEmail" name="contactEmail" type="email" autocomplete="email" placeholder="e.g. clinic@email.com"></div>
+                            </div>
+                        </section>
+
+                        <section class="form-step" data-step="1" data-progress="40" data-label="Your online presence">
+                            <p class="step-kicker">Step 2 of 5</p><h2>Where do patients discover you?</h2><p class="step-help">We’ll use this to make the page feel familiar and easy to find.</p>
+                            <p class="choice-label">Do you create content on social media?</p>
+                            <div class="choice-grid" id="social-choice">
+                                <label class="choice"><input type="radio" name="socialContent" value="Yes"><span><i class="fas fa-check"></i> Yes, regularly</span></label>
+                                <label class="choice"><input type="radio" name="socialContent" value="Sometimes"><span><i class="fas fa-clock"></i> Sometimes</span></label>
+                                <label class="choice"><input type="radio" name="socialContent" value="Not currently"><span><i class="fas fa-minus"></i> Not currently</span></label>
+                            </div>
+                            <div class="conditional" id="instagram-field"><div class="field"><label for="instagram">What is your Instagram handle?</label><input id="instagram" name="instagram" placeholder="e.g. @drname"></div></div>
+                            <div class="field-grid" style="margin-top: 18px"><div class="field full"><label for="googleProfile">Google Business Profile link—or what should patients search on Google to find you?</label><input id="googleProfile" name="googleProfile" placeholder="Paste a link, or e.g. “Dr Anjali Sharma Dermatologist, Delhi”"></div></div>
+                        </section>
+
+                        <section class="form-step" data-step="2" data-progress="66" data-label="Appointment preferences">
+                            <p class="step-kicker">Step 3 of 5</p><h2>How should patients book you?</h2><p class="step-help">Choose the consultation types you want to offer. You can change these later.</p>
+                            <p class="choice-label">What appointments are you looking for?</p>
+                            <div class="choice-grid">
+                                <label class="choice"><input type="radio" name="appointmentType" value="Teleconsultations"><span><i class="fas fa-video"></i> Teleconsultations</span></label>
+                                <label class="choice"><input type="radio" name="appointmentType" value="Offline appointments"><span><i class="fas fa-hospital"></i> Offline visits</span></label>
+                                <label class="choice"><input type="radio" name="appointmentType" value="Both online and offline"><span><i class="fas fa-calendar-check"></i> Both</span></label>
+                            </div>
+                            <div class="doctor-count field"><label for="doctorCount">How many doctors need an appointment system in this setup?</label><select id="doctorCount" name="doctorCount"><option value="">Select a number</option><option value="1">Just one doctor</option><option value="2">2 doctors</option><option value="3">3 doctors</option><option value="4">4 doctors</option><option value="5+">5 or more doctors</option></select></div>
+                        </section>
+
+                        <section class="form-step" data-step="3" data-progress="82" data-label="Doctor and schedule details">
+                            <p class="step-kicker">Step 4 of 5</p><h2>Let’s set up your consultation details.</h2><p class="step-help">Add the doctor names, specialties, fees, and timings that should appear for patients. Short notes are perfectly fine.</p>
+                            <div id="doctor-list" class="doctor-list"></div>
+                            <div id="doctor-empty" class="conditional visible">Choose the number of doctors in the previous step and we’ll create the right fields here.</div>
+                        </section>
+
+                        <section class="form-step" data-step="4" data-progress="96" data-label="Almost ready to send">
+                            <p class="step-kicker">Step 5 of 5</p><h2>Anything else we should know?</h2><p class="step-help">Share any services, languages, clinic locations, brand preferences, or links that will help us make the Online OPD more like yours.</p>
+                            <div class="field"><label for="extraInfo">Extra information</label><textarea id="extraInfo" name="extraInfo" placeholder="Add anything useful for your page or booking setup…"></textarea></div>
+                            <div class="finish-panel" style="margin-top: 24px">
+                                <h3>Your Online OPD brief is ready.</h3><p class="send-heading">Choose how to send all your information to us</p>
+                                <p>Pick WhatsApp or email below. We’ll receive every detail you’ve added.</p>
+                                <div class="send-grid"><button id="send-whatsapp" type="button" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Send all on WhatsApp</button><button id="send-email" type="button" class="btn btn-outline"><i class="fas fa-envelope"></i> Send all by email</button></div>
+                                <div class="manual-send">Send manually? <button id="copy-details" type="button"><i class="far fa-copy"></i> Press here to copy all details</button><br>Then paste them in WhatsApp at <strong>8527183292</strong> or email us at <strong>medcortico@gmail.com</strong>.</div>
+                            </div>
+                            <div class="signup-callout"><div class="receptionmate-mark"><img src="../Photos/receptionmate-logo.png" alt="ReceptionMate logo"> ReceptionMate</div><strong>Once you send this, just one step remains: create your ReceptionMate account.</strong><p>It’s still left to complete your setup—create an account to sync appointments and teleconsultations with your Online OPD.</p><a href="https://medcortico-pvt-ltd.github.io/Billing-web/" target="_blank" rel="noopener">Create your ReceptionMate account <i class="fas fa-arrow-up-right-from-square"></i></a></div>
+                            <a href="online-opd.html#quote-builder" class="quote-callout"><strong>But how much will this cost?</strong><span>Calculate your Online OPD estimate here.</span><em>Get your quote <i class="fas fa-arrow-right"></i></em></a>
+                        </section>
+
+                        <div class="step-actions"><div></div><div class="action-right"><button type="button" class="back-btn" id="back-step" hidden><i class="fas fa-arrow-left"></i> Back</button><button type="button" class="btn btn-primary" id="next-step">Next <i class="fas fa-arrow-right"></i></button></div></div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <div class="missing-modal" id="missing-modal" role="dialog" aria-modal="true" aria-labelledby="missing-title">
+        <div class="missing-modal-box"><h2 id="missing-title">A few details need your attention.</h2><p>We’ve highlighted the fields above. The more you add here, the better we can make your Online OPD—but you can move to the next step whenever you’re ready.</p><div class="missing-modal-actions"><button type="button" class="btn btn-outline" id="keep-filling">Keep filling</button><button type="button" class="btn btn-primary" id="continue-anyway">Go to next step</button></div></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const steps = [...document.querySelectorAll('.form-step')];
+            const progressFill = document.getElementById('progress-fill');
+            const progressValue = document.getElementById('progress-value');
+            const progressLabel = document.getElementById('progress-label');
+            const next = document.getElementById('next-step');
+            const back = document.getElementById('back-step');
+            const modal = document.getElementById('missing-modal');
+            let currentStep = 0;
+
+            function showStep(index) {
+                currentStep = index;
+                steps.forEach((step, i) => step.classList.toggle('active', i === index));
+                const step = steps[index];
+                const value = Number(step.dataset.progress);
+                progressFill.style.width = value + '%';
+                progressValue.textContent = value + '% complete';
+                progressLabel.textContent = step.dataset.label;
+                document.querySelector('.progress-track').setAttribute('aria-valuenow', value);
+                back.hidden = index === 0;
+                const isLast = index === steps.length - 1;
+                next.hidden = isLast;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            function advance() { if (currentStep < steps.length - 1) showStep(currentStep + 1); }
+            function markMissingFields() {
+                const activeStep = steps[currentStep];
+                const missing = [];
+                activeStep.querySelectorAll('input:not([type="radio"]), textarea, select').forEach((field) => {
+                    if (!field.value.trim() && field.offsetParent !== null) missing.push(field);
+                });
+                activeStep.querySelectorAll('.choice-grid').forEach((group) => {
+                    const radios = group.querySelectorAll('input[type="radio"]');
+                    if (radios.length && ![...radios].some((radio) => radio.checked)) missing.push(group);
+                });
+                missing.forEach((element) => {
+                    const target = element.classList.contains('choice-grid') ? element : element.closest('.field');
+                    if (target) target.classList.add('is-missing');
+                });
+                return missing;
+            }
+            function clearMissing(event) {
+                const target = event.target.closest('.field, .choice-grid');
+                if (target) target.classList.remove('is-missing');
+            }
+            document.getElementById('opd-form').addEventListener('input', clearMissing);
+            document.getElementById('opd-form').addEventListener('change', clearMissing);
+            next.addEventListener('click', () => {
+                if (markMissingFields().length) modal.classList.add('open');
+                else advance();
+            });
+            back.addEventListener('click', () => showStep(currentStep - 1));
+            document.getElementById('keep-filling').addEventListener('click', () => modal.classList.remove('open'));
+            document.getElementById('continue-anyway').addEventListener('click', () => { modal.classList.remove('open'); advance(); });
+            modal.addEventListener('click', (event) => { if (event.target === modal) modal.classList.remove('open'); });
+
+            const socialInputs = document.querySelectorAll('input[name="socialContent"]');
+            const instagramField = document.getElementById('instagram-field');
+            socialInputs.forEach(input => input.addEventListener('change', () => instagramField.classList.toggle('visible', input.value !== 'Not currently')));
+
+            const doctorCount = document.getElementById('doctorCount');
+            const doctorList = document.getElementById('doctor-list');
+            const doctorEmpty = document.getElementById('doctor-empty');
+            function mode() { return document.querySelector('input[name="appointmentType"]:checked')?.value || ''; }
+            function buildDoctors() {
+                const selected = doctorCount.value;
+                const count = selected === '5+' ? 5 : Number(selected);
+                doctorList.innerHTML = '';
+                doctorEmpty.classList.toggle('visible', !count);
+                if (!count) return;
+                const appointmentMode = mode();
+                const online = appointmentMode === 'Teleconsultations' || appointmentMode === 'Both online and offline';
+                const offline = appointmentMode === 'Offline appointments' || appointmentMode === 'Both online and offline';
+                const isSingleDoctor = count === 1;
+                for (let i = 1; i <= count; i++) {
+                    const card = document.createElement('article');
+                    card.className = 'doctor-card';
+                    const cardTitle = isSingleDoctor ? 'Your consultation details' : `Doctor ${i}`;
+                    card.innerHTML = `<div class="doctor-card-title"><i class="fas fa-user-md"></i> ${cardTitle}</div><p class="mode-note">${appointmentMode ? `Showing fields for: ${appointmentMode}.` : 'Add the consultation details—appointment mode can be decided later.'}</p><div class="field-grid"><div class="field"><label for="doctorName${i}">${isSingleDoctor ? 'Your name' : 'Doctor’s name'}</label><input id="doctorName${i}" name="doctorName${i}" placeholder="e.g. Dr. Aisha Khan"></div><div class="field"><label for="specialization${i}">${isSingleDoctor ? 'Your specialization' : 'Specialization'}</label><input id="specialization${i}" name="specialization${i}" placeholder="e.g. Dermatologist"></div>${online ? `<div class="field"><label for="onlineRate${i}">${isSingleDoctor ? 'Your online consultation rate' : 'Online consultation rate'}</label><input id="onlineRate${i}" name="onlineRate${i}" inputmode="numeric" placeholder="e.g. ₹800"></div><div class="field"><label for="onlineSchedule${i}">${isSingleDoctor ? 'When do you see online patients?' : 'Online consultation schedule'}</label><input id="onlineSchedule${i}" name="onlineSchedule${i}" placeholder="e.g. Mon–Fri, 5–8 PM"></div>` : ''}${offline ? `<div class="field"><label for="offlineRate${i}">${isSingleDoctor ? 'Your offline consultation rate' : 'Offline consultation rate'}</label><input id="offlineRate${i}" name="offlineRate${i}" inputmode="numeric" placeholder="e.g. ₹1,000"></div><div class="field"><label for="offlineSchedule${i}">${isSingleDoctor ? 'When do you see offline patients?' : 'Offline consultation schedule'}</label><input id="offlineSchedule${i}" name="offlineSchedule${i}" placeholder="e.g. Mon–Sat, 10 AM–1 PM"></div>` : ''}${!online && !offline ? `<div class="field full"><label for="consultationInfo${i}">${isSingleDoctor ? 'Your consultation rate and schedule' : 'Consultation rate and schedule'}</label><textarea id="consultationInfo${i}" name="consultationInfo${i}" placeholder="e.g. Online ₹800, Mon–Fri 5–8 PM; Offline ₹1,000, Sat 10 AM–1 PM"></textarea></div>` : ''}</div>`;
+                    doctorList.appendChild(card);
+                }
+            }
+            doctorCount.addEventListener('change', buildDoctors);
+            document.querySelectorAll('input[name="appointmentType"]').forEach(input => input.addEventListener('change', buildDoctors));
+
+            function formMessage() {
+                const data = new FormData(document.getElementById('opd-form'));
+                const value = (key) => (data.get(key) || '').trim();
+                const line = (label, key) => value(key) ? `*${label}:* ${value(key)}` : '';
+                const lines = ['Hello MedCortico! I would like to build my Online OPD.', '', '*Practice details*', line('Practice / clinic', 'practiceName'), line('Contact name', 'contactName'), line('Contact number', 'contactPhone'), line('Email', 'contactEmail'), '', '*Online presence*', line('Creates social content', 'socialContent'), line('Instagram', 'instagram'), line('Google Business Profile / search', 'googleProfile'), '', '*Appointment setup*', line('Appointments needed', 'appointmentType'), line('Doctors needing setup', 'doctorCount')].filter(Boolean);
+                const count = value('doctorCount') === '5+' ? 5 : Number(value('doctorCount'));
+                if (count) { lines.push('', '*Doctor details*'); for (let i = 1; i <= count; i++) { const details = [value(`doctorName${i}`), value(`specialization${i}`), value(`onlineRate${i}`) && `Online: ${value(`onlineRate${i}`)} (${value(`onlineSchedule${i}`) || 'schedule not added'})`, value(`offlineRate${i}`) && `Offline: ${value(`offlineRate${i}`)} (${value(`offlineSchedule${i}`) || 'schedule not added'})`, value(`consultationInfo${i}`)].filter(Boolean); if (details.length) lines.push(`Doctor ${i}: ${details.join(' | ')}`); } }
+                if (value('extraInfo')) lines.push('', '*Extra information*', value('extraInfo'));
+                lines.push('', 'Please help me with the next steps.');
+                return lines.join('\n');
+            }
+            document.getElementById('send-whatsapp').addEventListener('click', () => {
+                window.open(`https://wa.me/918527183292?text=${encodeURIComponent(formMessage())}`, '_blank', 'noopener');
+            });
+            document.getElementById('send-email').addEventListener('click', () => {
+                window.location.href = `mailto:medcortico@gmail.com?subject=${encodeURIComponent('Online OPD setup request')}&body=${encodeURIComponent(formMessage())}`;
+            });
+            document.getElementById('copy-details').addEventListener('click', async (event) => {
+                const button = event.currentTarget;
+                try {
+                    await navigator.clipboard.writeText(formMessage());
+                    button.innerHTML = '<i class="fas fa-check"></i> Details copied';
+                } catch {
+                    const copyArea = document.createElement('textarea');
+                    copyArea.value = formMessage();
+                    document.body.appendChild(copyArea);
+                    copyArea.select();
+                    document.execCommand('copy');
+                    copyArea.remove();
+                    button.innerHTML = '<i class="fas fa-check"></i> Details copied';
+                }
+            });
+            showStep(0);
+        });
+    </script>
+    <script src="../js/main.js"></script>
+    <script src="../js/whatsapp-widget.js"></script>
+</body>
+</html>
