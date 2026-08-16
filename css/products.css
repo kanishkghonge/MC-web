@@ -132,6 +132,42 @@
     transition: transform 0.3s ease;
 }
 
+/* ContentMate product preview */
+.product-showcase-image.contentmate-preview {
+    max-width: 90%;
+    min-height: 330px;
+    padding: 22px;
+    border-radius: 16px;
+    color: #18324b;
+    background: linear-gradient(145deg, #0b2440, #194d73 58%, #2d7b87);
+    box-shadow: 0 20px 40px rgba(16, 62, 98, 0.25);
+    display: block;
+    box-sizing: border-box;
+}
+
+.contentmate-preview-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3px 18px;
+    color: #fff;
+}
+
+.contentmate-brand { font-size: 1.15rem; font-weight: 700; }
+.contentmate-brand i { color: #71e0c2; margin-right: 7px; }
+.contentmate-status { font-size: 0.75rem; padding: 6px 10px; background: rgba(255,255,255,.14); border-radius: 20px; }
+
+.contentmate-preview-body { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.contentmate-column { min-height: 236px; padding: 13px 10px; border-radius: 10px; background: #eaf3f7; }
+.contentmate-testing { background: #f8f0dc; }
+.contentmate-winner { background: #dff4eb; }
+.contentmate-column-title { display: flex; justify-content: space-between; align-items: center; color: #527086; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; margin-bottom: 12px; }
+.contentmate-column-title b, .contentmate-column-title i { color: #168b7a; font-size: .82rem; }
+.contentmate-task { margin-bottom: 9px; padding: 9px 7px; border-radius: 7px; background: #fff; box-shadow: 0 2px 6px rgba(16, 50, 78, .08); }
+.contentmate-task span { display: inline-block; width: 6px; height: 6px; margin-right: 4px; background: #42bdaa; border-radius: 50%; vertical-align: middle; }
+.contentmate-task strong { display: block; font-size: .68rem; line-height: 1.25; }
+.contentmate-task small { display: block; margin-top: 4px; color: #71889a; font-size: .58rem; }
+
 .product-showcase-item:hover .product-showcase-image img {
     transform: translateY(0);
 }
@@ -554,4 +590,4 @@
         font-size: 1.2rem;
         margin-bottom: 12px;
     }
-} 
+}

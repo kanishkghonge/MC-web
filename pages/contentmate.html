@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ContentMate is the social-media content system built for doctors. Generate scripts, organise shoots, test Reels and publish the winning format.">
+    <title>ContentMate — Social Content System for Doctors | MedCortico</title>
+    <link rel="shortcut icon" href="../favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --mate-navy: #0b2944; --mate-teal: #18a88f; --mate-mint: #e4f8f1; --mate-cream: #fff9ef; }
+        .mate-hero { padding: 150px 0 90px; background: radial-gradient(circle at 84% 17%, #2d8d94 0, transparent 29%), linear-gradient(135deg, #09223d, #124d68); color: #fff; overflow: hidden; }
+        .mate-hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 55px; }
+        .mate-eyebrow { display: inline-flex; gap: 8px; align-items: center; padding: 7px 13px; border: 1px solid rgba(153, 240, 215, .45); border-radius: 30px; color: #a9f0d9; font-size: .8rem; font-weight: 600; }
+        .mate-hero h1 { max-width: 650px; margin: 18px 0; color: #fff; font-size: clamp(2.5rem, 5vw, 4.25rem); line-height: 1.1; }
+        .mate-hero p { max-width: 620px; color: #dcecf2; font-size: 1.12rem; line-height: 1.7; }
+        .mate-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+        .mate-btn { display: inline-block; padding: 13px 23px; border-radius: 8px; font-weight: 600; transition: .2s ease; }
+        .mate-btn-primary { background: #82e4c9; color: #0b2944; }
+        .mate-btn-primary:hover { background: #a4f2db; color: #0b2944; transform: translateY(-2px); }
+        .mate-btn-secondary { color: #fff; border: 1px solid rgba(255,255,255,.45); }
+        .mate-btn-secondary:hover { color: #fff; border-color: #fff; }
+        .mate-dashboard { padding: 20px; border: 1px solid rgba(255,255,255,.18); border-radius: 17px; background: rgba(255,255,255,.1); box-shadow: 0 28px 55px rgba(1, 17, 31, .35); backdrop-filter: blur(8px); transform: rotate(2deg); }
+        .mate-dashboard-header { display: flex; align-items: center; justify-content: space-between; padding: 3px 4px 17px; font-size: .85rem; }
+        .mate-dashboard-header strong i { color: #82e4c9; margin-right: 6px; }
+        .mate-dashboard-header span { padding: 5px 9px; border-radius: 30px; background: rgba(255,255,255,.13); font-size: .7rem; }
+        .mate-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .mate-lane { min-height: 245px; padding: 12px 10px; border-radius: 10px; color: #17364b; background: #f3fafb; }
+        .mate-lane:nth-child(2) { background: #fff4dd; } .mate-lane:nth-child(3) { background: #e4f8f1; }
+        .mate-lane-title { display: flex; justify-content: space-between; margin-bottom: 12px; color: #587487; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+        .mate-lane-title b, .mate-lane-title i { color: #15977f; }
+        .mate-card { margin-bottom: 9px; padding: 10px 8px; border-radius: 7px; background: #fff; box-shadow: 0 2px 7px rgba(14, 52, 76, .09); }
+        .mate-card strong { display: block; font-size: .69rem; line-height: 1.25; } .mate-card small { display: block; margin-top: 4px; color: #738b9c; font-size: .58rem; }
+        .mate-dot { display: inline-block; width: 6px; height: 6px; margin-right: 4px; border-radius: 100%; background: #3ac3a6; vertical-align: middle; }
+        .mate-section { padding: 95px 0; }
+        .mate-intro { max-width: 760px; margin: 0 auto 52px; text-align: center; }
+        .mate-kicker { color: var(--mate-teal); font-weight: 700; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; }
+        .mate-intro h2, .mate-workflow h2 { margin: 10px 0 15px; color: var(--mate-navy); font-size: clamp(2rem, 3.2vw, 2.8rem); line-height: 1.25; }
+        .mate-intro p, .mate-workflow > p { color: #5b7180; line-height: 1.7; }
+        .mate-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .mate-feature { padding: 30px; border: 1px solid #deecee; border-radius: 14px; background: #fff; box-shadow: 0 8px 25px rgba(10, 49, 71, .05); }
+        .mate-feature-icon { display: grid; place-items: center; width: 54px; height: 54px; margin-bottom: 20px; border-radius: 14px; color: #fff; background: linear-gradient(135deg, #149b88, #12677b); font-size: 1.35rem; }
+        .mate-feature h3 { margin-bottom: 10px; color: var(--mate-navy); font-size: 1.25rem; }.mate-feature p { color: #607584; font-size: .94rem; line-height: 1.65; }
+        .mate-test { background: var(--mate-cream); }
+        .mate-workflow { display: grid; grid-template-columns: .85fr 1.15fr; gap: 70px; align-items: center; }
+        .mate-steps { display: grid; gap: 16px; }
+        .mate-step { display: grid; grid-template-columns: 45px 1fr; gap: 15px; align-items: start; padding: 19px; border-radius: 12px; background: #fff; border: 1px solid #f0e4cb; }
+        .mate-step-number { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 50%; color: #fff; background: var(--mate-teal); font-weight: 700; }.mate-step h3 { color: var(--mate-navy); font-size: 1rem; margin-bottom: 4px; }.mate-step p { color: #647683; font-size: .88rem; line-height: 1.55; }
+        .mate-note { padding: 25px 28px; border-left: 4px solid var(--mate-teal); border-radius: 0 12px 12px 0; color: #476371; background: #fff; font-size: 1.03rem; line-height: 1.7; }.mate-note strong { color: var(--mate-navy); }
+        .mate-cta { padding: 76px 0; background: linear-gradient(135deg, #0b2944, #12677b); color: #fff; text-align: center; }.mate-cta h2 { color: #fff; font-size: clamp(2rem, 3.5vw, 2.8rem); }.mate-cta p { max-width: 610px; margin: 13px auto 26px; color: #d7e9ed; }
+        footer { padding-top: 60px; }
+        @media (max-width: 900px) { .mate-hero-grid, .mate-workflow { grid-template-columns: 1fr; gap: 38px; }.mate-dashboard { max-width: 590px; width: 100%; margin: auto; transform: none; }.mate-features { grid-template-columns: 1fr; }.mate-hero { padding-top: 125px; } }
+        @media (max-width: 480px) { .mate-hero { padding: 110px 0 60px; }.mate-section { padding: 65px 0; }.mate-board { gap: 6px; }.mate-lane { min-height: 215px; padding: 9px 6px; }.mate-card { padding: 7px 5px; }.mate-card strong { font-size: .6rem; }.mate-card small { font-size: .5rem; }.mate-dashboard { padding: 12px; }.mate-actions .mate-btn { width: 100%; text-align: center; }.mate-feature { padding: 24px; } }
+    </style>
+</head>
+
+<body>
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo"><a href="../index.html"><img src="../Photos/weblogo.png" alt="MedCortico Logo"></a></div>
+            <nav><ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="products.html" class="active">Products</a></li><li><a href="blogs.html">Resources</a></li><li><a href="contact.html">Contact Us</a></li></ul></nav>
+            <div class="social-icons"><a href="https://www.linkedin.com/company/medcortico" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a><a href="https://x.com/medcortico" target="_blank" aria-label="X"><i class="fab fa-twitter"></i></a></div>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </header>
+
+    <main>
+        <section class="mate-hero">
+            <div class="container mate-hero-grid">
+                <div>
+                    <span class="mate-eyebrow"><i class="fas fa-wand-magic-sparkles"></i> ContentMate for doctors</span>
+                    <h1>One clinical insight. Multiple ways to make it work.</h1>
+                    <p>ContentMate is your social-media content system: script ideas, organise filming, schedule posts and track every Reel—without relying on a social-media intern to keep it all moving.</p>
+                    <div class="mate-actions"><a class="mate-btn mate-btn-primary" href="https://contentmate.medcortico.com">Try ContentMate</a><a class="mate-btn mate-btn-secondary" href="#how-it-works">See how it works</a></div>
+                </div>
+                <div class="mate-dashboard" aria-label="ContentMate dashboard preview">
+                    <div class="mate-dashboard-header"><strong><i class="fas fa-wand-magic-sparkles"></i> ContentMate</strong><span>Content plan · Week 24</span></div>
+                    <div class="mate-board">
+                        <div class="mate-lane"><div class="mate-lane-title">To film <b>03</b></div><div class="mate-card"><span class="mate-dot"></span><strong>PCOS: 3 early signs</strong><small>Script ready</small></div><div class="mate-card"><span class="mate-dot"></span><strong>Why sleep affects weight</strong><small>Hook ready</small></div></div>
+                        <div class="mate-lane"><div class="mate-lane-title">Trial Reels <b>02</b></div><div class="mate-card"><span class="mate-dot"></span><strong>Format A: myth hook</strong><small>Publishing today</small></div><div class="mate-card"><span class="mate-dot"></span><strong>Format B: patient story</strong><small>Publishing today</small></div></div>
+                        <div class="mate-lane"><div class="mate-lane-title">Winning format <i class="fas fa-trophy"></i></div><div class="mate-card"><span class="mate-dot"></span><strong>Patient story hook</strong><small>Ready for main Reel</small></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mate-section">
+            <div class="container"><div class="mate-intro"><span class="mate-kicker">A system, not another blank calendar</span><h2>Stay consistent without the chaos</h2><p>Great medical content does not have to depend on memory, scattered notes or an expensive team. ContentMate gives every idea a clear next step—from insight to filmed to posted.</p></div>
+                <div class="mate-features">
+                    <article class="mate-feature"><div class="mate-feature-icon"><i class="fas fa-pen-nib"></i></div><h3>Turn insights into scripts</h3><p>Start with what you hear in clinic. ContentMate helps shape it into patient-friendly hooks, scripts and filming prompts.</p></article>
+                    <article class="mate-feature"><div class="mate-feature-icon"><i class="fas fa-list-check"></i></div><h3>Know what to film next</h3><p>See every idea, script and shoot in one simple workflow, so content never slips through the cracks.</p></article>
+                    <article class="mate-feature"><div class="mate-feature-icon"><i class="fas fa-calendar-days"></i></div><h3>Schedule and track it all</h3><p>Plan your publishing calendar and keep a reliable record of what has gone live and what is still pending.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="mate-section mate-test"><div class="container mate-workflow"><div><span class="mate-kicker">Built for the numbers game</span><h2>Don't guess which Reel deserves your main feed.</h2><p>Even a valuable idea can miss when the opening, delivery or format is wrong. Test the same insight in different packaging first, then put your confidence behind the version that earns attention.</p><div class="mate-note"><strong>ContentMate makes the experiment practical:</strong> compare formats before you commit, so strong clinical ideas get the best chance to perform.</div></div>
+                <div class="mate-steps"><div class="mate-step"><span class="mate-step-number">1</span><div><h3>Create one insight</h3><p>Capture a question, misconception or clinical lesson worth sharing.</p></div></div><div class="mate-step"><span class="mate-step-number">2</span><div><h3>Package it in different formats</h3><p>Generate distinct hooks and scripts for Trial Reels, while keeping the message clinically accurate.</p></div></div><div class="mate-step"><span class="mate-step-number">3</span><div><h3>Compare, choose, then scale</h3><p>Identify the winning format and publish that version on your main Reel with clarity.</p></div></div></div>
+            </div></section>
+
+        <section class="mate-cta"><div class="container"><h2>Make your expertise easier to share.</h2><p>Build a repeatable social content system for your practice, from insight to the Reel that performs.</p><a class="mate-btn mate-btn-primary" href="https://www.medcortico.com/contentmate">Try ContentMate</a></div></section>
+    </main>
+
+    <footer><div class="container"><div class="footer-content"><div class="footer-logo"><a href="../index.html"><img src="../Photos/weblogo.png" alt="MedCortico Logo" style="max-width: 200px; filter: brightness(0) invert(1);"></a><p>Empowering healthcare with innovative technology solutions.</p></div><div class="footer-links"><h3>Quick Links</h3><ul><li><a href="../index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="blogs.html">Resources</a></li><li><a href="contact.html">Contact Us</a></li></ul></div><div class="footer-products"><h3>Our Products</h3><ul><li><a href="online-opd.html">Online OPD</a></li><li><a href="medical-transcription.html">Transcription</a></li><li><a href="emr.html">EMR Systems</a></li><li><a href="contentmate.html">ContentMate</a></li></ul></div><div class="footer-contact"><h3>Contact Us</h3><p><i class="fas fa-envelope"></i> medcortico@gmail.com</p><p><i class="fas fa-phone"></i> +91 8527183292</p></div></div><div class="footer-bottom"><p>&copy; 2023 MedCortico. All rights reserved.</p></div></div></footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>
