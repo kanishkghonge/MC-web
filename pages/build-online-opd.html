@@ -90,6 +90,9 @@
         .missing-modal-box h2 { color: var(--opd-ink); font-size: 1.38rem; line-height: 1.3; }
         .missing-modal-box p { margin-top: 10px; color: var(--opd-muted); font-size: .94rem; }
         .missing-modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 23px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #1e88e5; border-radius: 50%; width: 45px; height: 45px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        .direct-send-box { margin-top: 18px; margin-bottom: 18px; padding: 18px; background: #fff; border: 1px solid #cbd9e6; border-radius: 12px; text-align: center; }
         @media (max-width: 640px) { .onboarding-page { padding: 107px 0 45px; } .onboarding-shell { width: 92%; } .onboarding-intro { margin-bottom: 24px; } .progress-area, .question-stage { padding-left: 20px; padding-right: 20px; } .question-stage { padding-top: 28px; } .field-grid, .choice-grid, .send-grid { grid-template-columns: 1fr; } .choice span { min-height: 56px; } .step-actions { align-items: flex-start; flex-direction: column-reverse; } .action-right { width: 100%; justify-content: space-between; } }
     </style>
 </head>
@@ -162,7 +165,12 @@
                             <p class="step-kicker">Step 5 of 5</p><h2>Anything else we should know?</h2><p class="step-help">Share any services, languages, clinic locations, brand preferences, or links that will help us make the Online OPD more like yours.</p>
                             <div class="field"><label for="extraInfo">Extra information</label><textarea id="extraInfo" name="extraInfo" placeholder="Add anything useful for your page or booking setup…"></textarea></div>
                             <div class="finish-panel" style="margin-top: 24px">
-                                <h3>Your Online OPD brief is ready.</h3><p class="send-heading">Choose how to send all your information to us</p>
+                                <h3>Your Online OPD brief is ready.</h3>
+                                <div class="direct-send-box">
+                                    <button id="send-direct" type="button" class="btn btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; background: linear-gradient(135deg, #1e88e5, #12a2bf); color: white; border: none; box-shadow: 0 4px 15px rgba(30, 136, 229, .24);"><i class="fas fa-paper-plane"></i> Submit Form Directly</button>
+                                    <p style="margin-top: 8px; font-size: 0.85rem; color: var(--opd-muted); margin-bottom: 0;">No redirect required. Send details instantly to our team.</p>
+                                </div>
+                                <p class="send-heading">Or choose alternative send methods</p>
                                 <p>Pick WhatsApp or email below. We’ll receive every detail you’ve added.</p>
                                 <div class="send-grid"><button id="send-whatsapp" type="button" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Send all on WhatsApp</button><button id="send-email" type="button" class="btn btn-outline"><i class="fas fa-envelope"></i> Send all by email</button></div>
                                 <div class="manual-send">Send manually? <button id="copy-details" type="button"><i class="far fa-copy"></i> Press here to copy all details</button><br>Then paste them in WhatsApp at <strong>8527183292</strong> or email us at <strong>medcortico@gmail.com</strong>.</div>
@@ -180,6 +188,33 @@
 
     <div class="missing-modal" id="missing-modal" role="dialog" aria-modal="true" aria-labelledby="missing-title">
         <div class="missing-modal-box"><h2 id="missing-title">A few details need your attention.</h2><p>We’ve highlighted the fields above. The more you add here, the better we can make your Online OPD—but you can move to the next step whenever you’re ready.</p><div class="missing-modal-actions"><button type="button" class="btn btn-outline" id="keep-filling">Keep filling</button><button type="button" class="btn btn-primary" id="continue-anyway">Go to next step</button></div></div>
+    </div>
+
+    <div class="missing-modal" id="submission-modal" role="dialog" aria-modal="true" aria-labelledby="submission-title">
+        <div class="missing-modal-box" style="text-align: center; padding: 36px 27px;">
+            <div id="submission-loading">
+                <div class="spinner"></div>
+                <h2>Submitting your request...</h2>
+                <p style="margin-top: 10px; color: var(--opd-muted);">Please wait while we send your details directly to the MedCortico team.</p>
+            </div>
+            <div id="submission-success" style="display: none;">
+                <div class="success-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: #e6f7ed; color: #2e7d32; border-radius: 50%; font-size: 1.8rem; margin-bottom: 20px;"><i class="fas fa-check-circle"></i></div>
+                <h2 id="submission-title">Brief Submitted!</h2>
+                <p style="margin-top: 10px; color: var(--opd-muted);">We have received your Online OPD details. Our team will review them and reach out to you shortly.</p>
+                <div style="margin-top: 25px;">
+                    <button type="button" class="btn btn-primary" id="close-success-modal" style="width: 100%;">Got it!</button>
+                </div>
+            </div>
+            <div id="submission-error" style="display: none;">
+                <div class="error-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: #fde8e8; color: #c81e1e; border-radius: 50%; font-size: 1.8rem; margin-bottom: 20px;"><i class="fas fa-exclamation-circle"></i></div>
+                <h2>Submission Failed</h2>
+                <p id="error-message" style="margin-top: 10px; color: var(--opd-muted);">Something went wrong while sending your request. Please try again or use the WhatsApp/Email options.</p>
+                <div style="margin-top: 25px; display: flex; gap: 10px;">
+                    <button type="button" class="btn btn-outline" id="close-error-modal" style="width: 100%;">Close</button>
+                    <button type="button" class="btn btn-primary" id="retry-submit" style="width: 100%;">Retry</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -300,6 +335,63 @@
                     button.innerHTML = '<i class="fas fa-check"></i> Details copied';
                 }
             });
+
+            // Splitforms Direct Submit configuration and handlers
+            const SPLITFORMS_ACCESS_KEY = '10cec75a80824f5597c89da9c97116a4';
+            const submissionModal = document.getElementById('submission-modal');
+            const subLoading = document.getElementById('submission-loading');
+            const subSuccess = document.getElementById('submission-success');
+            const subError = document.getElementById('submission-error');
+            const errorMessage = document.getElementById('error-message');
+
+            async function submitForm() {
+                submissionModal.classList.add('open');
+                subLoading.style.display = 'block';
+                subSuccess.style.display = 'none';
+                subError.style.display = 'none';
+
+                const formData = new FormData(document.getElementById('opd-form'));
+                formData.append('access_key', SPLITFORMS_ACCESS_KEY);
+                formData.append('full_brief', formMessage());
+
+                try {
+                    const response = await fetch('https://splitforms.com/api/submit', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        subLoading.style.display = 'none';
+                        subSuccess.style.display = 'block';
+                    } else {
+                        throw new Error(`Submission failed with status: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    subLoading.style.display = 'none';
+                    subError.style.display = 'block';
+                    errorMessage.textContent = error.message || 'Something went wrong while sending your request. Please try again or use the WhatsApp/Email options.';
+                }
+            }
+
+            document.getElementById('send-direct').addEventListener('click', submitForm);
+            document.getElementById('retry-submit').addEventListener('click', submitForm);
+
+            document.getElementById('close-success-modal').addEventListener('click', () => {
+                submissionModal.classList.remove('open');
+            });
+            document.getElementById('close-error-modal').addEventListener('click', () => {
+                submissionModal.classList.remove('open');
+            });
+            submissionModal.addEventListener('click', (event) => {
+                if (event.target === submissionModal && subLoading.style.display === 'none') {
+                    submissionModal.classList.remove('open');
+                }
+            });
+
             showStep(0);
         });
     </script>
