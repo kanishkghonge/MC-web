@@ -194,11 +194,26 @@
                 <p style="margin-top: 10px; color: var(--opd-muted);">Please wait while we send your details directly to the MedCortico team.</p>
             </div>
             <div id="submission-success" style="display: none;">
-                <div class="success-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: #e6f7ed; color: #2e7d32; border-radius: 50%; font-size: 1.8rem; margin-bottom: 20px;"><i class="fas fa-check-circle"></i></div>
-                <h2 id="submission-title">Brief Submitted!</h2>
-                <p style="margin-top: 10px; color: var(--opd-muted);">We have received your Online OPD details. Our team will review them and reach out to you shortly.</p>
-                <div style="margin-top: 25px;">
-                    <button type="button" class="btn btn-primary" id="close-success-modal" style="width: 100%;">Got it!</button>
+                <div id="success-step-1">
+                    <div class="success-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: #e6f7ed; color: #2e7d32; border-radius: 50%; font-size: 1.8rem; margin-bottom: 20px;"><i class="fas fa-check-circle"></i></div>
+                    <h2 id="submission-title">Details shared!</h2>
+                    <p style="margin-top: 10px; color: var(--opd-muted);">We have received your Online OPD brief.</p>
+                    <div style="margin-top: 25px;">
+                        <button type="button" class="btn btn-primary" id="what-next-btn" style="width: 100%;">What next?</button>
+                    </div>
+                </div>
+                <div id="success-step-2" style="display: none;">
+                    <div class="success-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: #e3f2fd; color: #1565c0; border-radius: 50%; font-size: 1.8rem; margin-bottom: 20px;"><i class="fas fa-comment-dots"></i></div>
+                    <h2>We will text you soon</h2>
+                    <p style="margin-top: 10px; color: var(--opd-muted); font-size: 0.95rem; line-height: 1.5;">Till then, make sure to register on our app <strong>ReceptionMate</strong>:</p>
+                    <div style="margin-top: 20px;">
+                        <a href="https://medcortico-pvt-ltd.github.io/Billing-web/" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;">
+                            Sign up on ReceptionMate <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                    <div style="margin-top: 12px;">
+                        <button type="button" class="btn btn-outline" id="close-success-modal" style="width: 100%;">Close</button>
+                    </div>
                 </div>
             </div>
             <div id="submission-error" style="display: none;">
@@ -319,11 +334,17 @@
             const subError = document.getElementById('submission-error');
             const errorMessage = document.getElementById('error-message');
 
+            const successStep1 = document.getElementById('success-step-1');
+            const successStep2 = document.getElementById('success-step-2');
+            const whatNextBtn = document.getElementById('what-next-btn');
+
             async function submitForm() {
                 submissionModal.classList.add('open');
                 subLoading.style.display = 'block';
                 subSuccess.style.display = 'none';
                 subError.style.display = 'none';
+                successStep1.style.display = 'block';
+                successStep2.style.display = 'none';
 
                 const formData = new FormData(document.getElementById('opd-form'));
                 formData.append('access_key', SPLITFORMS_ACCESS_KEY);
@@ -351,6 +372,11 @@
                     errorMessage.textContent = error.message || 'Something went wrong while sending your request. Please try again.';
                 }
             }
+
+            whatNextBtn.addEventListener('click', () => {
+                successStep1.style.display = 'none';
+                successStep2.style.display = 'block';
+            });
 
             document.getElementById('send-direct').addEventListener('click', submitForm);
             document.getElementById('retry-submit').addEventListener('click', submitForm);
