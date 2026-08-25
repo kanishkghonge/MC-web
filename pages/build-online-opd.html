@@ -167,13 +167,9 @@
                             <div class="finish-panel" style="margin-top: 24px">
                                 <h3>Your Online OPD brief is ready.</h3>
                                 <div class="direct-send-box">
-                                    <button id="send-direct" type="button" class="btn btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; background: linear-gradient(135deg, #1e88e5, #12a2bf); color: white; border: none; box-shadow: 0 4px 15px rgba(30, 136, 229, .24);"><i class="fas fa-paper-plane"></i> Submit Form Directly</button>
+                                    <button id="send-direct" type="button" class="btn btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; background: linear-gradient(135deg, #1e88e5, #12a2bf); color: white; border: none; box-shadow: 0 4px 15px rgba(30, 136, 229, .24);"><i class="fas fa-paper-plane"></i> Submit</button>
                                     <p style="margin-top: 8px; font-size: 0.85rem; color: var(--opd-muted); margin-bottom: 0;">No redirect required. Send details instantly to our team.</p>
                                 </div>
-                                <p class="send-heading">Or choose alternative send methods</p>
-                                <p>Pick WhatsApp or email below. We’ll receive every detail you’ve added.</p>
-                                <div class="send-grid"><button id="send-whatsapp" type="button" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Send all on WhatsApp</button><button id="send-email" type="button" class="btn btn-outline"><i class="fas fa-envelope"></i> Send all by email</button></div>
-                                <div class="manual-send">Send manually? <button id="copy-details" type="button"><i class="far fa-copy"></i> Press here to copy all details</button><br>Then paste them in WhatsApp at <strong>8527183292</strong> or email us at <strong>medcortico@gmail.com</strong>.</div>
                             </div>
                             <div class="signup-callout"><div class="receptionmate-mark"><img src="../Photos/receptionmate-logo.png" alt="ReceptionMate logo"> ReceptionMate</div><strong>Once you send this, just one step remains: create your ReceptionMate account.</strong><p>It’s still left to complete your setup—create an account to sync appointments and teleconsultations with your Online OPD.</p><a href="https://medcortico-pvt-ltd.github.io/Billing-web/" target="_blank" rel="noopener">Create your ReceptionMate account <i class="fas fa-arrow-up-right-from-square"></i></a></div>
                             <a href="online-opd.html#quote-builder" class="quote-callout"><strong>But how much will this cost?</strong><span>Calculate your Online OPD estimate here.</span><em>Get your quote <i class="fas fa-arrow-right"></i></em></a>
@@ -208,7 +204,7 @@
             <div id="submission-error" style="display: none;">
                 <div class="error-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: #fde8e8; color: #c81e1e; border-radius: 50%; font-size: 1.8rem; margin-bottom: 20px;"><i class="fas fa-exclamation-circle"></i></div>
                 <h2>Submission Failed</h2>
-                <p id="error-message" style="margin-top: 10px; color: var(--opd-muted);">Something went wrong while sending your request. Please try again or use the WhatsApp/Email options.</p>
+                <p id="error-message" style="margin-top: 10px; color: var(--opd-muted);">Something went wrong while sending your request. Please try again.</p>
                 <div style="margin-top: 25px; display: flex; gap: 10px;">
                     <button type="button" class="btn btn-outline" id="close-error-modal" style="width: 100%;">Close</button>
                     <button type="button" class="btn btn-primary" id="retry-submit" style="width: 100%;">Retry</button>
@@ -314,27 +310,6 @@
                 lines.push('', 'Please help me with the next steps.');
                 return lines.join('\n');
             }
-            document.getElementById('send-whatsapp').addEventListener('click', () => {
-                window.open(`https://wa.me/918527183292?text=${encodeURIComponent(formMessage())}`, '_blank', 'noopener');
-            });
-            document.getElementById('send-email').addEventListener('click', () => {
-                window.location.href = `mailto:medcortico@gmail.com?subject=${encodeURIComponent('Online OPD setup request')}&body=${encodeURIComponent(formMessage())}`;
-            });
-            document.getElementById('copy-details').addEventListener('click', async (event) => {
-                const button = event.currentTarget;
-                try {
-                    await navigator.clipboard.writeText(formMessage());
-                    button.innerHTML = '<i class="fas fa-check"></i> Details copied';
-                } catch {
-                    const copyArea = document.createElement('textarea');
-                    copyArea.value = formMessage();
-                    document.body.appendChild(copyArea);
-                    copyArea.select();
-                    document.execCommand('copy');
-                    copyArea.remove();
-                    button.innerHTML = '<i class="fas fa-check"></i> Details copied';
-                }
-            });
 
             // Splitforms Direct Submit configuration and handlers
             const SPLITFORMS_ACCESS_KEY = '10cec75a80824f5597c89da9c97116a4';
@@ -373,7 +348,7 @@
                     console.error('Error submitting form:', error);
                     subLoading.style.display = 'none';
                     subError.style.display = 'block';
-                    errorMessage.textContent = error.message || 'Something went wrong while sending your request. Please try again or use the WhatsApp/Email options.';
+                    errorMessage.textContent = error.message || 'Something went wrong while sending your request. Please try again.';
                 }
             }
 
