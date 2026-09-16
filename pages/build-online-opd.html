@@ -93,6 +93,10 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #1e88e5; border-radius: 50%; width: 45px; height: 45px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
         .direct-send-box { margin-top: 18px; margin-bottom: 18px; padding: 18px; background: #fff; border: 1px solid #cbd9e6; border-radius: 12px; text-align: center; }
+        .specialty-wrap { position: relative; }
+        .specialty-note { margin-top: 6px; color: #668097; font-size: .78rem; }
+        .site-loading { text-align: center; }
+        .site-loading h2 { margin-top: 18px; }
         @media (max-width: 640px) { .onboarding-page { padding: 107px 0 45px; } .onboarding-shell { width: 92%; } .onboarding-intro { margin-bottom: 24px; } .progress-area, .question-stage { padding-left: 20px; padding-right: 20px; } .question-stage { padding-top: 28px; } .field-grid, .choice-grid, .send-grid { grid-template-columns: 1fr; } .choice span { min-height: 56px; } .step-actions { align-items: flex-start; flex-direction: column-reverse; } .action-right { width: 100%; justify-content: space-between; } }
     </style>
 </head>
@@ -112,7 +116,6 @@
             <div class="onboarding-intro">
                 <span class="eyebrow"><i class="fas fa-heartbeat"></i> Online OPD onboarding</span>
                 <h1>Let’s build your online OPD.</h1>
-                <p>A few quick details now help us create a clear patient journey for your practice. The more you add, the better we can make your Online OPD.</p>
             </div>
 
             <section class="onboarding-card" aria-label="Online OPD setup form">
@@ -165,14 +168,10 @@
                             <p class="step-kicker">Step 5 of 5</p><h2>Anything else we should know?</h2><p class="step-help">Share any services, languages, clinic locations, brand preferences, or links that will help us make the Online OPD more like yours.</p>
                             <div class="field"><label for="extraInfo">Extra information</label><textarea id="extraInfo" name="extraInfo" placeholder="Add anything useful for your page or booking setup…"></textarea></div>
                             <div class="finish-panel" style="margin-top: 24px">
-                                <h3>Your Online OPD brief is ready.</h3>
                                 <div class="direct-send-box">
-                                    <button id="send-direct" type="button" class="btn btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; background: linear-gradient(135deg, #1e88e5, #12a2bf); color: white; border: none; box-shadow: 0 4px 15px rgba(30, 136, 229, .24);"><i class="fas fa-paper-plane"></i> Submit</button>
-                                    <p style="margin-top: 8px; font-size: 0.85rem; color: var(--opd-muted); margin-bottom: 0;">No redirect required. Send details instantly to our team.</p>
+                                    <button id="send-direct" type="button" class="btn btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; background: linear-gradient(135deg, #1e88e5, #12a2bf); color: white; border: none; box-shadow: 0 4px 15px rgba(30, 136, 229, .24);"><i class="fas fa-wand-magic-sparkles"></i> Preview your Online OPD</button>
                                 </div>
                             </div>
-                            <div class="signup-callout"><div class="receptionmate-mark"><img src="../Photos/receptionmate-logo.png" alt="ReceptionMate logo"> ReceptionMate</div><strong>Once you send this, just one step remains: create your ReceptionMate account.</strong><p>It’s still left to complete your setup—create an account to sync appointments and teleconsultations with your Online OPD.</p><a href="https://medcortico-pvt-ltd.github.io/Billing-web/" target="_blank" rel="noopener">Create your ReceptionMate account <i class="fas fa-arrow-up-right-from-square"></i></a></div>
-                            <a href="online-opd.html#quote-builder" class="quote-callout"><strong>But how much will this cost?</strong><span>Calculate your Online OPD estimate here.</span><em>Get your quote <i class="fas fa-arrow-right"></i></em></a>
                         </section>
 
                         <div class="step-actions"><div></div><div class="action-right"><button type="button" class="back-btn" id="back-step" hidden><i class="fas fa-arrow-left"></i> Back</button><button type="button" class="btn btn-primary" id="next-step">Next <i class="fas fa-arrow-right"></i></button></div></div>
@@ -190,8 +189,8 @@
         <div class="missing-modal-box" style="text-align: center; padding: 36px 27px;">
             <div id="submission-loading">
                 <div class="spinner"></div>
-                <h2>Submitting your request...</h2>
-                <p style="margin-top: 10px; color: var(--opd-muted);">Please wait while we send your details directly to the MedCortico team.</p>
+                <h2>Crafting your Online OPD…</h2>
+                <p style="margin-top: 10px; color: var(--opd-muted);">This is the first draft of your NMC-compliant Online OPD. You can make any and all edits you would like. Here you go…</p>
             </div>
             <div id="submission-success" style="display: none;">
                 <div id="success-step-1">
@@ -292,6 +291,11 @@
             const doctorCount = document.getElementById('doctorCount');
             const doctorList = document.getElementById('doctor-list');
             const doctorEmpty = document.getElementById('doctor-empty');
+            const specialties = ['General Physician', 'Internal Medicine', 'Family Medicine', 'Emergency Medicine', 'Geriatric Medicine', 'Cardiologist', 'Dermatologist', 'Aesthetic Medicine', 'Cosmetic Dermatologist', 'Gynaecologist', 'Obstetrician & Gynaecologist', 'Fertility Specialist', 'Paediatrician', 'Pediatrician', 'Neonatologist', 'Orthopaedic Surgeon', 'Sports Medicine', 'Neurologist', 'Neurosurgeon', 'ENT Specialist', 'Ophthalmologist', 'Psychiatrist', 'Clinical Psychologist', 'Pulmonologist', 'Gastroenterologist', 'Hepatologist', 'Endocrinologist', 'Nephrologist', 'Urologist', 'Rheumatologist', 'Infectious Disease Specialist', 'Oncologist', 'Haematologist', 'Radiologist', 'Pathologist', 'Anaesthesiologist', 'General Surgeon', 'Plastic Surgeon', 'Vascular Surgeon', 'Physiotherapist', 'Dietitian & Nutritionist', 'Dentist', 'Orthodontist', 'Endodontist', 'Periodontist', 'Prosthodontist', 'Oral & Maxillofacial Surgeon', 'Paediatric Dentist', 'Pediatric Dentist', 'Oral Medicine Specialist', 'Ayurvedic Physician', 'Homeopathic Physician'];
+            const specialtyList = document.createElement('datalist');
+            specialtyList.id = 'specialty-suggestions';
+            specialtyList.innerHTML = specialties.map(specialty => `<option value="${specialty}"></option>`).join('');
+            document.body.appendChild(specialtyList);
             function mode() { return document.querySelector('input[name="appointmentType"]:checked')?.value || ''; }
             function buildDoctors() {
                 const selected = doctorCount.value;
@@ -308,6 +312,8 @@
                     card.className = 'doctor-card';
                     const cardTitle = isSingleDoctor ? 'Your consultation details' : `Doctor ${i}`;
                     card.innerHTML = `<div class="doctor-card-title"><i class="fas fa-user-md"></i> ${cardTitle}</div><p class="mode-note">${appointmentMode ? `Showing fields for: ${appointmentMode}.` : 'Add the consultation details—appointment mode can be decided later.'}</p><div class="field-grid"><div class="field"><label for="doctorName${i}">${isSingleDoctor ? 'Your name' : 'Doctor’s name'}</label><input id="doctorName${i}" name="doctorName${i}" placeholder="e.g. Dr. Aisha Khan"></div><div class="field"><label for="specialization${i}">${isSingleDoctor ? 'Your specialization' : 'Specialization'}</label><input id="specialization${i}" name="specialization${i}" placeholder="e.g. Dermatologist"></div>${online ? `<div class="field"><label for="onlineRate${i}">${isSingleDoctor ? 'Your online consultation rate' : 'Online consultation rate'}</label><input id="onlineRate${i}" name="onlineRate${i}" inputmode="numeric" placeholder="e.g. ₹800"></div><div class="field"><label for="onlineSchedule${i}">${isSingleDoctor ? 'When do you see online patients?' : 'Online consultation schedule'}</label><input id="onlineSchedule${i}" name="onlineSchedule${i}" placeholder="e.g. Mon–Fri, 5–8 PM"></div>` : ''}${offline ? `<div class="field"><label for="offlineRate${i}">${isSingleDoctor ? 'Your offline consultation rate' : 'Offline consultation rate'}</label><input id="offlineRate${i}" name="offlineRate${i}" inputmode="numeric" placeholder="e.g. ₹1,000"></div><div class="field"><label for="offlineSchedule${i}">${isSingleDoctor ? 'When do you see offline patients?' : 'Offline consultation schedule'}</label><input id="offlineSchedule${i}" name="offlineSchedule${i}" placeholder="e.g. Mon–Sat, 10 AM–1 PM"></div>` : ''}${!online && !offline ? `<div class="field full"><label for="consultationInfo${i}">${isSingleDoctor ? 'Your consultation rate and schedule' : 'Consultation rate and schedule'}</label><textarea id="consultationInfo${i}" name="consultationInfo${i}" placeholder="e.g. Online ₹800, Mon–Fri 5–8 PM; Offline ₹1,000, Sat 10 AM–1 PM"></textarea></div>` : ''}</div>`;
+                    const specialtyInput = card.querySelector(`[name="specialization${i}"]`);
+                    if (specialtyInput) { specialtyInput.setAttribute('list', 'specialty-suggestions'); specialtyInput.setAttribute('autocomplete', 'off'); }
                     doctorList.appendChild(card);
                 }
             }
@@ -339,6 +345,7 @@
             const whatNextBtn = document.getElementById('what-next-btn');
 
             async function submitForm() {
+                const startedAt = Date.now();
                 submissionModal.classList.add('open');
                 subLoading.style.display = 'block';
                 subSuccess.style.display = 'none';
@@ -360,8 +367,11 @@
                     });
 
                     if (response.ok) {
-                        subLoading.style.display = 'none';
-                        subSuccess.style.display = 'block';
+                        const brief = Object.fromEntries(formData.entries());
+                        brief.specialties = Array.from({ length: brief.doctorCount === '5+' ? 5 : Number(brief.doctorCount) || 0 }, (_, index) => brief[`specialization${index + 1}`]).filter(Boolean);
+                        localStorage.setItem('medcortico-opd-preview', JSON.stringify(brief));
+                        const remaining = Math.max(0, 6000 - (Date.now() - startedAt));
+                        setTimeout(() => { window.location.href = 'generated-opd-preview.html'; }, remaining);
                     } else {
                         throw new Error(`Submission failed with status: ${response.status}`);
                     }
