@@ -174,7 +174,7 @@
                             </div>
                         </section>
 
-                        <div class="step-actions"><div></div><div class="action-right"><button type="button" class="back-btn" id="back-step" hidden><i class="fas fa-arrow-left"></i> Back</button><button type="button" class="btn btn-primary" id="next-step">Next <i class="fas fa-arrow-right"></i></button></div></div>
+                        <div class="step-actions" id="step-actions"><div></div><div class="action-right"><button type="button" class="back-btn" id="back-step" hidden><i class="fas fa-arrow-left"></i> Back</button><button type="button" class="btn btn-primary" id="next-step">Next <i class="fas fa-arrow-right"></i></button></div></div>
                     </div>
                 </form>
             </section>
@@ -235,6 +235,7 @@
             const progressLabel = document.getElementById('progress-label');
             const next = document.getElementById('next-step');
             const back = document.getElementById('back-step');
+            const stepActions = document.getElementById('step-actions');
             const modal = document.getElementById('missing-modal');
             let currentStep = 0;
 
@@ -250,6 +251,7 @@
                 back.hidden = index === 0;
                 const isLast = index === steps.length - 1;
                 next.hidden = isLast;
+                stepActions.hidden = isLast;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
             function advance() { if (currentStep < steps.length - 1) showStep(currentStep + 1); }
