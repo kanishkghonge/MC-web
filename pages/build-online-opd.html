@@ -98,6 +98,14 @@
         .specialty-note { margin-top: 6px; color: #668097; font-size: .78rem; }
         .site-loading { text-align: center; }
         .site-loading h2 { margin-top: 18px; }
+        .fancy-loader { padding: 20px; }
+        .loader-icon { display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: linear-gradient(135deg, #e3f2fd, #e1f5fe); border-radius: 50%; font-size: 2rem; color: #1e88e5; margin-bottom: 24px; animation: loaderPulse 2s ease-in-out infinite; }
+        @keyframes loaderPulse { 0%, 100% { transform: scale(1); box-shadow: 0 8px 25px rgba(30, 136, 229, 0.2); } 50% { transform: scale(1.05); box-shadow: 0 12px 35px rgba(30, 136, 229, 0.35); } }
+        .fancy-progress-bar { width: 100%; height: 8px; background: #e3f2fd; border-radius: 999px; overflow: hidden; margin: 20px 0 0; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); }
+        .fancy-progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, #1e88e5, #12a2bf, #1e88e5); background-size: 200% 100%; border-radius: 999px; transition: width 0.3s ease; animation: shimmer 2s linear infinite; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .custom-specialty-input { border-color: #12a2bf !important; }
+        .custom-specialty-input:focus { border-color: #1e88e5 !important; box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.15) !important; }
         @media (max-width: 640px) { .onboarding-page { padding: 107px 0 45px; } .onboarding-shell { width: 92%; } .onboarding-intro { margin-bottom: 24px; } .progress-area, .question-stage { padding-left: 20px; padding-right: 20px; } .question-stage { padding-top: 28px; } .field-grid, .choice-grid, .send-grid { grid-template-columns: 1fr; } .choice span { min-height: 56px; } .step-actions { align-items: flex-start; flex-direction: column-reverse; } .action-right { width: 100%; justify-content: space-between; } select { min-height: 52px; font-size: 16px; } }
     </style>
 </head>
@@ -294,7 +302,7 @@
             const doctorCount = document.getElementById('doctorCount');
             const doctorList = document.getElementById('doctor-list');
             const doctorEmpty = document.getElementById('doctor-empty');
-            const specialties = ['General Physician', 'Internal Medicine', 'Family Medicine', 'Emergency Medicine', 'Geriatric Medicine', 'Cardiologist', 'Dermatologist', 'Aesthetic Medicine', 'Cosmetic Dermatologist', 'Gynaecologist', 'Obstetrician & Gynaecologist', 'Fertility Specialist', 'Paediatrician', 'Pediatrician', 'Neonatologist', 'Orthopaedic Surgeon', 'Sports Medicine', 'Neurologist', 'Neurosurgeon', 'ENT Specialist', 'Ophthalmologist', 'Psychiatrist', 'Clinical Psychologist', 'Pulmonologist', 'Gastroenterologist', 'Hepatologist', 'Endocrinologist', 'Nephrologist', 'Urologist', 'Rheumatologist', 'Infectious Disease Specialist', 'Oncologist', 'Haematologist', 'Radiologist', 'Pathologist', 'Anaesthesiologist', 'General Surgeon', 'Plastic Surgeon', 'Vascular Surgeon', 'Physiotherapist', 'Dietitian & Nutritionist', 'Dentist', 'Orthodontist', 'Endodontist', 'Periodontist', 'Prosthodontist', 'Oral & Maxillofacial Surgeon', 'Paediatric Dentist', 'Pediatric Dentist', 'Oral Medicine Specialist', 'Ayurvedic Physician', 'Homeopathic Physician'];
+            const specialties = ['Type your own...', 'Aesthetic Medicine', 'Anaesthesiologist', 'Ayurvedic Physician', 'Cardiologist', 'Clinical Psychologist', 'Cosmetic Dermatologist', 'Dentist', 'Dermatologist', 'Dietitian & Nutritionist', 'Emergency Medicine', 'Endocrinologist', 'Endodontist', 'ENT Specialist', 'Family Medicine', 'Fertility Specialist', 'Gastroenterologist', 'General Physician', 'General Surgeon', 'Geriatric Medicine', 'Gynaecologist', 'Haematologist', 'Hepatologist', 'Homeopathic Physician', 'Infectious Disease Specialist', 'Internal Medicine', 'Neonatologist', 'Nephrologist', 'Neurologist', 'Neurosurgeon', 'Obstetrician & Gynaecologist', 'Oncologist', 'Ophthalmologist', 'Oral & Maxillofacial Surgeon', 'Oral Medicine Specialist', 'Orthodontist', 'Orthopaedic Surgeon', 'Paediatrician', 'Paediatric Dentist', 'Pathologist', 'Pediatric Dentist', 'Pediatrician', 'Periodontist', 'Physiotherapist', 'Plastic Surgeon', 'Prosthodontist', 'Psychiatrist', 'Pulmonologist', 'Radiologist', 'Rheumatologist', 'Sports Medicine', 'Urologist', 'Vascular Surgeon'];
             function mode() { return document.querySelector('input[name="appointmentType"]:checked')?.value || ''; }
             function buildDoctors() {
                 const selected = doctorCount.value;
@@ -324,7 +332,22 @@
                 const line = (label, key) => value(key) ? `*${label}:* ${value(key)}` : '';
                 const lines = ['Hello MedCortico! I would like to build my Online OPD.', '', '*Practice details*', line('Practice / clinic', 'practiceName'), line('Contact name', 'contactName'), line('Contact number', 'contactPhone'), line('Email', 'contactEmail'), '', '*Online presence*', line('Creates social content', 'socialContent'), line('Instagram', 'instagram'), line('Google Business Profile / search', 'googleProfile'), '', '*Appointment setup*', line('Appointments needed', 'appointmentType'), line('Doctors needing setup', 'doctorCount')].filter(Boolean);
                 const count = value('doctorCount') === '5+' ? 5 : Number(value('doctorCount'));
-                if (count) { lines.push('', '*Doctor details*'); for (let i = 1; i <= count; i++) { const details = [value(`doctorName${i}`), value(`specialization${i}`), value(`onlineRate${i}`) && `Online: ${value(`onlineRate${i}`)} (${value(`onlineSchedule${i}`) || 'schedule not added'})`, value(`offlineRate${i}`) && `Offline: ${value(`offlineRate${i}`)} (${value(`offlineSchedule${i}`) || 'schedule not added'})`, value(`consultationInfo${i}`)].filter(Boolean); if (details.length) lines.push(`Doctor ${i}: ${details.join(' | ')}`); } }
+                if (count) { 
+                    lines.push('', '*Doctor details*'); 
+                    for (let i = 1; i <= count; i++) { 
+                        const specializationSelect = document.getElementById(`specialization${i}`);
+                        const customSpecialty = document.getElementById(`customSpecialty${i}`);
+                        let specialty = value(`specialization${i}`);
+                        
+                        // Use custom specialty if "Type your own..." was selected
+                        if (specialty === 'Type your own...' && customSpecialty && customSpecialty.value) {
+                            specialty = customSpecialty.value;
+                        }
+                        
+                        const details = [value(`doctorName${i}`), specialty, value(`onlineRate${i}`) && `Online: ${value(`onlineRate${i}`)} (${value(`onlineSchedule${i}`) || 'schedule not added'})`, value(`offlineRate${i}`) && `Offline: ${value(`offlineRate${i}`)} (${value(`offlineSchedule${i}`) || 'schedule not added'})`, value(`consultationInfo${i}`)].filter(Boolean); 
+                        if (details.length) lines.push(`Doctor ${i}: ${details.join(' | ')}`); 
+                    } 
+                }
                 if (value('extraInfo')) lines.push('', '*Extra information*', value('extraInfo'));
                 lines.push('', 'Please help me with the next steps.');
                 return lines.join('\n');
@@ -351,7 +374,111 @@
                 successStep1.style.display = 'block';
                 successStep2.style.display = 'none';
 
+                // Get doctor's name for personalization
                 const formData = new FormData(document.getElementById('opd-form'));
+                const doctorName = formData.get('doctorName1') || formData.get('contactName') || 'Doctor';
+
+                // Create fancy loading animation
+                subLoading.innerHTML = `
+                    <div class="fancy-loader">
+                        <div class="loader-icon">
+                            <i class="fas fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h2 id="loading-message" style="font-size: 1.5rem; font-weight: 700; margin: 20px 0 8px;">Building your NMC-compliant Online OPD...</h2>
+                        <p id="loading-subtitle" style="color: var(--opd-muted); font-size: 1rem; margin: 0;">Setting up your digital practice</p>
+                        <div class="fancy-progress-bar">
+                            <div class="fancy-progress-fill" id="fancy-progress"></div>
+                        </div>
+                        <p id="loading-percentage" style="margin-top: 12px; color: #1e88e5; font-weight: 700; font-size: 1rem;">0%</p>
+                    </div>
+                `;
+
+                // Animate messages and progress - 15 seconds total
+                const messages = [
+                    { text: 'Building your NMC-compliant Online OPD...', subtitle: 'Setting up your digital practice', time: 5000, progress: 35 },
+                    { text: 'Almost done...', subtitle: 'This is your first draft, you can make any changes to it later', time: 6000, progress: 75 },
+                    { text: 'Adding final touches...', subtitle: 'Personalizing your experience', time: 2000, progress: 95 },
+                    { text: `Welcome to your OPD, Dr. ${doctorName.replace(/^Dr\.?\s*/i, '')}!`, subtitle: 'Opening your preview...', time: 2000, progress: 100 }
+                ];
+
+                let currentMessage = 0;
+                const messageEl = document.getElementById('loading-message');
+                const subtitleEl = document.getElementById('loading-subtitle');
+                const progressEl = document.getElementById('fancy-progress');
+                const percentEl = document.getElementById('loading-percentage');
+                const loaderIcon = document.querySelector('.loader-icon');
+
+                function animateProgress(targetProgress, duration) {
+                    const start = parseFloat(progressEl.style.width) || 0;
+                    const startTime = Date.now();
+                    
+                    function update() {
+                        const elapsed = Date.now() - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const currentProgress = start + (targetProgress - start) * progress;
+                        
+                        progressEl.style.width = currentProgress + '%';
+                        percentEl.textContent = Math.round(currentProgress) + '%';
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(update);
+                        }
+                    }
+                    
+                    requestAnimationFrame(update);
+                }
+
+                function showNextMessage() {
+                    if (currentMessage >= messages.length) return;
+                    
+                    const msg = messages[currentMessage];
+                    
+                    // Add fade transition
+                    messageEl.style.opacity = '0';
+                    subtitleEl.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        messageEl.textContent = msg.text;
+                        subtitleEl.textContent = msg.subtitle;
+                        messageEl.style.opacity = '1';
+                        subtitleEl.style.opacity = '1';
+                        
+                        // Special animation for final message
+                        if (currentMessage === messages.length - 1) {
+                            loaderIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
+                            loaderIcon.style.background = 'linear-gradient(135deg, #d4edda, #c3e6cb)';
+                            loaderIcon.style.color = '#155724';
+                            messageEl.style.color = '#155724';
+                            messageEl.style.fontSize = '1.7rem';
+                        }
+                    }, 200);
+                    
+                    animateProgress(msg.progress, msg.time);
+                    
+                    currentMessage++;
+                    if (currentMessage < messages.length) {
+                        setTimeout(showNextMessage, msg.time);
+                    }
+                }
+
+                // Add CSS transitions
+                messageEl.style.transition = 'opacity 0.3s ease';
+                subtitleEl.style.transition = 'opacity 0.3s ease';
+
+                showNextMessage();
+
+                // Handle custom specialty inputs
+                const doctorCountVal = formData.get('doctorCount');
+                const count = doctorCountVal === '5+' ? 5 : Number(doctorCountVal) || 0;
+                for (let i = 1; i <= count; i++) {
+                    const specializationSelect = document.getElementById(`specialization${i}`);
+                    const customSpecialty = document.getElementById(`customSpecialty${i}`);
+                    
+                    if (specializationSelect && specializationSelect.value === 'Type your own...' && customSpecialty && customSpecialty.value) {
+                        formData.set(`specialization${i}`, customSpecialty.value);
+                    }
+                }
+                
                 formData.append('access_key', SPLITFORMS_ACCESS_KEY);
                 formData.append('full_brief', formMessage());
 
@@ -368,7 +495,7 @@
                         const brief = Object.fromEntries(formData.entries());
                         brief.specialties = Array.from({ length: brief.doctorCount === '5+' ? 5 : Number(brief.doctorCount) || 0 }, (_, index) => brief[`specialization${index + 1}`]).filter(Boolean);
                         localStorage.setItem('medcortico-opd-preview', JSON.stringify(brief));
-                        const remaining = Math.max(0, 6000 - (Date.now() - startedAt));
+                        const remaining = Math.max(0, 15000 - (Date.now() - startedAt));
                         setTimeout(() => { window.location.href = 'generated-opd-preview.html'; }, remaining);
                     } else {
                         throw new Error(`Submission failed with status: ${response.status}`);
@@ -406,5 +533,59 @@
     </script>
     <script src="../js/main.js"></script>
     <script src="../js/whatsapp-widget.js"></script>
+    <script>
+    // Add custom specialty field functionality
+    document.addEventListener('DOMContentLoaded', () => {
+        // Watch for changes in the doctor list
+        const doctorList = document.getElementById('doctor-list');
+        if (doctorList) {
+            const observer = new MutationObserver(() => {
+                // Find all specialty dropdowns
+                document.querySelectorAll('select[id^="specialization"]').forEach(select => {
+                    if (!select.dataset.listenerAdded) {
+                        select.dataset.listenerAdded = 'true';
+                        
+                        // Get the index from the id
+                        const index = select.id.replace('specialization', '');
+                        
+                        // Check if custom input already exists
+                        let customInput = document.getElementById(`customSpecialty${index}`);
+                        
+                        // If not, create it
+                        if (!customInput) {
+                            customInput = document.createElement('input');
+                            customInput.type = 'text';
+                            customInput.id = `customSpecialty${index}`;
+                            customInput.name = `customSpecialty${index}`;
+                            customInput.placeholder = 'Enter your specialty...';
+                            customInput.className = 'custom-specialty-input';
+                            customInput.style.display = 'none';
+                            customInput.style.marginTop = '10px';
+                            select.parentElement.appendChild(customInput);
+                        }
+                        
+                        // Add change listener
+                        select.addEventListener('change', function() {
+                            const customInput = document.getElementById(`customSpecialty${index}`);
+                            if (this.value === 'Type your own...') {
+                                customInput.style.display = 'block';
+                                customInput.required = true;
+                                setTimeout(() => customInput.focus(), 100);
+                                this.required = false;
+                            } else {
+                                customInput.style.display = 'none';
+                                customInput.required = false;
+                                customInput.value = '';
+                                this.required = true;
+                            }
+                        });
+                    }
+                });
+            });
+            
+            observer.observe(doctorList, { childList: true, subtree: true });
+        }
+    });
+    </script>
 </body>
 </html>

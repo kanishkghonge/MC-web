@@ -875,3 +875,326 @@ const tutorialPopup=$('tutorial-popup'),tutIcon=$('tut-icon'),tutTitle=$('tut-ti
     cursor: grabbing !important;
 }
 </style>
+
+<!-- USE ACTUAL DATA FROM FORM (NO MOCK DATA) -->
+<script>
+(() => {
+    // Simply ensure data is available - no mock data
+    const data = JSON.parse(localStorage.getItem('medcortico-opd-preview') || '{}');
+    
+    // Store for easy access
+    window.opdFormData = data;
+    
+    // Log to console so user can see what data is available
+    console.log('Online OPD Data:', data);
+})();
+</script>
+
+<!-- POPULATE BOOKING INTERFACE WITH USER'S ACTUAL DATA -->
+<script>
+(() => {
+    // Wait a bit for other scripts to load
+    setTimeout(() => {
+        const data = JSON.parse(localStorage.getItem('medcortico-opd-preview') || '{}');
+        
+        // Only proceed if we have actual data
+        if (!data.doctorCount) {
+            console.log('No doctor data found. Please fill the Online OPD form first.');
+            return;
+        }
+        
+        const count = data.doctorCount === '5+' ? 5 : Number(data.doctorCount) || 0;
+        const slots = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '5:00 PM', '5:30 PM', '6:00 PM', '6:30 PM'];
+        
+        // Build appointments array from actual user data
+        const appointments = [];
+        for (let i = 1; i <= count; i++) {
+            const name = data['doctorName' + i];
+            const spec = data['specialization' + i];
+            
+            // Skip if no doctor name
+            if (!name) continue;
+            
+            [
+                ['Online consultation', data['onlineRate' + i], data['onlineSchedule' + i]],
+                ['Clinic visit', data['offlineRate' + i], data['offlineSchedule' + i]]
+            ].filter(x => x[1]).forEach(x => {
+                appointments.push({
+                    name: name,
+                    spec: spec,
+                    mode: x[0],
+                    rate: x[1],
+                    time: x[2]
+                });
+            });
+        }
+        
+        // Check if we have appointments
+        if (appointments.length === 0) {
+            console.log('No appointment data available. Please fill consultation details in the form.');
+            const modeOptions = document.getElementById('mode-options');
+            if (modeOptions) {
+                modeOptions.innerHTML = '<p style="color: #607582; padding: 20px;">Consultation details will appear here once you complete the Online OPD form.</p>';
+            }
+            return;
+        }
+        
+        // Populate mode options
+        const modeOptions = document.getElementById('mode-options');
+        if (modeOptions && !modeOptions.hasChildNodes()) {
+            const flowAppointments = appointments.map((a, i) => ({
+                ...a,
+                id: i + 1,
+                mode: a.mode === 'Online consultation' ? 'Online Video Consultation' : a.mode === 'Clinic visit' ? 'In-Person Clinic Visit' : a.mode
+            }));
+            
+            const flowModes = [...new Set(flowAppointments.map(a => a.mode))];
+            
+            modeOptions.innerHTML = flowModes.map(mode => `
+                <button class="flow-option" data-mode="${mode}">
+                    <i class="fa-solid ${mode.includes('Video') ? 'fa-video' : 'fa-house-chimney-medical'}"></i>
+                    <strong>${mode}</strong>
+                    <small>Choose this consultation type to continue</small>
+                </button>
+            `).join('') || '<p>Consultation details will be added shortly.</p>';
+            
+            // Re-attach event handlers for booking flow
+            const doctorOptions = document.getElementById('doctor-options');
+            const doctorStep = document.getElementById('doctor-step');
+            const dateStep = document.getElementById('date-step');
+            const slotStep = document.getElementById('slot-step');
+            const patientStep = document.getElementById('patient-step');
+            const bookingDate = document.getElementById('booking-date');
+            const slotsGrid = document.getElementById('slots-grid');
+            const slotLoading = document.getElementById('slot-loading');
+            
+            let selectedDoctor = '';
+            let selectedSlot = '';
+            
+            function show(el) {
+                if (el) el.classList.remove('flow-hidden');
+            }
+            
+            function chooseMode(mode) {
+                modeOptions.querySelectorAll('button').forEach(b => 
+                    b.classList.toggle('selected', b.dataset.mode === mode)
+                );
+                
+                if (doctorOptions) {
+                    doctorOptions.innerHTML = flowAppointments.filter(a => a.mode === mode).map(a => `
+                        <button class="flow-option" data-doctor="${a.id}">
+                            <span class="doctor-avatar">${a.name.replace(/[^A-Z]/g, '').slice(0, 2) || 'DR'}</span>
+                            <strong>${a.name}</strong>
+                            <small>${a.spec}${a.rate ? ' · ' + a.rate : ''}</small>
+                        </button>
+                    `).join('');
+                    
+                    doctorOptions.querySelectorAll('button').forEach(b => 
+                        b.onclick = () => chooseDoctor(Number(b.dataset.doctor))
+                    );
+                }
+                
+                show(doctorStep);
+                if (dateStep) dateStep.classList.add('flow-hidden');
+                if (slotStep) slotStep.classList.add('flow-hidden');
+                if (patientStep) patientStep.classList.add('flow-hidden');
+            }
+            
+            function chooseDoctor(id) {
+                selectedDoctor = id;
+                if (doctorOptions) {
+                    doctorOptions.querySelectorAll('button').forEach(b => 
+                        b.classList.toggle('selected', Number(b.dataset.doctor) === id)
+                    );
+                }
+                show(dateStep);
+                if (slotStep) slotStep.classList.add('flow-hidden');
+                if (patientStep) patientStep.classList.add('flow-hidden');
+            }
+            
+            modeOptions.querySelectorAll('button').forEach(b => 
+                b.onclick = () => chooseMode(b.dataset.mode)
+            );
+            
+            if (bookingDate) {
+                bookingDate.min = new Date().toISOString().slice(0, 10);
+                bookingDate.onchange = () => {
+                    if (!bookingDate.value || !selectedDoctor) return;
+                    
+                    show(slotStep);
+                    if (slotLoading) slotLoading.hidden = false;
+                    if (slotsGrid) slotsGrid.innerHTML = '';
+                    if (patientStep) patientStep.classList.add('flow-hidden');
+                    
+                    setTimeout(() => {
+                        if (slotLoading) slotLoading.hidden = true;
+                        if (slotsGrid) {
+                            slotsGrid.innerHTML = slots.map(s => 
+                                `<button class="slot" type="button">${s}</button>`
+                            ).join('');
+                            
+                            slotsGrid.querySelectorAll('.slot').forEach(b => {
+                                b.onclick = () => {
+                                    selectedSlot = b.textContent;
+                                    slotsGrid.querySelectorAll('.slot').forEach(x => 
+                                        x.classList.toggle('selected', x === b)
+                                    );
+                                    show(patientStep);
+                                };
+                            });
+                        }
+                    }, 650);
+                };
+            }
+            
+            // Validation
+            const validateBooking = () => {
+                const bookSubmit = document.getElementById('book-submit');
+                const legalConsent = document.getElementById('legal-consent');
+                const patientName = document.getElementById('patient-name');
+                const patientEmail = document.getElementById('patient-email');
+                const patientPhone = document.getElementById('patient-phone');
+                const patientReason = document.getElementById('patient-reason');
+                const termsAgree = document.getElementById('terms-agree');
+                
+                if (bookSubmit) {
+                    bookSubmit.classList.toggle('enabled', Boolean(
+                        (legalConsent ? legalConsent.checked : true) &&
+                        selectedSlot &&
+                        patientName && patientName.value &&
+                        patientEmail && patientEmail.value &&
+                        patientPhone && patientPhone.value &&
+                        patientReason && patientReason.value &&
+                        termsAgree && termsAgree.checked
+                    ));
+                }
+            };
+            
+            ['legal-consent', 'patient-name', 'patient-email', 'patient-phone', 'patient-reason', 'google-profile', 'clinic-timings', 'terms-agree'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', validateBooking);
+                }
+            });
+        }
+    }, 500);
+})();
+</script>
+
+<!-- ADD SPECIALTY-SPECIFIC BLOG SAMPLES (FROM USER DATA) -->
+<script>
+(() => {
+    setTimeout(() => {
+        const data = JSON.parse(localStorage.getItem('medcortico-opd-preview') || '{}');
+        
+        // Only proceed if we have specialty data
+        if (!data.specialties || data.specialties.length === 0) {
+            console.log('No specialty data found. Blogs will appear after form completion.');
+            const blogsContainer = document.getElementById('blogs');
+            if (blogsContainer && !blogsContainer.hasChildNodes()) {
+                blogsContainer.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #607582;"><p style="font-size: 1.1rem;">Specialty-specific educational blogs will appear here once you complete the Online OPD form.</p></div>';
+            }
+            return;
+        }
+        
+        const specs = data.specialties;
+        const combined = specs.join(' ').toLowerCase();
+        
+        // Specialty-specific blog content
+        const blogLibrary = {
+            cardiology: [
+                { title: 'Understanding Your Heart Health', subtitle: 'A Guide to Cardiovascular Wellness' },
+                { title: 'High Blood Pressure: Facts & Management', subtitle: 'What You Need to Know' },
+                { title: 'Heart-Healthy Diet Tips', subtitle: 'Nutrition for a Stronger Heart' }
+            ],
+            dermatology: [
+                { title: 'A Practical Guide to Healthy Skin', subtitle: 'Daily Care Essentials' },
+                { title: 'Understanding Your Skincare Routine', subtitle: 'What Works and Why' },
+                { title: 'Common Skin Conditions Explained', subtitle: 'When to Seek Treatment' }
+            ],
+            gynecology: [
+                { title: 'Understanding Your Menstrual Cycle', subtitle: 'What\'s Normal and What\'s Not' },
+                { title: 'Preparing for a Healthy Pregnancy', subtitle: 'Pre-conception Care Guide' },
+                { title: 'Women\'s Health Through the Ages', subtitle: 'A Lifecycle Approach' }
+            ],
+            pediatric: [
+                { title: 'Making Doctor Visits Easier for Children', subtitle: 'Tips for Parents' },
+                { title: 'Everyday Wellbeing for Growing Families', subtitle: 'Health & Nutrition' },
+                { title: 'Childhood Vaccinations Explained', subtitle: 'What, When, and Why' }
+            ],
+            dental: [
+                { title: 'Daily Dental Care Essentials', subtitle: 'Keeping Your Smile Healthy' },
+                { title: 'Understanding Common Dental Procedures', subtitle: 'What to Expect' },
+                { title: 'Children\'s Dental Health', subtitle: 'Building Good Habits Early' }
+            ],
+            diabetes: [
+                { title: 'Managing Diabetes Day to Day', subtitle: 'Practical Tips for Better Control' },
+                { title: 'Understanding Blood Sugar Levels', subtitle: 'What the Numbers Mean' },
+                { title: 'Diabetes-Friendly Meal Planning', subtitle: 'Nutrition Made Simple' }
+            ],
+            orthopedic: [
+                { title: 'Joint Health and Mobility', subtitle: 'Keeping Active as You Age' },
+                { title: 'Understanding Common Sports Injuries', subtitle: 'Prevention and Recovery' },
+                { title: 'Back Pain: Causes and Solutions', subtitle: 'When to Seek Help' }
+            ],
+            general: [
+                { title: 'A Clearer Approach to Your Health', subtitle: 'Understanding Preventive Care' },
+                { title: 'Small Habits for Everyday Wellbeing', subtitle: 'Building a Healthier Lifestyle' },
+                { title: 'When to See a Doctor', subtitle: 'Recognizing Warning Signs' }
+            ]
+        };
+        
+        // Determine which blog set to use
+        let selectedBlogs = blogLibrary.general;
+        
+        if (/cardio|heart/i.test(combined)) {
+            selectedBlogs = blogLibrary.cardiology;
+        } else if (/derma|skin|aesthetic|cosmetic/i.test(combined)) {
+            selectedBlogs = blogLibrary.dermatology;
+        } else if (/gyn|obstet|women/i.test(combined)) {
+            selectedBlogs = blogLibrary.gynecology;
+        } else if (/pedia|paed|child|neo/i.test(combined)) {
+            selectedBlogs = blogLibrary.pediatric;
+        } else if (/dental|tooth|orthodont/i.test(combined)) {
+            selectedBlogs = blogLibrary.dental;
+        } else if (/diabet/i.test(combined)) {
+            selectedBlogs = blogLibrary.diabetes;
+        } else if (/ortho|bone|joint/i.test(combined)) {
+            selectedBlogs = blogLibrary.orthopedic;
+        }
+        
+        // Populate blog grid
+        const blogsContainer = document.getElementById('blogs');
+        if (blogsContainer && !blogsContainer.hasChildNodes()) {
+            blogsContainer.innerHTML = specs.flatMap(spec => 
+                selectedBlogs.map(blog => `
+                    <a href="#blog" data-blog="${blog.title}" data-spec="${spec}" data-subtitle="${blog.subtitle}" class="card blog">
+                        <span class="eyebrow">${spec}</span>
+                        <h3>${blog.title}</h3>
+                        <p>${blog.subtitle} <i class="fa-solid fa-arrow-right"></i></p>
+                    </a>
+                `)
+            ).join('');
+            
+            // Add click handlers for blog links
+            document.querySelectorAll('[data-blog]').forEach(a => {
+                a.onclick = e => {
+                    e.preventDefault();
+                    const postTitle = document.getElementById('post-title');
+                    const postSpec = document.getElementById('post-spec');
+                    
+                    if (postTitle) postTitle.textContent = a.dataset.blog;
+                    if (postSpec) postSpec.textContent = a.dataset.spec;
+                    
+                    window.location.hash = 'blog';
+                    
+                    // Trigger page navigation
+                    const pages = document.querySelectorAll('.page');
+                    pages.forEach(p => p.classList.toggle('active', p.id === 'blog'));
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
+            });
+        }
+    }, 600);
+})();
+</script>
