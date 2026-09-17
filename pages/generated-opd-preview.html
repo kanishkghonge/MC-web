@@ -245,3 +245,393 @@ const tutorialPopup=$('tutorial-popup'),tutIcon=$('tut-icon'),tutTitle=$('tut-ti
     }
 })();
 </script>
+
+<!-- ENHANCED SPECIALTY CUSTOMIZATION -->
+<script>
+(() => {
+    const data = JSON.parse(localStorage.getItem('medcortico-opd-preview') || '{}');
+    const specs = data.specialties || [];
+    const combined = specs.join(' ').toLowerCase();
+    
+    // Enhanced specialty detection and theming
+    const specialtyThemes = {
+        cardiology: {
+            icon: 'fa-heart-pulse',
+            colors: { primary: '#dc2626', secondary: '#f87171', mist: '#fee2e2' },
+            name: 'Cardiology'
+        },
+        cardiac: {
+            icon: 'fa-heart-pulse',
+            colors: { primary: '#dc2626', secondary: '#f87171', mist: '#fee2e2' },
+            name: 'Cardiac Care'
+        },
+        hepatology: {
+            icon: 'fa-disease',
+            colors: { primary: '#92400e', secondary: '#d97706', mist: '#fef3c7' },
+            name: 'Hepatology'
+        },
+        liver: {
+            icon: 'fa-disease',
+            colors: { primary: '#92400e', secondary: '#d97706', mist: '#fef3c7' },
+            name: 'Liver Care'
+        },
+        gastro: {
+            icon: 'fa-disease',
+            colors: { primary: '#92400e', secondary: '#d97706', mist: '#fef3c7' },
+            name: 'Gastroenterology'
+        },
+        dental: {
+            icon: 'fa-tooth',
+            colors: { primary: '#0891b2', secondary: '#06b6d4', mist: '#cffafe' },
+            name: 'Dental'
+        },
+        orthodont: {
+            icon: 'fa-tooth',
+            colors: { primary: '#0891b2', secondary: '#06b6d4', mist: '#cffafe' },
+            name: 'Orthodontics'
+        },
+        endodont: {
+            icon: 'fa-tooth',
+            colors: { primary: '#0891b2', secondary: '#06b6d4', mist: '#cffafe' },
+            name: 'Endodontics'
+        },
+        dermatology: {
+            icon: 'fa-spa',
+            colors: { primary: '#92400e', secondary: '#d97706', mist: '#fef3c7' },
+            font: "'Poppins', sans-serif",
+            name: 'Dermatology'
+        },
+        derma: {
+            icon: 'fa-spa',
+            colors: { primary: '#92400e', secondary: '#d97706', mist: '#fef3c7' },
+            font: "'Poppins', sans-serif",
+            name: 'Dermatology'
+        },
+        skin: {
+            icon: 'fa-spa',
+            colors: { primary: '#92400e', secondary: '#d97706', mist: '#fef3c7' },
+            font: "'Poppins', sans-serif",
+            name: 'Skin Care'
+        },
+        aesthetic: {
+            icon: 'fa-spa',
+            colors: { primary: '#92400e', secondary: '#d97706', mist: '#fef3c7' },
+            font: "'Poppins', sans-serif",
+            name: 'Aesthetic Medicine'
+        },
+        cosmetic: {
+            icon: 'fa-spa',
+            colors: { primary: '#92400e', secondary: '#d97706', mist: '#fef3c7' },
+            font: "'Poppins', sans-serif",
+            name: 'Cosmetic'
+        },
+        hair: {
+            icon: 'fa-spa',
+            colors: { primary: '#92400e', secondary: '#d97706', mist: '#fef3c7' },
+            name: 'Hair Care'
+        },
+        gynecology: {
+            icon: 'fa-person-dress',
+            colors: { primary: '#be185d', secondary: '#ec4899', mist: '#fce7f3' },
+            name: 'Gynecology'
+        },
+        gynae: {
+            icon: 'fa-person-dress',
+            colors: { primary: '#be185d', secondary: '#ec4899', mist: '#fce7f3' },
+            name: 'Gynecology'
+        },
+        obstet: {
+            icon: 'fa-person-dress',
+            colors: { primary: '#be185d', secondary: '#ec4899', mist: '#fce7f3' },
+            name: 'Obstetrics'
+        },
+        pediatric: {
+            icon: 'fa-baby',
+            colors: { primary: '#7c3aed', secondary: '#a78bfa', mist: '#ede9fe' },
+            font: "'Comic Neue', cursive",
+            name: 'Pediatrics'
+        },
+        paediatric: {
+            icon: 'fa-baby',
+            colors: { primary: '#7c3aed', secondary: '#a78bfa', mist: '#ede9fe' },
+            font: "'Comic Neue', cursive",
+            name: 'Paediatrics'
+        },
+        pedia: {
+            icon: 'fa-baby',
+            colors: { primary: '#7c3aed', secondary: '#a78bfa', mist: '#ede9fe' },
+            font: "'Comic Neue', cursive",
+            name: 'Pediatrics'
+        },
+        child: {
+            icon: 'fa-baby',
+            colors: { primary: '#7c3aed', secondary: '#a78bfa', mist: '#ede9fe' },
+            font: "'Comic Neue', cursive",
+            name: 'Child Care'
+        },
+        neo: {
+            icon: 'fa-baby',
+            colors: { primary: '#7c3aed', secondary: '#a78bfa', mist: '#ede9fe' },
+            font: "'Comic Neue', cursive",
+            name: 'Neonatology'
+        },
+        orthopedic: {
+            icon: 'fa-bone',
+            colors: { primary: '#1e40af', secondary: '#60a5fa', mist: '#dbeafe' },
+            name: 'Orthopedics'
+        },
+        ortho: {
+            icon: 'fa-bone',
+            colors: { primary: '#1e40af', secondary: '#60a5fa', mist: '#dbeafe' },
+            name: 'Orthopedics'
+        },
+        neuro: {
+            icon: 'fa-brain',
+            colors: { primary: '#4c1d95', secondary: '#8b5cf6', mist: '#ede9fe' },
+            name: 'Neurology'
+        },
+        psychiatry: {
+            icon: 'fa-head-side-virus',
+            colors: { primary: '#0e7490', secondary: '#06b6d4', mist: '#cffafe' },
+            name: 'Psychiatry'
+        },
+        psychology: {
+            icon: 'fa-brain',
+            colors: { primary: '#0e7490', secondary: '#06b6d4', mist: '#cffafe' },
+            name: 'Psychology'
+        },
+        ent: {
+            icon: 'fa-ear-listen',
+            colors: { primary: '#15803d', secondary: '#22c55e', mist: '#dcfce7' },
+            name: 'ENT'
+        },
+        ophthalmology: {
+            icon: 'fa-eye',
+            colors: { primary: '#0369a1', secondary: '#0ea5e9', mist: '#e0f2fe' },
+            name: 'Ophthalmology'
+        },
+        eye: {
+            icon: 'fa-eye',
+            colors: { primary: '#0369a1', secondary: '#0ea5e9', mist: '#e0f2fe' },
+            name: 'Eye Care'
+        },
+        pulmonology: {
+            icon: 'fa-lungs',
+            colors: { primary: '#065f46', secondary: '#10b981', mist: '#d1fae5' },
+            name: 'Pulmonology'
+        },
+        respiratory: {
+            icon: 'fa-lungs',
+            colors: { primary: '#065f46', secondary: '#10b981', mist: '#d1fae5' },
+            name: 'Respiratory'
+        },
+        nephrology: {
+            icon: 'fa-droplet',
+            colors: { primary: '#1e3a8a', secondary: '#3b82f6', mist: '#dbeafe' },
+            name: 'Nephrology'
+        },
+        kidney: {
+            icon: 'fa-droplet',
+            colors: { primary: '#1e3a8a', secondary: '#3b82f6', mist: '#dbeafe' },
+            name: 'Kidney Care'
+        },
+        urology: {
+            icon: 'fa-droplet',
+            colors: { primary: '#1e3a8a', secondary: '#3b82f6', mist: '#dbeafe' },
+            name: 'Urology'
+        },
+        endocrinology: {
+            icon: 'fa-dna',
+            colors: { primary: '#9f1239', secondary: '#f43f5e', mist: '#ffe4e6' },
+            name: 'Endocrinology'
+        },
+        diabetes: {
+            icon: 'fa-syringe',
+            colors: { primary: '#991b1b', secondary: '#ef4444', mist: '#fee2e2' },
+            name: 'Diabetes Care'
+        },
+        oncology: {
+            icon: 'fa-ribbon',
+            colors: { primary: '#7e22ce', secondary: '#a855f7', mist: '#f3e8ff' },
+            name: 'Oncology'
+        },
+        cancer: {
+            icon: 'fa-ribbon',
+            colors: { primary: '#7e22ce', secondary: '#a855f7', mist: '#f3e8ff' },
+            name: 'Cancer Care'
+        },
+        rheumatology: {
+            icon: 'fa-hand-dots',
+            colors: { primary: '#b45309', secondary: '#f59e0b', mist: '#fef3c7' },
+            name: 'Rheumatology'
+        },
+        physiotherapy: {
+            icon: 'fa-person-walking',
+            colors: { primary: '#047857', secondary: '#10b981', mist: '#d1fae5' },
+            name: 'Physiotherapy'
+        },
+        physio: {
+            icon: 'fa-person-walking',
+            colors: { primary: '#047857', secondary: '#10b981', mist: '#d1fae5' },
+            name: 'Physiotherapy'
+        },
+        general: {
+            icon: 'fa-stethoscope',
+            colors: { primary: '#1977a7', secondary: '#2fb992', mist: '#eef9fb' },
+            name: 'General Medicine'
+        }
+    };
+    
+    // Find matching specialty theme
+    let matchedTheme = null;
+    for (const [key, theme] of Object.entries(specialtyThemes)) {
+        if (combined.includes(key)) {
+            matchedTheme = theme;
+            break;
+        }
+    }
+    
+    // Default theme if no match
+    if (!matchedTheme) {
+        matchedTheme = {
+            icon: 'fa-user-doctor',
+            colors: { primary: '#1977a7', secondary: '#2fb992', mist: '#eef9fb' },
+            name: 'Healthcare'
+        };
+    }
+    
+    // Apply logo icon
+    const logoIcon = document.getElementById('logo-icon');
+    if (logoIcon) {
+        logoIcon.className = 'fa-solid ' + matchedTheme.icon;
+    }
+    
+    // Apply color theme
+    if (matchedTheme.colors) {
+        document.documentElement.style.setProperty('--p', matchedTheme.colors.primary);
+        document.documentElement.style.setProperty('--p2', matchedTheme.colors.secondary);
+        document.documentElement.style.setProperty('--mist', matchedTheme.colors.mist);
+    }
+    
+    // Apply custom font for playful specialties
+    if (matchedTheme.font) {
+        // Load the font if it's Comic Neue
+        if (matchedTheme.font.includes('Comic Neue')) {
+            const link = document.createElement('link');
+            link.href = 'https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap';
+            link.rel = 'stylesheet';
+            document.head.appendChild(link);
+        }
+        
+        // Apply to display elements
+        const headings = document.querySelectorAll('h1, h2, h3, .pill');
+        headings.forEach(el => {
+            el.style.fontFamily = matchedTheme.font;
+        });
+    }
+})();
+</script>
+
+<!-- SPECIALTY DROPDOWN WITH AUTOCOMPLETE -->
+<script>
+(() => {
+    // Common medical specialties list
+    const specialtiesList = [
+        'Cardiology', 'Dermatology', 'ENT (Ear, Nose, Throat)', 'Endocrinology',
+        'Gastroenterology', 'General Medicine', 'General Surgery', 'Gynecology',
+        'Hepatology', 'Internal Medicine', 'Nephrology', 'Neurology',
+        'Obstetrics', 'Oncology', 'Ophthalmology', 'Orthopedics',
+        'Pediatrics', 'Physiotherapy', 'Psychiatry', 'Pulmonology',
+        'Radiology', 'Rheumatology', 'Urology',
+        'Aesthetic Medicine', 'Anesthesiology', 'Ayurveda (BAMS)',
+        'Dental Surgery', 'Diabetology', 'Emergency Medicine',
+        'Family Medicine', 'Homeopathy (BHMS)', 'Neonatology',
+        'Pain Management', 'Plastic Surgery', 'Sports Medicine',
+        'Type your own...'
+    ];
+    
+    // This will be injected into the build-online-opd.html form
+    // For now, add autocomplete to any specialty input fields that exist
+    const specialtyInputs = document.querySelectorAll('input[id*="special"], input[placeholder*="special" i], select[id*="special"]');
+    
+    specialtyInputs.forEach(input => {
+        if (input.tagName === 'SELECT') {
+            // Convert select to input with datalist
+            const wrapper = input.parentElement;
+            const newInput = document.createElement('input');
+            newInput.type = 'text';
+            newInput.id = input.id;
+            newInput.name = input.name;
+            newInput.placeholder = 'Type to search specialties...';
+            newInput.className = input.className;
+            newInput.setAttribute('list', input.id + '-list');
+            newInput.required = input.required;
+            
+            const datalist = document.createElement('datalist');
+            datalist.id = input.id + '-list';
+            specialtiesList.forEach(spec => {
+                const option = document.createElement('option');
+                option.value = spec;
+                datalist.appendChild(option);
+            });
+            
+            wrapper.replaceChild(newInput, input);
+            wrapper.appendChild(datalist);
+            
+            // Add custom dropdown behavior
+            newInput.addEventListener('input', function() {
+                const value = this.value.toLowerCase();
+                const matches = specialtiesList.filter(spec => 
+                    spec.toLowerCase().includes(value)
+                );
+                
+                // Clear and rebuild datalist
+                datalist.innerHTML = '';
+                matches.forEach(spec => {
+                    const option = document.createElement('option');
+                    option.value = spec;
+                    datalist.appendChild(option);
+                });
+                
+                // Always show "Type your own..." at the end
+                if (!matches.includes('Type your own...')) {
+                    const option = document.createElement('option');
+                    option.value = 'Type your own...';
+                    datalist.appendChild(option);
+                }
+            });
+            
+            // Clear placeholder text if user selects "Type your own..."
+            newInput.addEventListener('change', function() {
+                if (this.value === 'Type your own...') {
+                    this.value = '';
+                    this.placeholder = 'Enter your specialty...';
+                }
+            });
+        } else if (input.tagName === 'INPUT') {
+            // Add datalist to existing input
+            const datalist = document.createElement('datalist');
+            const listId = input.id + '-specialty-list';
+            datalist.id = listId;
+            input.setAttribute('list', listId);
+            input.placeholder = 'Type to search specialties...';
+            
+            specialtiesList.forEach(spec => {
+                const option = document.createElement('option');
+                option.value = spec;
+                datalist.appendChild(option);
+            });
+            
+            input.parentElement.appendChild(datalist);
+            
+            // Add behavior
+            input.addEventListener('change', function() {
+                if (this.value === 'Type your own...') {
+                    this.value = '';
+                    this.placeholder = 'Enter your specialty...';
+                }
+            });
+        }
+    });
+})();
+</script>
