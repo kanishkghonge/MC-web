@@ -59,6 +59,7 @@
         .doctor-card-title i { display: inline-flex; align-items: center; justify-content: center; width: 31px; height: 31px; color: #fff; border-radius: 50%; background: #1e88e5; font-size: .8rem; }
         .mode-note { margin: -6px 0 20px; color: #668097; font-size: .86rem; }
         .step-actions { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-top: 31px; padding-top: 23px; border-top: 1px solid #e5edf3; }
+        .step-actions[hidden] { display: none !important; }
         .action-right { display: flex; gap: 10px; }
         .step-actions .btn { margin: 0; padding: 11px 19px; }
         .back-btn { color: #64748b; background: transparent; font: inherit; font-size: .9rem; border: 0; cursor: pointer; padding: 8px 3px; }
@@ -177,8 +178,9 @@
                             <p class="step-kicker">Step 5 of 5</p><h2>Anything else we should know?</h2><p class="step-help">Share any services, languages, clinic locations, brand preferences, or links that will help us make the Online OPD more like yours.</p>
                             <div class="field"><label for="extraInfo">Extra information</label><textarea id="extraInfo" name="extraInfo" placeholder="Add anything useful for your page or booking setup…"></textarea></div>
                             <div class="finish-panel" style="margin-top: 24px">
-                                <div class="direct-send-box">
-                                    <button id="send-direct" type="button" class="btn btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; background: linear-gradient(135deg, #1e88e5, #12a2bf); color: white; border: none; box-shadow: 0 4px 15px rgba(30, 136, 229, .24);"><i class="fas fa-wand-magic-sparkles"></i> Preview your Online OPD</button>
+                                <div class="send-grid">
+                                    <button id="preview-site-btn" type="button" class="btn btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0;"><i class="fas fa-eye"></i> See preview of your site</button>
+                                    <button id="send-details-btn" type="button" class="btn btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0;"><i class="fas fa-paper-plane"></i> Send details</button>
                                 </div>
                             </div>
                         </section>
@@ -204,10 +206,13 @@
             <div id="submission-success" style="display: none;">
                 <div id="success-step-1">
                     <div class="success-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: #e6f7ed; color: #2e7d32; border-radius: 50%; font-size: 1.8rem; margin-bottom: 20px;"><i class="fas fa-check-circle"></i></div>
-                    <h2 id="submission-title">Details shared!</h2>
-                    <p style="margin-top: 10px; color: var(--opd-muted);">We have received your Online OPD brief.</p>
-                    <div style="margin-top: 25px;">
-                        <button type="button" class="btn btn-primary" id="what-next-btn" style="width: 100%;">What next?</button>
+                    <h2 id="submission-title">Details sent!</h2>
+                    <p style="margin-top: 10px; color: var(--opd-muted); font-size: 0.95rem; line-height: 1.5;">Expect a functioning demo/first draft within 48 hours</p>
+                    <div style="margin-top: 25px; display: flex; flex-direction: column; gap: 10px;">
+                        <a href="online-opd.html" class="btn btn-primary" style="width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;">
+                            <i class="fas fa-info-circle"></i> Tell me more about Online OPD
+                        </a>
+                        <button type="button" class="btn btn-outline" id="close-success-modal-main" style="width: 100%;">Close</button>
                     </div>
                 </div>
                 <div id="success-step-2" style="display: none;">
@@ -257,8 +262,8 @@
                 progressValue.textContent = value + '% complete';
                 progressLabel.textContent = step.dataset.label;
                 document.querySelector('.progress-track').setAttribute('aria-valuenow', value);
-                back.hidden = index === 0;
                 const isLast = index === steps.length - 1;
+                back.hidden = index === 0 || isLast;
                 next.hidden = isLast;
                 stepActions.hidden = isLast;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -363,9 +368,8 @@
 
             const successStep1 = document.getElementById('success-step-1');
             const successStep2 = document.getElementById('success-step-2');
-            const whatNextBtn = document.getElementById('what-next-btn');
 
-            async function submitForm() {
+            async function submitForm(buttonType = 'preview') {
                 const startedAt = Date.now();
                 submissionModal.classList.add('open');
                 subLoading.style.display = 'block';
@@ -379,13 +383,14 @@
                 const doctorName = formData.get('doctorName1') || formData.get('contactName') || 'Doctor';
 
                 // Create fancy loading animation
+                const isPreview = buttonType === 'preview';
                 subLoading.innerHTML = `
                     <div class="fancy-loader">
                         <div class="loader-icon">
                             <i class="fas fa-wand-magic-sparkles"></i>
                         </div>
-                        <h2 id="loading-message" style="font-size: 1.5rem; font-weight: 700; margin: 20px 0 8px;">Building your NMC-compliant Online OPD...</h2>
-                        <p id="loading-subtitle" style="color: var(--opd-muted); font-size: 1rem; margin: 0;">Setting up your digital practice</p>
+                        <h2 id="loading-message" style="font-size: 1.5rem; font-weight: 700; margin: 20px 0 8px;">${isPreview ? 'Building your NMC-compliant Online OPD...' : 'Sending your details...'}</h2>
+                        <p id="loading-subtitle" style="color: var(--opd-muted); font-size: 1rem; margin: 0;">${isPreview ? 'Setting up your digital practice' : 'Our team will receive your information'}</p>
                         <div class="fancy-progress-bar">
                             <div class="fancy-progress-fill" id="fancy-progress"></div>
                         </div>
@@ -393,12 +398,15 @@
                     </div>
                 `;
 
-                // Animate messages and progress - 15 seconds total
-                const messages = [
+                // Animate messages and progress - 15 seconds total for preview, 3 seconds for send details
+                const messages = isPreview ? [
                     { text: 'Building your NMC-compliant Online OPD...', subtitle: 'Setting up your digital practice', time: 5000, progress: 35 },
                     { text: 'Almost done...', subtitle: 'This is your first draft, you can make any changes to it later', time: 6000, progress: 75 },
                     { text: 'Adding final touches...', subtitle: 'Personalizing your experience', time: 2000, progress: 95 },
                     { text: `Welcome to your OPD, Dr. ${doctorName.replace(/^Dr\.?\s*/i, '')}!`, subtitle: 'Opening your preview...', time: 2000, progress: 100 }
+                ] : [
+                    { text: 'Sending your details...', subtitle: 'Our team will receive your information', time: 1500, progress: 50 },
+                    { text: 'Details sent!', subtitle: 'Expect a functioning demo/first draft within 48 hours', time: 1500, progress: 100 }
                 ];
 
                 let currentMessage = 0;
@@ -494,9 +502,19 @@
                     if (response.ok) {
                         const brief = Object.fromEntries(formData.entries());
                         brief.specialties = Array.from({ length: brief.doctorCount === '5+' ? 5 : Number(brief.doctorCount) || 0 }, (_, index) => brief[`specialization${index + 1}`]).filter(Boolean);
-                        localStorage.setItem('medcortico-opd-preview', JSON.stringify(brief));
-                        const remaining = Math.max(0, 15000 - (Date.now() - startedAt));
-                        setTimeout(() => { window.location.href = 'generated-opd-preview.html'; }, remaining);
+                        
+                        if (isPreview) {
+                            localStorage.setItem('medcortico-opd-preview', JSON.stringify(brief));
+                            const remaining = Math.max(0, 15000 - (Date.now() - startedAt));
+                            setTimeout(() => { window.location.href = 'generated-opd-preview.html'; }, remaining);
+                        } else {
+                            // For "Send details" button - show success message after animation
+                            const remaining = Math.max(0, 3000 - (Date.now() - startedAt));
+                            setTimeout(() => {
+                                subLoading.style.display = 'none';
+                                subSuccess.style.display = 'block';
+                            }, remaining);
+                        }
                     } else {
                         throw new Error(`Submission failed with status: ${response.status}`);
                     }
@@ -508,13 +526,14 @@
                 }
             }
 
-            whatNextBtn.addEventListener('click', () => {
-                successStep1.style.display = 'none';
-                successStep2.style.display = 'block';
+            document.getElementById('close-success-modal-main').addEventListener('click', () => {
+                submissionModal.classList.remove('open');
             });
 
-            document.getElementById('send-direct').addEventListener('click', submitForm);
-            document.getElementById('retry-submit').addEventListener('click', submitForm);
+            // Connect both buttons to submit form
+            document.getElementById('preview-site-btn').addEventListener('click', () => submitForm('preview'));
+            document.getElementById('send-details-btn').addEventListener('click', () => submitForm('send'));
+            document.getElementById('retry-submit').addEventListener('click', () => submitForm('preview'));
 
             document.getElementById('close-success-modal').addEventListener('click', () => {
                 submissionModal.classList.remove('open');
