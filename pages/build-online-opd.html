@@ -42,7 +42,6 @@
         .field label, .choice-label { color: #263e58; font-size: .92rem; font-weight: 700; }
         .field label span { color: #8290a1; font-size: .8rem; font-weight: 500; }
         input, textarea, select { width: 100%; border: 1px solid #cbd9e6; border-radius: 10px; background: #fff; color: var(--opd-ink); padding: 12px 13px; font: inherit; font-size: .95rem; outline: none; transition: border-color .2s, box-shadow .2s; }
-        select { min-height: 48px; cursor: pointer; -webkit-appearance: auto; appearance: auto; }
         textarea { min-height: 110px; resize: vertical; }
         input:focus, textarea:focus, select:focus { border-color: #1e88e5; box-shadow: 0 0 0 4px rgba(30, 136, 229, .12); }
         .choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -59,7 +58,6 @@
         .doctor-card-title i { display: inline-flex; align-items: center; justify-content: center; width: 31px; height: 31px; color: #fff; border-radius: 50%; background: #1e88e5; font-size: .8rem; }
         .mode-note { margin: -6px 0 20px; color: #668097; font-size: .86rem; }
         .step-actions { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-top: 31px; padding-top: 23px; border-top: 1px solid #e5edf3; }
-        .step-actions[hidden] { display: none !important; }
         .action-right { display: flex; gap: 10px; }
         .step-actions .btn { margin: 0; padding: 11px 19px; }
         .back-btn { color: #64748b; background: transparent; font: inherit; font-size: .9rem; border: 0; cursor: pointer; padding: 8px 3px; }
@@ -95,19 +93,7 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #1e88e5; border-radius: 50%; width: 45px; height: 45px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
         .direct-send-box { margin-top: 18px; margin-bottom: 18px; padding: 18px; background: #fff; border: 1px solid #cbd9e6; border-radius: 12px; text-align: center; }
-        .specialty-wrap { position: relative; }
-        .specialty-note { margin-top: 6px; color: #668097; font-size: .78rem; }
-        .site-loading { text-align: center; }
-        .site-loading h2 { margin-top: 18px; }
-        .fancy-loader { padding: 20px; }
-        .loader-icon { display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: linear-gradient(135deg, #e3f2fd, #e1f5fe); border-radius: 50%; font-size: 2rem; color: #1e88e5; margin-bottom: 24px; animation: loaderPulse 2s ease-in-out infinite; }
-        @keyframes loaderPulse { 0%, 100% { transform: scale(1); box-shadow: 0 8px 25px rgba(30, 136, 229, 0.2); } 50% { transform: scale(1.05); box-shadow: 0 12px 35px rgba(30, 136, 229, 0.35); } }
-        .fancy-progress-bar { width: 100%; height: 8px; background: #e3f2fd; border-radius: 999px; overflow: hidden; margin: 20px 0 0; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); }
-        .fancy-progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, #1e88e5, #12a2bf, #1e88e5); background-size: 200% 100%; border-radius: 999px; transition: width 0.3s ease; animation: shimmer 2s linear infinite; }
-        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-        .custom-specialty-input { border-color: #12a2bf !important; }
-        .custom-specialty-input:focus { border-color: #1e88e5 !important; box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.15) !important; }
-        @media (max-width: 640px) { .onboarding-page { padding: 107px 0 45px; } .onboarding-shell { width: 92%; } .onboarding-intro { margin-bottom: 24px; } .progress-area, .question-stage { padding-left: 20px; padding-right: 20px; } .question-stage { padding-top: 28px; } .field-grid, .choice-grid, .send-grid { grid-template-columns: 1fr; } .choice span { min-height: 56px; } .step-actions { align-items: flex-start; flex-direction: column-reverse; } .action-right { width: 100%; justify-content: space-between; } select { min-height: 52px; font-size: 16px; } }
+        @media (max-width: 640px) { .onboarding-page { padding: 107px 0 45px; } .onboarding-shell { width: 92%; } .onboarding-intro { margin-bottom: 24px; } .progress-area, .question-stage { padding-left: 20px; padding-right: 20px; } .question-stage { padding-top: 28px; } .field-grid, .choice-grid, .send-grid { grid-template-columns: 1fr; } .choice span { min-height: 56px; } .step-actions { align-items: flex-start; flex-direction: column-reverse; } .action-right { width: 100%; justify-content: space-between; } }
     </style>
 </head>
 
@@ -126,6 +112,7 @@
             <div class="onboarding-intro">
                 <span class="eyebrow"><i class="fas fa-heartbeat"></i> Online OPD onboarding</span>
                 <h1>Let’s build your online OPD.</h1>
+                <p>A few quick details now help us create a clear patient journey for your practice. The more you add, the better we can make your Online OPD.</p>
             </div>
 
             <section class="onboarding-card" aria-label="Online OPD setup form">
@@ -140,7 +127,7 @@
                             <div class="field-grid">
                                 <div class="field"><label for="practiceName">Name of your practice / clinic</label><input id="practiceName" name="practiceName" autocomplete="organization" placeholder="e.g. Healing Hands Clinic"></div>
                                 <div class="field"><label for="contactName">Your name</label><input id="contactName" name="contactName" autocomplete="name" placeholder="Dr. or team contact name"></div>
-                                <div class="field"><label for="contactPhone">Contact number <span>(for our team to reach you)</span></label><input id="contactPhone" name="contactPhone" inputmode="tel" autocomplete="tel" placeholder="e.g. +91 98XXXXXXXX"></div>
+                                <div class="field"><label for="contactPhone">Contact number <span>(for our team to reach you)</span></label><div style="display: flex; gap: 8px;"><select id="countryCode" style="width: 110px; flex-shrink: 0; font-size: 0.95rem;"><option value="+93" data-country="AF">🇦🇫 +93</option><option value="+355" data-country="AL">🇦🇱 +355</option><option value="+213" data-country="DZ">🇩🇿 +213</option><option value="+376" data-country="AD">🇦🇩 +376</option><option value="+244" data-country="AO">🇦🇴 +244</option><option value="+54" data-country="AR">🇦🇷 +54</option><option value="+374" data-country="AM">🇦🇲 +374</option><option value="+61" data-country="AU">🇦🇺 +61</option><option value="+43" data-country="AT">🇦🇹 +43</option><option value="+994" data-country="AZ">🇦🇿 +994</option><option value="+973" data-country="BH">🇧🇭 +973</option><option value="+880" data-country="BD">🇧🇩 +880</option><option value="+375" data-country="BY">🇧🇾 +375</option><option value="+32" data-country="BE">🇧🇪 +32</option><option value="+501" data-country="BZ">🇧🇿 +501</option><option value="+229" data-country="BJ">🇧🇯 +229</option><option value="+975" data-country="BT">🇧🇹 +975</option><option value="+591" data-country="BO">🇧🇴 +591</option><option value="+387" data-country="BA">🇧🇦 +387</option><option value="+267" data-country="BW">🇧🇼 +267</option><option value="+55" data-country="BR">🇧🇷 +55</option><option value="+673" data-country="BN">🇧🇳 +673</option><option value="+359" data-country="BG">🇧🇬 +359</option><option value="+226" data-country="BF">🇧🇫 +226</option><option value="+257" data-country="BI">🇧🇮 +257</option><option value="+855" data-country="KH">🇰🇭 +855</option><option value="+237" data-country="CM">🇨🇲 +237</option><option value="+1" data-country="CA">🇨🇦 +1</option><option value="+238" data-country="CV">🇨🇻 +238</option><option value="+236" data-country="CF">🇨🇫 +236</option><option value="+235" data-country="TD">🇹🇩 +235</option><option value="+56" data-country="CL">🇨🇱 +56</option><option value="+86" data-country="CN">🇨🇳 +86</option><option value="+57" data-country="CO">🇨🇴 +57</option><option value="+506" data-country="CR">🇨🇷 +506</option><option value="+385" data-country="HR">🇭🇷 +385</option><option value="+53" data-country="CU">🇨🇺 +53</option><option value="+357" data-country="CY">🇨🇾 +357</option><option value="+420" data-country="CZ">🇨🇿 +420</option><option value="+45" data-country="DK">🇩🇰 +45</option><option value="+253" data-country="DJ">🇩🇯 +253</option><option value="+593" data-country="EC">🇪🇨 +593</option><option value="+20" data-country="EG">🇪🇬 +20</option><option value="+503" data-country="SV">🇸🇻 +503</option><option value="+240" data-country="GQ">🇬🇶 +240</option><option value="+291" data-country="ER">🇪🇷 +291</option><option value="+372" data-country="EE">🇪🇪 +372</option><option value="+251" data-country="ET">🇪🇹 +251</option><option value="+679" data-country="FJ">🇫🇯 +679</option><option value="+358" data-country="FI">🇫🇮 +358</option><option value="+33" data-country="FR">🇫🇷 +33</option><option value="+241" data-country="GA">🇬🇦 +241</option><option value="+220" data-country="GM">🇬🇲 +220</option><option value="+995" data-country="GE">🇬🇪 +995</option><option value="+49" data-country="DE">🇩🇪 +49</option><option value="+233" data-country="GH">🇬🇭 +233</option><option value="+30" data-country="GR">🇬🇷 +30</option><option value="+502" data-country="GT">🇬🇹 +502</option><option value="+224" data-country="GN">🇬🇳 +224</option><option value="+245" data-country="GW">🇬🇼 +245</option><option value="+592" data-country="GY">🇬🇾 +592</option><option value="+509" data-country="HT">🇭🇹 +509</option><option value="+504" data-country="HN">🇭🇳 +504</option><option value="+852" data-country="HK">🇭🇰 +852</option><option value="+36" data-country="HU">🇭🇺 +36</option><option value="+354" data-country="IS">🇮🇸 +354</option><option value="+91" data-country="IN" selected>🇮🇳 +91</option><option value="+62" data-country="ID">🇮🇩 +62</option><option value="+98" data-country="IR">🇮🇷 +98</option><option value="+964" data-country="IQ">🇮🇶 +964</option><option value="+353" data-country="IE">🇮🇪 +353</option><option value="+972" data-country="IL">🇮🇱 +972</option><option value="+39" data-country="IT">🇮🇹 +39</option><option value="+81" data-country="JP">🇯🇵 +81</option><option value="+962" data-country="JO">🇯🇴 +962</option><option value="+7" data-country="KZ">🇰🇿 +7</option><option value="+254" data-country="KE">🇰🇪 +254</option><option value="+686" data-country="KI">🇰🇮 +686</option><option value="+965" data-country="KW">🇰🇼 +965</option><option value="+996" data-country="KG">🇰🇬 +996</option><option value="+856" data-country="LA">🇱🇦 +856</option><option value="+371" data-country="LV">🇱🇻 +371</option><option value="+961" data-country="LB">🇱🇧 +961</option><option value="+266" data-country="LS">🇱🇸 +266</option><option value="+231" data-country="LR">🇱🇷 +231</option><option value="+218" data-country="LY">🇱🇾 +218</option><option value="+423" data-country="LI">🇱🇮 +423</option><option value="+370" data-country="LT">🇱🇹 +370</option><option value="+352" data-country="LU">🇱🇺 +352</option><option value="+853" data-country="MO">🇲🇴 +853</option><option value="+389" data-country="MK">🇲🇰 +389</option><option value="+261" data-country="MG">🇲🇬 +261</option><option value="+265" data-country="MW">🇲🇼 +265</option><option value="+60" data-country="MY">🇲🇾 +60</option><option value="+960" data-country="MV">🇲🇻 +960</option><option value="+223" data-country="ML">🇲🇱 +223</option><option value="+356" data-country="MT">🇲🇹 +356</option><option value="+692" data-country="MH">🇲🇭 +692</option><option value="+222" data-country="MR">🇲🇷 +222</option><option value="+230" data-country="MU">🇲🇺 +230</option><option value="+52" data-country="MX">🇲🇽 +52</option><option value="+691" data-country="FM">🇫🇲 +691</option><option value="+373" data-country="MD">🇲🇩 +373</option><option value="+377" data-country="MC">🇲🇨 +377</option><option value="+976" data-country="MN">🇲🇳 +976</option><option value="+382" data-country="ME">🇲🇪 +382</option><option value="+212" data-country="MA">🇲🇦 +212</option><option value="+258" data-country="MZ">🇲🇿 +258</option><option value="+95" data-country="MM">🇲🇲 +95</option><option value="+264" data-country="NA">🇳🇦 +264</option><option value="+674" data-country="NR">🇳🇷 +674</option><option value="+977" data-country="NP">🇳🇵 +977</option><option value="+31" data-country="NL">🇳🇱 +31</option><option value="+64" data-country="NZ">🇳🇿 +64</option><option value="+505" data-country="NI">🇳🇮 +505</option><option value="+227" data-country="NE">🇳🇪 +227</option><option value="+234" data-country="NG">🇳🇬 +234</option><option value="+850" data-country="KP">🇰🇵 +850</option><option value="+47" data-country="NO">🇳🇴 +47</option><option value="+968" data-country="OM">🇴🇲 +968</option><option value="+92" data-country="PK">🇵🇰 +92</option><option value="+680" data-country="PW">🇵🇼 +680</option><option value="+970" data-country="PS">🇵🇸 +970</option><option value="+507" data-country="PA">🇵🇦 +507</option><option value="+675" data-country="PG">🇵🇬 +675</option><option value="+595" data-country="PY">🇵🇾 +595</option><option value="+51" data-country="PE">🇵🇪 +51</option><option value="+63" data-country="PH">🇵🇭 +63</option><option value="+48" data-country="PL">🇵🇱 +48</option><option value="+351" data-country="PT">🇵🇹 +351</option><option value="+974" data-country="QA">🇶🇦 +974</option><option value="+40" data-country="RO">🇷🇴 +40</option><option value="+7" data-country="RU">🇷🇺 +7</option><option value="+250" data-country="RW">🇷🇼 +250</option><option value="+685" data-country="WS">🇼🇸 +685</option><option value="+378" data-country="SM">🇸🇲 +378</option><option value="+239" data-country="ST">🇸🇹 +239</option><option value="+966" data-country="SA">🇸🇦 +966</option><option value="+221" data-country="SN">🇸🇳 +221</option><option value="+381" data-country="RS">🇷🇸 +381</option><option value="+248" data-country="SC">🇸🇨 +248</option><option value="+232" data-country="SL">🇸🇱 +232</option><option value="+65" data-country="SG">🇸🇬 +65</option><option value="+421" data-country="SK">🇸🇰 +421</option><option value="+386" data-country="SI">🇸🇮 +386</option><option value="+677" data-country="SB">🇸🇧 +677</option><option value="+252" data-country="SO">🇸🇴 +252</option><option value="+27" data-country="ZA">🇿🇦 +27</option><option value="+82" data-country="KR">🇰🇷 +82</option><option value="+211" data-country="SS">🇸🇸 +211</option><option value="+34" data-country="ES">🇪🇸 +34</option><option value="+94" data-country="LK">🇱🇰 +94</option><option value="+249" data-country="SD">🇸🇩 +249</option><option value="+597" data-country="SR">🇸🇷 +597</option><option value="+268" data-country="SZ">🇸🇿 +268</option><option value="+46" data-country="SE">🇸🇪 +46</option><option value="+41" data-country="CH">🇨🇭 +41</option><option value="+963" data-country="SY">🇸🇾 +963</option><option value="+886" data-country="TW">🇹🇼 +886</option><option value="+992" data-country="TJ">🇹🇯 +992</option><option value="+255" data-country="TZ">🇹🇿 +255</option><option value="+66" data-country="TH">🇹🇭 +66</option><option value="+228" data-country="TG">🇹🇬 +228</option><option value="+676" data-country="TO">🇹🇴 +676</option><option value="+216" data-country="TN">🇹🇳 +216</option><option value="+90" data-country="TR">🇹🇷 +90</option><option value="+993" data-country="TM">🇹🇲 +993</option><option value="+688" data-country="TV">🇹🇻 +688</option><option value="+256" data-country="UG">🇺🇬 +256</option><option value="+380" data-country="UA">🇺🇦 +380</option><option value="+971" data-country="AE">🇦🇪 +971</option><option value="+44" data-country="GB">🇬🇧 +44</option><option value="+1" data-country="US">🇺🇸 +1</option><option value="+598" data-country="UY">🇺🇾 +598</option><option value="+998" data-country="UZ">🇺🇿 +998</option><option value="+678" data-country="VU">🇻🇺 +678</option><option value="+58" data-country="VE">🇻🇪 +58</option><option value="+84" data-country="VN">🇻🇳 +84</option><option value="+967" data-country="YE">🇾🇪 +967</option><option value="+260" data-country="ZM">🇿🇲 +260</option><option value="+263" data-country="ZW">🇿🇼 +263</option></select><input id="contactPhone" name="contactPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. 9812345678" style="flex: 1;" pattern="^\d{10,15}$" title="Enter phone number (10-15 digits)"></div></div>
                                 <div class="field"><label for="contactEmail">Email address</label><input id="contactEmail" name="contactEmail" type="email" autocomplete="email" placeholder="e.g. clinic@email.com"></div>
                             </div>
                         </section>
@@ -154,16 +141,16 @@
                                 <label class="choice"><input type="radio" name="socialContent" value="Not currently"><span><i class="fas fa-minus"></i> Not currently</span></label>
                             </div>
                             <div class="conditional" id="instagram-field"><div class="field"><label for="instagram">What is your Instagram handle?</label><input id="instagram" name="instagram" placeholder="e.g. @drname"></div></div>
-                            <div class="field-grid" style="margin-top: 18px"><div class="field full"><label for="googleProfile">Google Business Profile link—or what should patients search on Google to find you? <span>(Type NA if you want to add this later.)</span></label><input id="googleProfile" name="googleProfile" placeholder="Paste a link, e.g. “Dr Anjali Sharma Dermatologist, Delhi”, or NA"></div></div>
+                            <div class="field-grid" style="margin-top: 18px"><div class="field full"><label for="googleProfile">Google Business Profile link—or what should patients search on Google to find you?</label><input id="googleProfile" name="googleProfile" placeholder="Paste a link, or e.g. “Dr Anjali Sharma Dermatologist, Delhi”"></div></div>
                         </section>
 
                         <section class="form-step" data-step="2" data-progress="66" data-label="Appointment preferences">
                             <p class="step-kicker">Step 3 of 5</p><h2>How should patients book you?</h2><p class="step-help">Choose the consultation types you want to offer. You can change these later.</p>
                             <p class="choice-label">What appointments are you looking for?</p>
                             <div class="choice-grid">
-                                <label class="choice"><input type="radio" name="appointmentType" value="Teleconsultations"><span><i class="fas fa-video"></i> Teleconsultations</span></label>
-                                <label class="choice"><input type="radio" name="appointmentType" value="Offline appointments"><span><i class="fas fa-hospital"></i> Offline visits</span></label>
-                                <label class="choice"><input type="radio" name="appointmentType" value="Both online and offline"><span><i class="fas fa-calendar-check"></i> Both</span></label>
+                                <label class="choice"><input type="radio" name="appointmentType" value="Teleconsultation"><span><i class="fas fa-video"></i> Teleconsultations</span></label>
+                                <label class="choice"><input type="radio" name="appointmentType" value="Offline visits"><span><i class="fas fa-hospital"></i> Offline visits</span></label>
+                                <label class="choice"><input type="radio" name="appointmentType" value="Both"><span><i class="fas fa-calendar-check"></i> Both</span></label>
                             </div>
                             <div class="doctor-count field"><label for="doctorCount">How many doctors need an appointment system in this setup?</label><select id="doctorCount" name="doctorCount"><option value="">Select a number</option><option value="1">Just one doctor</option><option value="2">2 doctors</option><option value="3">3 doctors</option><option value="4">4 doctors</option><option value="5+">5 or more doctors</option></select></div>
                         </section>
@@ -178,14 +165,17 @@
                             <p class="step-kicker">Step 5 of 5</p><h2>Anything else we should know?</h2><p class="step-help">Share any services, languages, clinic locations, brand preferences, or links that will help us make the Online OPD more like yours.</p>
                             <div class="field"><label for="extraInfo">Extra information</label><textarea id="extraInfo" name="extraInfo" placeholder="Add anything useful for your page or booking setup…"></textarea></div>
                             <div class="finish-panel" style="margin-top: 24px">
-                                <div class="send-grid">
-                                    <button id="preview-site-btn" type="button" class="btn btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0;"><i class="fas fa-eye"></i> See preview of your site</button>
-                                    <button id="send-details-btn" type="button" class="btn btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0;"><i class="fas fa-paper-plane"></i> Send details</button>
+                                <h3>Your Online OPD brief is ready.</h3>
+                                <div class="direct-send-box">
+                                    <button id="send-direct" type="button" class="btn btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; background: linear-gradient(135deg, #1e88e5, #12a2bf); color: white; border: none; box-shadow: 0 4px 15px rgba(30, 136, 229, .24);"><i class="fas fa-paper-plane"></i> Submit</button>
+                                    <p style="margin-top: 8px; font-size: 0.85rem; color: var(--opd-muted); margin-bottom: 0;">No redirect required. Send details instantly to our team.</p>
                                 </div>
                             </div>
+                            <div class="signup-callout"><div class="receptionmate-mark"><img src="../Photos/receptionmate-logo.png" alt="ReceptionMate logo"> ReceptionMate</div><strong>Once you send this, just one step remains: create your ReceptionMate account.</strong><p>It’s still left to complete your setup—create an account to sync appointments and teleconsultations with your Online OPD.</p><a href="https://medcortico-pvt-ltd.github.io/Billing-web/" target="_blank" rel="noopener">Create your ReceptionMate account <i class="fas fa-arrow-up-right-from-square"></i></a></div>
+                            <a href="online-opd.html#quote-builder" class="quote-callout"><strong>But how much will this cost?</strong><span>Calculate your Online OPD estimate here.</span><em>Get your quote <i class="fas fa-arrow-right"></i></em></a>
                         </section>
 
-                        <div class="step-actions" id="step-actions"><div></div><div class="action-right"><button type="button" class="back-btn" id="back-step" hidden><i class="fas fa-arrow-left"></i> Back</button><button type="button" class="btn btn-primary" id="next-step">Next <i class="fas fa-arrow-right"></i></button></div></div>
+                        <div class="step-actions"><div></div><div class="action-right"><button type="button" class="back-btn" id="back-step" hidden><i class="fas fa-arrow-left"></i> Back</button><button type="button" class="btn btn-primary" id="next-step">Next <i class="fas fa-arrow-right"></i></button></div></div>
                     </div>
                 </form>
             </section>
@@ -200,19 +190,16 @@
         <div class="missing-modal-box" style="text-align: center; padding: 36px 27px;">
             <div id="submission-loading">
                 <div class="spinner"></div>
-                <h2>Crafting your Online OPD…</h2>
-                <p style="margin-top: 10px; color: var(--opd-muted);">This is the first draft of your NMC-compliant Online OPD. You can make any and all edits you would like. Here you go…</p>
+                <h2>Submitting your request...</h2>
+                <p style="margin-top: 10px; color: var(--opd-muted);">Please wait while we send your details directly to the MedCortico team.</p>
             </div>
             <div id="submission-success" style="display: none;">
                 <div id="success-step-1">
                     <div class="success-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; background: #e6f7ed; color: #2e7d32; border-radius: 50%; font-size: 1.8rem; margin-bottom: 20px;"><i class="fas fa-check-circle"></i></div>
-                    <h2 id="submission-title">Details sent!</h2>
-                    <p style="margin-top: 10px; color: var(--opd-muted); font-size: 0.95rem; line-height: 1.5;">Expect a functioning demo/first draft within 48 hours</p>
-                    <div style="margin-top: 25px; display: flex; flex-direction: column; gap: 10px;">
-                        <a href="online-opd.html" class="btn btn-primary" style="width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;">
-                            <i class="fas fa-info-circle"></i> Tell me more about Online OPD
-                        </a>
-                        <button type="button" class="btn btn-outline" id="close-success-modal-main" style="width: 100%;">Close</button>
+                    <h2 id="submission-title">Details shared!</h2>
+                    <p style="margin-top: 10px; color: var(--opd-muted);">We have received your Online OPD brief.</p>
+                    <div style="margin-top: 25px;">
+                        <button type="button" class="btn btn-primary" id="what-next-btn" style="width: 100%;">What next?</button>
                     </div>
                 </div>
                 <div id="success-step-2" style="display: none;">
@@ -249,7 +236,6 @@
             const progressLabel = document.getElementById('progress-label');
             const next = document.getElementById('next-step');
             const back = document.getElementById('back-step');
-            const stepActions = document.getElementById('step-actions');
             const modal = document.getElementById('missing-modal');
             let currentStep = 0;
 
@@ -262,10 +248,9 @@
                 progressValue.textContent = value + '% complete';
                 progressLabel.textContent = step.dataset.label;
                 document.querySelector('.progress-track').setAttribute('aria-valuenow', value);
+                back.hidden = index === 0;
                 const isLast = index === steps.length - 1;
-                back.hidden = index === 0 || isLast;
                 next.hidden = isLast;
-                stepActions.hidden = isLast;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
             function advance() { if (currentStep < steps.length - 1) showStep(currentStep + 1); }
@@ -273,7 +258,21 @@
                 const activeStep = steps[currentStep];
                 const missing = [];
                 activeStep.querySelectorAll('input:not([type="radio"]), textarea, select').forEach((field) => {
+                    // Skip the country code select in this validation
+                    if (field.id === 'countryCode') return;
+                    
                     if (!field.value.trim() && field.offsetParent !== null) missing.push(field);
+                    
+                    // Special validation for phone number
+                    if (field.id === 'contactPhone' && field.value.trim()) {
+                        const phoneRegex = /^\d{10,15}$/;
+                        if (!phoneRegex.test(field.value.trim())) {
+                            missing.push(field);
+                            field.setCustomValidity('Phone must be 10-15 digits');
+                        } else {
+                            field.setCustomValidity('');
+                        }
+                    }
                 });
                 activeStep.querySelectorAll('.choice-grid').forEach((group) => {
                     const radios = group.querySelectorAll('input[type="radio"]');
@@ -304,10 +303,24 @@
             const instagramField = document.getElementById('instagram-field');
             socialInputs.forEach(input => input.addEventListener('change', () => instagramField.classList.toggle('visible', input.value !== 'Not currently')));
 
+            // Phone number with country code dropdown
+            const phoneInput = document.getElementById('contactPhone');
+            const countryCodeSelect = document.getElementById('countryCode');
+            
+            phoneInput.addEventListener('input', function(e) {
+                // Only allow digits and limit length based on country code
+                let value = e.target.value.replace(/\D/g, '');
+                const countryCode = countryCodeSelect.value;
+                const maxLength = 15 - countryCode.length; // Total should be max 15 chars
+                if (value.length > maxLength) {
+                    value = value.substring(0, maxLength);
+                }
+                e.target.value = value;
+            });
+
             const doctorCount = document.getElementById('doctorCount');
             const doctorList = document.getElementById('doctor-list');
             const doctorEmpty = document.getElementById('doctor-empty');
-            const specialties = ['Type your own...', 'Aesthetic Medicine', 'Anaesthesiologist', 'Ayurvedic Physician', 'Cardiologist', 'Clinical Psychologist', 'Cosmetic Dermatologist', 'Dentist', 'Dermatologist', 'Dietitian & Nutritionist', 'Emergency Medicine', 'Endocrinologist', 'Endodontist', 'ENT Specialist', 'Family Medicine', 'Fertility Specialist', 'Gastroenterologist', 'General Physician', 'General Surgeon', 'Geriatric Medicine', 'Gynaecologist', 'Haematologist', 'Hepatologist', 'Homeopathic Physician', 'Infectious Disease Specialist', 'Internal Medicine', 'Neonatologist', 'Nephrologist', 'Neurologist', 'Neurosurgeon', 'Obstetrician & Gynaecologist', 'Oncologist', 'Ophthalmologist', 'Oral & Maxillofacial Surgeon', 'Oral Medicine Specialist', 'Orthodontist', 'Orthopaedic Surgeon', 'Paediatrician', 'Paediatric Dentist', 'Pathologist', 'Pediatric Dentist', 'Pediatrician', 'Periodontist', 'Physiotherapist', 'Plastic Surgeon', 'Prosthodontist', 'Psychiatrist', 'Pulmonologist', 'Radiologist', 'Rheumatologist', 'Sports Medicine', 'Urologist', 'Vascular Surgeon'];
             function mode() { return document.querySelector('input[name="appointmentType"]:checked')?.value || ''; }
             function buildDoctors() {
                 const selected = doctorCount.value;
@@ -316,15 +329,14 @@
                 doctorEmpty.classList.toggle('visible', !count);
                 if (!count) return;
                 const appointmentMode = mode();
-                const online = appointmentMode === 'Teleconsultations' || appointmentMode === 'Both online and offline';
-                const offline = appointmentMode === 'Offline appointments' || appointmentMode === 'Both online and offline';
+                const online = appointmentMode === 'Teleconsultation' || appointmentMode === 'Both';
+                const offline = appointmentMode === 'Offline visits' || appointmentMode === 'Both';
                 const isSingleDoctor = count === 1;
                 for (let i = 1; i <= count; i++) {
                     const card = document.createElement('article');
                     card.className = 'doctor-card';
                     const cardTitle = isSingleDoctor ? 'Your consultation details' : `Doctor ${i}`;
-                    const specialtyOptions = ['<option value="">Select a speciality</option>', ...specialties.map(specialty => `<option value="${specialty}">${specialty}</option>`), '<option value="Other / not listed">Other / not listed</option>'].join('');
-                    card.innerHTML = `<div class="doctor-card-title"><i class="fas fa-user-md"></i> ${cardTitle}</div><p class="mode-note">${appointmentMode ? `Showing fields for: ${appointmentMode}.` : 'Add the consultation details—appointment mode can be decided later.'}</p><div class="field-grid"><div class="field"><label for="doctorName${i}">${isSingleDoctor ? 'Your name' : 'Doctor’s name'}</label><input id="doctorName${i}" name="doctorName${i}" placeholder="e.g. Dr. Aisha Khan"></div><div class="field"><label for="specialization${i}">${isSingleDoctor ? 'Your speciality' : 'Speciality'}</label><select id="specialization${i}" name="specialization${i}">${specialtyOptions}</select></div>${online ? `<div class="field"><label for="onlineRate${i}">${isSingleDoctor ? 'Your online consultation rate' : 'Online consultation rate'}</label><input id="onlineRate${i}" name="onlineRate${i}" inputmode="numeric" placeholder="e.g. ₹800"></div><div class="field"><label for="onlineSchedule${i}">${isSingleDoctor ? 'When do you see online patients?' : 'Online consultation schedule'} <span>(Type NA if you want to add this later.)</span></label><input id="onlineSchedule${i}" name="onlineSchedule${i}" placeholder="e.g. Mon–Fri, 5–8 PM, or NA"></div>` : ''}${offline ? `<div class="field"><label for="offlineRate${i}">${isSingleDoctor ? 'Your offline consultation rate' : 'Offline consultation rate'}</label><input id="offlineRate${i}" name="offlineRate${i}" inputmode="numeric" placeholder="e.g. ₹1,000"></div><div class="field"><label for="offlineSchedule${i}">${isSingleDoctor ? 'When do you see offline patients?' : 'Clinic timing'} <span>(Type NA if you want to add this later.)</span></label><input id="offlineSchedule${i}" name="offlineSchedule${i}" placeholder="e.g. Mon–Sat, 10 AM–1 PM, or NA"></div>` : ''}${!online && !offline ? `<div class="field full"><label for="consultationInfo${i}">${isSingleDoctor ? 'Your consultation rate and schedule' : 'Consultation rate and schedule'} <span>(Type NA if you want to add this later.)</span></label><textarea id="consultationInfo${i}" name="consultationInfo${i}" placeholder="e.g. Online ₹800, Mon–Fri 5–8 PM; Offline ₹1,000, Sat 10 AM–1 PM, or NA"></textarea></div>` : ''}</div>`;
+                    card.innerHTML = `<div class="doctor-card-title"><i class="fas fa-user-md"></i> ${cardTitle}</div><p class="mode-note">${appointmentMode ? `Showing fields for: ${appointmentMode}.` : 'Add the consultation details—appointment mode can be decided later.'}</p><div class="field-grid"><div class="field"><label for="doctorName${i}">${isSingleDoctor ? 'Your name' : 'Doctor’s name'}</label><input id="doctorName${i}" name="doctorName${i}" placeholder="e.g. Dr. Aisha Khan"></div><div class="field"><label for="specialization${i}">${isSingleDoctor ? 'Your specialization' : 'Specialization'}</label><input id="specialization${i}" name="specialization${i}" placeholder="e.g. Dermatologist"></div>${online ? `<div class="field"><label for="onlineRate${i}">${isSingleDoctor ? 'Your online consultation rate' : 'Online consultation rate'}</label><input id="onlineRate${i}" name="onlineRate${i}" inputmode="numeric" placeholder="e.g. ₹800"></div><div class="field"><label for="onlineSchedule${i}">${isSingleDoctor ? 'When do you see online patients?' : 'Online consultation schedule'}</label><input id="onlineSchedule${i}" name="onlineSchedule${i}" placeholder="e.g. Mon–Fri, 5–8 PM"></div>` : ''}${offline ? `<div class="field"><label for="offlineRate${i}">${isSingleDoctor ? 'Your offline consultation rate' : 'Offline consultation rate'}</label><input id="offlineRate${i}" name="offlineRate${i}" inputmode="numeric" placeholder="e.g. ₹1,000"></div><div class="field"><label for="offlineSchedule${i}">${isSingleDoctor ? 'When do you see offline patients?' : 'Offline consultation schedule'}</label><input id="offlineSchedule${i}" name="offlineSchedule${i}" placeholder="e.g. Mon–Sat, 10 AM–1 PM"></div>` : ''}${!online && !offline ? `<div class="field full"><label for="consultationInfo${i}">${isSingleDoctor ? 'Your consultation rate and schedule' : 'Consultation rate and schedule'}</label><textarea id="consultationInfo${i}" name="consultationInfo${i}" placeholder="e.g. Online ₹800, Mon–Fri 5–8 PM; Offline ₹1,000, Sat 10 AM–1 PM"></textarea></div>` : ''}</div>`;
                     doctorList.appendChild(card);
                 }
             }
@@ -337,29 +349,14 @@
                 const line = (label, key) => value(key) ? `*${label}:* ${value(key)}` : '';
                 const lines = ['Hello MedCortico! I would like to build my Online OPD.', '', '*Practice details*', line('Practice / clinic', 'practiceName'), line('Contact name', 'contactName'), line('Contact number', 'contactPhone'), line('Email', 'contactEmail'), '', '*Online presence*', line('Creates social content', 'socialContent'), line('Instagram', 'instagram'), line('Google Business Profile / search', 'googleProfile'), '', '*Appointment setup*', line('Appointments needed', 'appointmentType'), line('Doctors needing setup', 'doctorCount')].filter(Boolean);
                 const count = value('doctorCount') === '5+' ? 5 : Number(value('doctorCount'));
-                if (count) { 
-                    lines.push('', '*Doctor details*'); 
-                    for (let i = 1; i <= count; i++) { 
-                        const specializationSelect = document.getElementById(`specialization${i}`);
-                        const customSpecialty = document.getElementById(`customSpecialty${i}`);
-                        let specialty = value(`specialization${i}`);
-                        
-                        // Use custom specialty if "Type your own..." was selected
-                        if (specialty === 'Type your own...' && customSpecialty && customSpecialty.value) {
-                            specialty = customSpecialty.value;
-                        }
-                        
-                        const details = [value(`doctorName${i}`), specialty, value(`onlineRate${i}`) && `Online: ${value(`onlineRate${i}`)} (${value(`onlineSchedule${i}`) || 'schedule not added'})`, value(`offlineRate${i}`) && `Offline: ${value(`offlineRate${i}`)} (${value(`offlineSchedule${i}`) || 'schedule not added'})`, value(`consultationInfo${i}`)].filter(Boolean); 
-                        if (details.length) lines.push(`Doctor ${i}: ${details.join(' | ')}`); 
-                    } 
-                }
+                if (count) { lines.push('', '*Doctor details*'); for (let i = 1; i <= count; i++) { const details = [value(`doctorName${i}`), value(`specialization${i}`), value(`onlineRate${i}`) && `Online: ${value(`onlineRate${i}`)} (${value(`onlineSchedule${i}`) || 'schedule not added'})`, value(`offlineRate${i}`) && `Offline: ${value(`offlineRate${i}`)} (${value(`offlineSchedule${i}`) || 'schedule not added'})`, value(`consultationInfo${i}`)].filter(Boolean); if (details.length) lines.push(`Doctor ${i}: ${details.join(' | ')}`); } }
                 if (value('extraInfo')) lines.push('', '*Extra information*', value('extraInfo'));
                 lines.push('', 'Please help me with the next steps.');
                 return lines.join('\n');
             }
 
-            // Splitforms Direct Submit configuration and handlers
-            const SPLITFORMS_ACCESS_KEY = '10cec75a80824f5597c89da9c97116a4';
+            // OpnForms Direct Submit configuration and handlers
+            const OPNFORMS_FORM_SLUG = 'appointment-and-practice-information-form-sdmxqr';
             const submissionModal = document.getElementById('submission-modal');
             const subLoading = document.getElementById('submission-loading');
             const subSuccess = document.getElementById('submission-success');
@@ -368,9 +365,9 @@
 
             const successStep1 = document.getElementById('success-step-1');
             const successStep2 = document.getElementById('success-step-2');
+            const whatNextBtn = document.getElementById('what-next-btn');
 
-            async function submitForm(buttonType = 'preview') {
-                const startedAt = Date.now();
+            async function submitForm() {
                 submissionModal.classList.add('open');
                 subLoading.style.display = 'block';
                 subSuccess.style.display = 'none';
@@ -378,162 +375,113 @@
                 successStep1.style.display = 'block';
                 successStep2.style.display = 'none';
 
-                // Get doctor's name for personalization
                 const formData = new FormData(document.getElementById('opd-form'));
-                const doctorName = formData.get('doctorName1') || formData.get('contactName') || 'Doctor';
+                const value = (key) => (formData.get(key) || '').trim();
 
-                // Create fancy loading animation
-                const isPreview = buttonType === 'preview';
-                subLoading.innerHTML = `
-                    <div class="fancy-loader">
-                        <div class="loader-icon">
-                            <i class="fas fa-wand-magic-sparkles"></i>
-                        </div>
-                        <h2 id="loading-message" style="font-size: 1.5rem; font-weight: 700; margin: 20px 0 8px;">${isPreview ? 'Building your NMC-compliant Online OPD...' : 'Sending your details...'}</h2>
-                        <p id="loading-subtitle" style="color: var(--opd-muted); font-size: 1rem; margin: 0;">${isPreview ? 'Setting up your digital practice' : 'Our team will receive your information'}</p>
-                        <div class="fancy-progress-bar">
-                            <div class="fancy-progress-fill" id="fancy-progress"></div>
-                        </div>
-                        <p id="loading-percentage" style="margin-top: 12px; color: #1e88e5; font-weight: 700; font-size: 1rem;">0%</p>
-                    </div>
-                `;
+                // Combine country code with phone number (limit to 20 chars for OpnForms)
+                const countryCode = document.getElementById('countryCode').value;
+                const phoneNumber = value('contactPhone');
+                const fullPhone = (countryCode + phoneNumber).substring(0, 20); // Limit to 20 characters
 
-                // Animate messages and progress - 15 seconds total for preview, 3 seconds for send details
-                const messages = isPreview ? [
-                    { text: 'Building your NMC-compliant Online OPD...', subtitle: 'Setting up your digital practice', time: 5000, progress: 35 },
-                    { text: 'Almost done...', subtitle: 'This is your first draft, you can make any changes to it later', time: 6000, progress: 75 },
-                    { text: 'Adding final touches...', subtitle: 'Personalizing your experience', time: 2000, progress: 95 },
-                    { text: `Welcome to your OPD, Dr. ${doctorName.replace(/^Dr\.?\s*/i, '')}!`, subtitle: 'Opening your preview...', time: 2000, progress: 100 }
-                ] : [
-                    { text: 'Sending your details...', subtitle: 'Our team will receive your information', time: 1500, progress: 50 },
-                    { text: 'Details sent!', subtitle: 'Expect a functioning demo/first draft within 48 hours', time: 1500, progress: 100 }
-                ];
+                // Build OpnForms payload with field IDs - only include non-empty values
+                const payload = {
+                    "b3521bc0-5771-431e-9d9c-a874c98a35ed": value('practiceName'),
+                    "f80371d0-132f-4faf-b548-9d553d1c0c02": value('contactName'),
+                    "d0a7b88a-cab1-4b4b-853b-15fa84833331": fullPhone,
+                    "af20961a-a597-4ad2-9379-48006837f4ab": parseInt(value('doctorCount')) || 0,
+                };
 
-                let currentMessage = 0;
-                const messageEl = document.getElementById('loading-message');
-                const subtitleEl = document.getElementById('loading-subtitle');
-                const progressEl = document.getElementById('fancy-progress');
-                const percentEl = document.getElementById('loading-percentage');
-                const loaderIcon = document.querySelector('.loader-icon');
-
-                function animateProgress(targetProgress, duration) {
-                    const start = parseFloat(progressEl.style.width) || 0;
-                    const startTime = Date.now();
-                    
-                    function update() {
-                        const elapsed = Date.now() - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        const currentProgress = start + (targetProgress - start) * progress;
-                        
-                        progressEl.style.width = currentProgress + '%';
-                        percentEl.textContent = Math.round(currentProgress) + '%';
-                        
-                        if (progress < 1) {
-                            requestAnimationFrame(update);
-                        }
+                // Add optional fields only if they have values
+                if (value('contactEmail')) payload["209ca33d-2771-4c12-bf13-98fa1b49b1dd"] = value('contactEmail');
+                if (value('appointmentType')) payload["bc940574-451e-4b66-b91e-41c93db533f6"] = value('appointmentType');
+                if (value('extraInfo')) payload["90cfda6e-7ed0-4be9-a559-74059d313e3b"] = value('extraInfo');
+                if (value('googleProfile')) payload["755c7d21-aed6-4700-a696-72f5b597f8a6"] = value('googleProfile');
+                
+                // Instagram - convert handle to full URL if needed
+                if (value('instagram')) {
+                    let instaValue = value('instagram');
+                    if (!instaValue.startsWith('http')) {
+                        // Remove @ if present and convert to URL
+                        instaValue = instaValue.replace(/^@/, '');
+                        instaValue = `https://instagram.com/${instaValue}`;
                     }
-                    
-                    requestAnimationFrame(update);
-                }
-
-                function showNextMessage() {
-                    if (currentMessage >= messages.length) return;
-                    
-                    const msg = messages[currentMessage];
-                    
-                    // Add fade transition
-                    messageEl.style.opacity = '0';
-                    subtitleEl.style.opacity = '0';
-                    
-                    setTimeout(() => {
-                        messageEl.textContent = msg.text;
-                        subtitleEl.textContent = msg.subtitle;
-                        messageEl.style.opacity = '1';
-                        subtitleEl.style.opacity = '1';
-                        
-                        // Special animation for final message
-                        if (currentMessage === messages.length - 1) {
-                            loaderIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
-                            loaderIcon.style.background = 'linear-gradient(135deg, #d4edda, #c3e6cb)';
-                            loaderIcon.style.color = '#155724';
-                            messageEl.style.color = '#155724';
-                            messageEl.style.fontSize = '1.7rem';
-                        }
-                    }, 200);
-                    
-                    animateProgress(msg.progress, msg.time);
-                    
-                    currentMessage++;
-                    if (currentMessage < messages.length) {
-                        setTimeout(showNextMessage, msg.time);
-                    }
-                }
-
-                // Add CSS transitions
-                messageEl.style.transition = 'opacity 0.3s ease';
-                subtitleEl.style.transition = 'opacity 0.3s ease';
-
-                showNextMessage();
-
-                // Handle custom specialty inputs
-                const doctorCountVal = formData.get('doctorCount');
-                const count = doctorCountVal === '5+' ? 5 : Number(doctorCountVal) || 0;
-                for (let i = 1; i <= count; i++) {
-                    const specializationSelect = document.getElementById(`specialization${i}`);
-                    const customSpecialty = document.getElementById(`customSpecialty${i}`);
-                    
-                    if (specializationSelect && specializationSelect.value === 'Type your own...' && customSpecialty && customSpecialty.value) {
-                        formData.set(`specialization${i}`, customSpecialty.value);
-                    }
+                    payload["d3ba2b1e-9286-4571-9dd4-e490b3a160b9"] = instaValue;
                 }
                 
-                formData.append('access_key', SPLITFORMS_ACCESS_KEY);
-                formData.append('full_brief', formMessage());
+                if (value('socialContent')) payload["4f4fccb4-28d8-4039-bfda-8e56a9356eb5"] = value('socialContent');
+
+                // Add doctor fields dynamically (up to 5 doctors) - only if they have values
+                const doctorFieldMap = [
+                    { name: 'e48cc901-a01d-4fd6-9a85-2f90dde27c12', spec: 'e2ec8f79-b550-416a-bb00-6b42379d6839', offline_rate: '940de0c5-019b-40e6-ae3d-acdd59b02d6f', offline_schedule: 'cdce79e6-c4e7-4154-bd91-51c54f8f94cf', online_rate: '9e19ec23-87bb-4b00-9a38-683aa4205d7d', online_schedule: 'f13e49ea-d307-4ad4-b15f-ea7e20f69b97', consultation: '1eeab04e-136d-4951-a59a-770b1cb66f36' },
+                    { name: 'fe3941f3-4731-4a2c-a450-8fc4ea3a3212', spec: '8f8661b2-7620-4a2d-baea-4dfefdfc83a0', offline_rate: 'd440c7c5-5cf9-4bcc-acaf-4f3326dbea98', offline_schedule: '9ad316bd-f1c7-4e2f-b3d9-7523f33e7399', online_rate: 'f4ca46cb-6019-4a3d-a8ef-4bbfa61c4e71', online_schedule: '99e5bcba-8ee8-4360-a407-e30de2e8c3e0' },
+                    { name: '83d0ba31-0cb4-42ae-a70c-ceb0c3bfd4d1', spec: 'bcf38b9f-8419-44cd-85aa-2fe6112fbbd3', offline_rate: '84075fa4-e1ab-4b8f-841b-33bbce68286e', offline_schedule: 'fa2176bd-d681-4ccd-8258-989254154afd', online_rate: 'bb1e909a-6f69-41ce-916c-a28cabad2a46', online_schedule: '5f65fb7c-e9f3-47f5-b550-7a433f4f9666' },
+                    { name: 'bfbeef00-e5c9-48e2-a25d-3318a57ee034', spec: 'fda8e2bd-df5e-4a9f-8a49-15f7f6fdb758', offline_rate: 'a0fb4ce2-f093-426a-a05b-92663b798f60', offline_schedule: '9e282ab9-4b14-496b-8226-61e2b55b7422', online_rate: '39a33b36-a418-43de-8f47-df89c0235c5c', online_schedule: '13ca88cc-0540-4dd5-b8d0-4b8d1aeef99e' },
+                    { name: 'd4c6f797-88f9-494a-8177-348f60a7b674', spec: 'bcdd64dc-181d-4128-87ad-8f0ced22abb9', offline_rate: '4be72ccf-8bf1-4261-b8ca-e79a0d3ec5fe', offline_schedule: '6a1a5437-a39e-4a2b-ad4e-24b66deecca4', online_rate: '96f8f3e7-fa7a-4e26-b893-9e61bbbf452b', online_schedule: 'e74a0d6b-0ea7-46d6-8c04-cc833685036c' }
+                ];
+
+                for (let i = 0; i < 5; i++) {
+                    const idx = i + 1;
+                    const map = doctorFieldMap[i];
+                    
+                    // Only add fields with values
+                    if (value(`doctorName${idx}`)) payload[map.name] = value(`doctorName${idx}`);
+                    if (value(`specialization${idx}`)) payload[map.spec] = value(`specialization${idx}`);
+                    if (value(`offlineRate${idx}`)) payload[map.offline_rate] = value(`offlineRate${idx}`);
+                    if (value(`offlineSchedule${idx}`)) payload[map.offline_schedule] = value(`offlineSchedule${idx}`);
+                    if (value(`onlineRate${idx}`)) payload[map.online_rate] = value(`onlineRate${idx}`);
+                    if (value(`onlineSchedule${idx}`)) payload[map.online_schedule] = value(`onlineSchedule${idx}`);
+                    
+                    // Handle consultation info for doctor 1
+                    if (i === 0 && map.consultation && value(`consultationInfo${idx}`)) {
+                        payload[map.consultation] = value(`consultationInfo${idx}`);
+                    }
+                }
+
+                console.log('Submitting payload:', payload);
 
                 try {
-                    const response = await fetch('https://splitforms.com/api/submit', {
+                    const response = await fetch(`https://api.opnform.com/forms/${OPNFORMS_FORM_SLUG}/answer`, {
                         method: 'POST',
-                        body: formData,
                         headers: {
+                            'Content-Type': 'application/json',
                             'Accept': 'application/json'
-                        }
+                        },
+                        body: JSON.stringify(payload)
                     });
 
+                    const result = await response.json();
+
                     if (response.ok) {
-                        const brief = Object.fromEntries(formData.entries());
-                        brief.specialties = Array.from({ length: brief.doctorCount === '5+' ? 5 : Number(brief.doctorCount) || 0 }, (_, index) => brief[`specialization${index + 1}`]).filter(Boolean);
-                        
-                        if (isPreview) {
-                            localStorage.setItem('medcortico-opd-preview', JSON.stringify(brief));
-                            const remaining = Math.max(0, 15000 - (Date.now() - startedAt));
-                            setTimeout(() => { window.location.href = 'generated-opd-preview.html'; }, remaining);
-                        } else {
-                            // For "Send details" button - show success message after animation
-                            const remaining = Math.max(0, 3000 - (Date.now() - startedAt));
-                            setTimeout(() => {
-                                subLoading.style.display = 'none';
-                                subSuccess.style.display = 'block';
-                            }, remaining);
-                        }
+                        subLoading.style.display = 'none';
+                        subSuccess.style.display = 'block';
                     } else {
-                        throw new Error(`Submission failed with status: ${response.status}`);
+                        // Better error handling to show all validation errors
+                        let errorMsg = result.message || `Submission failed with status: ${response.status}`;
+                        if (result.errors) {
+                            const errorDetails = Object.entries(result.errors)
+                                .map(([field, msgs]) => `${field}: ${Array.isArray(msgs) ? msgs.join(', ') : msgs}`)
+                                .join('\n');
+                            errorMsg = errorDetails || errorMsg;
+                        }
+                        console.error('Submission errors:', result);
+                        throw new Error(errorMsg);
                     }
                 } catch (error) {
                     console.error('Error submitting form:', error);
+                    console.log('Payload sent:', payload);
                     subLoading.style.display = 'none';
                     subError.style.display = 'block';
                     errorMessage.textContent = error.message || 'Something went wrong while sending your request. Please try again.';
                 }
             }
 
-            document.getElementById('close-success-modal-main').addEventListener('click', () => {
-                submissionModal.classList.remove('open');
+            whatNextBtn.addEventListener('click', () => {
+                successStep1.style.display = 'none';
+                successStep2.style.display = 'block';
             });
 
-            // Connect both buttons to submit form
-            document.getElementById('preview-site-btn').addEventListener('click', () => submitForm('preview'));
-            document.getElementById('send-details-btn').addEventListener('click', () => submitForm('send'));
-            document.getElementById('retry-submit').addEventListener('click', () => submitForm('preview'));
+            document.getElementById('send-direct').addEventListener('click', submitForm);
+            document.getElementById('retry-submit').addEventListener('click', submitForm);
 
             document.getElementById('close-success-modal').addEventListener('click', () => {
                 submissionModal.classList.remove('open');
@@ -552,59 +500,5 @@
     </script>
     <script src="../js/main.js"></script>
     <script src="../js/whatsapp-widget.js"></script>
-    <script>
-    // Add custom specialty field functionality
-    document.addEventListener('DOMContentLoaded', () => {
-        // Watch for changes in the doctor list
-        const doctorList = document.getElementById('doctor-list');
-        if (doctorList) {
-            const observer = new MutationObserver(() => {
-                // Find all specialty dropdowns
-                document.querySelectorAll('select[id^="specialization"]').forEach(select => {
-                    if (!select.dataset.listenerAdded) {
-                        select.dataset.listenerAdded = 'true';
-                        
-                        // Get the index from the id
-                        const index = select.id.replace('specialization', '');
-                        
-                        // Check if custom input already exists
-                        let customInput = document.getElementById(`customSpecialty${index}`);
-                        
-                        // If not, create it
-                        if (!customInput) {
-                            customInput = document.createElement('input');
-                            customInput.type = 'text';
-                            customInput.id = `customSpecialty${index}`;
-                            customInput.name = `customSpecialty${index}`;
-                            customInput.placeholder = 'Enter your specialty...';
-                            customInput.className = 'custom-specialty-input';
-                            customInput.style.display = 'none';
-                            customInput.style.marginTop = '10px';
-                            select.parentElement.appendChild(customInput);
-                        }
-                        
-                        // Add change listener
-                        select.addEventListener('change', function() {
-                            const customInput = document.getElementById(`customSpecialty${index}`);
-                            if (this.value === 'Type your own...') {
-                                customInput.style.display = 'block';
-                                customInput.required = true;
-                                setTimeout(() => customInput.focus(), 100);
-                                this.required = false;
-                            } else {
-                                customInput.style.display = 'none';
-                                customInput.required = false;
-                                customInput.value = '';
-                                this.required = true;
-                            }
-                        });
-                    }
-                });
-            });
-            
-            observer.observe(doctorList, { childList: true, subtree: true });
-        }
-    });
-    </script>
 </body>
 </html>
